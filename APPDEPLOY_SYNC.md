@@ -67,9 +67,6 @@ src/RBACCenter.tsx
 src/TradeDeskCopilot.tsx
 src/TradeMemory.tsx
 src/TradeOSFlow.tsx
-src/TradeOSFlow.tsx
-src/TradeMemory.tsx
-src/TradeDeskCopilot.tsx
 src/TrustCompliance.tsx
 src/access.css
 src/adaptive-workspace.css
