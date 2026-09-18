@@ -1,0 +1,66 @@
+# Tests
+
+## Test 1 - Public discovery to customer Trade OS [sanity]
+Viewport: desktop
+Covers: anonymous discovery, Buyer/Seller persona entry, secure sign-in boundary, role-aware workspace
+Description: Verifies public users can explore before authentication and enter the correct customer Trade OS.
+Steps:
+1. Open Tradevance signed out.
+2. Explore Buyers, Sellers, Commodities and Trade Workflow.
+3. Choose Join as Buyer.
+4. Complete supported sign-in.
+Expected: Public discovery works without authentication; Buyer intent is retained; the user reaches Buyer Trade OS; Operator is not shown publicly.
+
+## Test 2 - Super Admin and granular RBAC control
+Viewport: desktop
+Covers: /api/admin/access, /api/admin/rbac, Internal Operations Center, Access Control, privileged role assignment, permission-aware navigation
+Description: Verifies the designated Super Admin can view all internal permissions and manage privileged roles.
+Steps:
+1. Sign in as the designated Super Admin.
+2. Open Internal Control Plane.
+3. Open Access Control.
+4. Review the role catalog.
+Expected: Super Admin has full privileged access; internal roles have distinct scopes; customer Buyer/Seller roles are not treated as privileged roles; role changes remain Super Admin-controlled and audited.
+
+## Test 3 - Permission-scoped internal operations
+Viewport: desktop
+Covers: /api/admin/crm, /api/admin/traffic, /api/admin/users, CRM Customer 360, Traffic Intelligence, User Administration, server-side denial
+Description: Verifies internal staff see only the control-plane modules allowed by their granular permissions.
+Steps:
+1. Sign in as an authorized internal role.
+2. Open Internal Control Plane.
+3. Review visible modules.
+4. Attempt an internal module outside the assigned permission scope.
+Expected: Authorized modules load; unauthorized server requests are rejected; unrelated datasets are not required to render the selected module.
+
+## Test 4 - Protect Buyer/Seller transaction state
+Viewport: desktop
+Covers: RFQ authorization, quote eligibility, Trade Room scope, execution ownership, customer private-data isolation
+Description: Verifies internal administration does not grant ownership of customer transaction data.
+Steps:
+1. Sign in as Buyer and view own transaction data.
+2. Attempt to access another user's private transaction.
+3. Open an internal role and review its permitted administrative modules.
+Expected: Buyer sees own records only; foreign private records are rejected; internal permissions do not grant customer transaction ownership.
+
+## Test 5 - Language, public gates and recovery
+Viewport: mobile
+Covers: anonymous language switching, Public Discovery, transaction gate UX, internal module recovery
+Description: Verifies public discovery and protected actions remain stable while internal modules fail independently.
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/admin/traffic",
+    "status": 503,
+    "body_json": { "error": "simulated_traffic_unavailable" }
+  }
+]
+```
+Steps:
+1. Open Tradevance signed out.
+2. Switch English to Bahasa Indonesia, 中文 and العربية.
+3. Explore a buyer or seller detail.
+4. Tap Create RFQ.
+Expected: Language changes without authentication; Arabic uses RTL; public-safe information remains protected; Create RFQ routes to the authenticated Buyer flow; a Traffic service failure does not break unrelated modules.

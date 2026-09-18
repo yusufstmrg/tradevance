@@ -1,0 +1,20 @@
+TRADEVANCE AI GLOBAL TRADE NETWORK
+Full Production Source Package
+
+Deployed App: tradevance-ai-global-trade-network-3cl0x5
+Live URL: https://tradevance-ai-global-trade-network-3cl0x5.v2.appdeploy.ai/
+Target deployment: production hardening update (AppDeploy v85 lineage)
+
+This package contains the complete source snapshot plus the production hardening changes from the latest successful deployment line:
+- Quote Intelligence backend analysis endpoint and real-input-only UI
+- Trust Graph exposed to Data Fabric
+- Evidence-based dashboard/status messaging
+- Unsupported ISO/GDPR certification claim removed
+- Trade Room routed to the real governed Execution Center
+
+Important production integrations that remain intentionally unclaimed until credentials/contracts are connected:
+- Licensed KYB/UBO and commercial sanctions data
+- Licensed shipment/trade-data feeds
+- Production billing/payment processor
+
+No secrets are included in this package.
