@@ -1,12 +1,36 @@
 # Tradevance Production Source Synchronization
 
-- AppDeploy production baseline: v84 / 1788064173919
-- AppDeploy app: tradevance-ai-global-trade-network-3cl0x5
-- Canonical repository: https://github.com/yusufstmrg/tradevance
-- Target branch: main
+- AppDeploy production app: `tradevance-ai-global-trade-network-3cl0x5`
+- AppDeploy production source baseline inspected: 2026-09-22
+- GitHub repository: https://github.com/yusufstmrg/tradevance
+- Sync branch: `sync/appdeploy-production-2026-09-22`
 
-The current AppDeploy connector exposes source listing/reading but not a bulk remote-snapshot export API. Therefore the connector cannot safely perform a byte-for-byte 1:1 export of every AppDeploy file into GitHub in one atomic operation. This repository records the verified production baseline and package while avoiding secrets and runtime customer data.
+## Current state
 
-Excluded from source control by design: production database contents, customer/private records, authentication sessions/tokens, API keys, passwords, and secret values.
+The AppDeploy runtime contains the full React/Vite frontend and backend source, but the GitHub connector available in this session does not provide a bulk source-snapshot export operation, and GitHub's contents API cannot retrieve binary ZIP contents for reconstruction.
 
-See Tradevance_Full_Production_Sync_Package_v84.zip for the generated production synchronization package.
+The latest repository `main` currently contains the previously generated production packages:
+- `Tradevance_Full_Production_Sync_Package_v84.zip`
+- `tradevance-deploy.zip`
+
+The live AppDeploy source is therefore **not yet fully mirrored file-by-file into this GitHub repository**.
+
+## Excluded from source control
+
+Production database records, customer/private records, authentication sessions/tokens, API keys, passwords, and secret values must not be committed.
+
+## Latest production changes inspected
+
+The deployed AppDeploy source includes:
+- production-mode guards and demo-data cleanup
+- returning-user authentication recovery
+- Buyer/Seller onboarding
+- public discovery layer
+- role-based access control
+- verification gates
+- real user-scoped dashboard data
+- controlled introductions
+- RFQ / quote / execution flows
+
+Manual email/password signup requested on 2026-09-22 remains an AppDeploy-side implementation item; the available AppDeploy auth SDK only exposes Google, Apple and X identity-provider sign-in.
+
