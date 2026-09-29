@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Activity, ShieldCheck, Target, Send, CircleDollarSign,
-    BriefcaseBusiness, TrendingUp, Bot, MapPin, Search,
-    Bell, CheckSquare, Clock, AlertTriangle, ArrowRight, ChevronDown
-} from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
     PieChart, Pie, Cell
@@ -62,11 +58,11 @@ export default function CommandCenter({ data, advance }: any) {
 
                 {/* Metrics Row */}
                 <div className="grid grid-cols-5 gap-4">
-                    <MetricCard title="Active Trades" value="128" icon={Activity} trend="+18% vs last 30 days" color="text-blue-500" bg="bg-blue-500/10" />
-                    <MetricCard title="Trade Value (USD)" value="$48.75M" icon={CircleDollarSign} trend="+24% vs last 30 days" color="text-green-500" bg="bg-green-500/10" />
-                    <MetricCard title="Open RFQs" value="32" icon={Send} trend="+12% vs last 30 days" color="text-purple-500" bg="bg-purple-500/10" />
-                    <MetricCard title="Opportunities" value="16" icon={Target} trend="+8% vs last 30 days" color="text-orange-500" bg="bg-orange-500/10" />
-                    <MetricCard title="Savings Identified" value="$2.41M" icon={TrendingUp} trend="+31% vs last 30 days" color="text-yellow-500" bg="bg-yellow-500/10" />
+                    <MetricCard title="Active Trades" value="128" icon={LucideIcons.Activity} trend="+18% vs last 30 days" color="text-blue-500" bg="bg-blue-500/10" />
+                    <MetricCard title="Trade Value (USD)" value="$48.75M" icon={LucideIcons.CircleDollarSign} trend="+24% vs last 30 days" color="text-green-500" bg="bg-green-500/10" />
+                    <MetricCard title="Open RFQs" value="32" icon={LucideIcons.Send} trend="+12% vs last 30 days" color="text-purple-500" bg="bg-purple-500/10" />
+                    <MetricCard title="Opportunities" value="16" icon={LucideIcons.Target} trend="+8% vs last 30 days" color="text-orange-500" bg="bg-orange-500/10" />
+                    <MetricCard title="Savings Identified" value="$2.41M" icon={LucideIcons.Activity} trend="+31% vs last 30 days" color="text-yellow-500" bg="bg-yellow-500/10" />
                 </div>
 
                 {/* Map & Market Row */}
@@ -195,7 +191,7 @@ export default function CommandCenter({ data, advance }: any) {
                             ].map((opp, i) => (
                                 <div key={i} className="flex items-center gap-4 p-3 rounded-lg border border-[#202b36] bg-[#101922]">
                                     <div className="w-10 h-10 rounded-lg bg-[#1a2430] flex items-center justify-center text-[#d4ad50]">
-                                        <Target size={18} />
+                                        <LucideIcons.Target size={18} />
                                     </div>
                                     <div className="flex-1">
                                         <p className="font-medium text-sm">{opp.prod}</p>
@@ -227,7 +223,7 @@ export default function CommandCenter({ data, advance }: any) {
                             ].map(a => (
                                 <div key={a.name} className="flex justify-between items-center text-sm">
                                     <div className="flex items-center gap-2">
-                                        <Bot size={14} className="text-[#d4ad50]" />
+                                        <LucideIcons.Bot size={14} className="text-[#d4ad50]" />
                                         <span>{a.name}</span>
                                     </div>
                                     <span className="text-green-500 text-xs px-2 py-1 rounded bg-green-500/10">{a.status}</span>
@@ -276,11 +272,11 @@ export default function CommandCenter({ data, advance }: any) {
                         <div className="flex flex-col gap-3 text-sm">
                             <div className="flex justify-between items-center">
                                 <span className="text-[#75818d]">Singapore → Tanga</span>
-                                <div className="flex gap-3 items-center"><span>$32 /MT</span><span className="text-red-500 flex items-center text-xs"><TrendingUp size={12}/> 4%</span></div>
+                                <div className="flex gap-3 items-center"><span>$32 /MT</span><span className="text-red-500 flex items-center text-xs"><LucideIcons.Activity size={12}/> 4%</span></div>
                             </div>
                             <div className="flex justify-between items-center">
                                 <span className="text-[#75818d]">Middle East → Tanga</span>
-                                <div className="flex gap-3 items-center"><span>$25 /MT</span><span className="text-green-500 flex items-center text-xs"><TrendingUp size={12} className="rotate-180"/> 2%</span></div>
+                                <div className="flex gap-3 items-center"><span>$25 /MT</span><span className="text-green-500 flex items-center text-xs"><LucideIcons.Activity size={12} className="rotate-180"/> 2%</span></div>
                             </div>
                         </div>
                     </div>
@@ -306,7 +302,7 @@ export default function CommandCenter({ data, advance }: any) {
                     </div>
                     <div className="relative">
                         <input type="text" placeholder="Ask Tradevance AI..." className="w-full bg-[#101922] border border-[#202b36] rounded-lg pl-3 pr-10 py-2 text-sm text-white focus:outline-none focus:border-[#3b82f6]" />
-                        <button className="absolute right-3 top-1/2 -translate-y-1/2 text-[#75818d] hover:text-white"><Send size={14}/></button>
+                        <button className="absolute right-3 top-1/2 -translate-y-1/2 text-[#75818d] hover:text-white"><LucideIcons.Send size={14}/></button>
                     </div>
                 </div>
 
@@ -317,9 +313,9 @@ export default function CommandCenter({ data, advance }: any) {
                         <button className="text-blue-500 text-sm hover:underline">View all</button>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <AlertItem icon={AlertTriangle} title="Shipment Delay" desc="Shipment TRD-2025-00076 delayed at Port Klang" time="10 min ago" color="text-red-500" />
-                        <AlertItem icon={TrendingUp} title="Price Alert" desc="Sulphur price increased by 2.45%" time="1 hr ago" color="text-yellow-500" />
-                        <AlertItem icon={ShieldCheck} title="Compliance Alert" desc="Sanctions screening found 2 high-risk matches" time="3 hr ago" color="text-red-500" />
+                        <AlertItem icon={LucideIcons.AlertTriangle} title="Shipment Delay" desc="Shipment TRD-2025-00076 delayed at Port Klang" time="10 min ago" color="text-red-500" />
+                        <AlertItem icon={LucideIcons.Activity} title="Price Alert" desc="Sulphur price increased by 2.45%" time="1 hr ago" color="text-yellow-500" />
+                        <AlertItem icon={LucideIcons.ShieldCheck} title="Compliance Alert" desc="Sanctions screening found 2 high-risk matches" time="3 hr ago" color="text-red-500" />
                     </div>
                 </div>
 
@@ -375,7 +371,7 @@ function AlertItem({ icon: Icon, title, desc, time, color }: any) {
 function TaskItem({ title, sub, priority, pColor, due }: any) {
     return (
         <div className="flex gap-3 items-start border-b border-[#202b36] pb-3 last:border-0 last:pb-0">
-            <div className="mt-1 text-[#75818d]"><CheckSquare size={14} /></div>
+            <div className="mt-1 text-[#75818d]"><LucideIcons.CheckSquare size={14} /></div>
             <div className="flex-1">
                 <div className="flex justify-between items-center mb-1">
                     <span className="text-sm font-medium text-[#eef2f6]">{title}</span>

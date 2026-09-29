@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { AlertTriangle, ArrowRight, BrainCircuit, CheckCircle2, Clock3, Gauge, ShieldAlert, Sparkles } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: string) => void }) {
     const [data, setData] = useState<any>(null);
@@ -23,7 +23,7 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3 animate-pulse">
-                <BrainCircuit size={14} /> PREDICTIVE INTELLIGENCE
+                <LucideIcons.BrainCircuit size={14} /> PREDICTIVE INTELLIGENCE
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight mb-2 animate-pulse text-[#4f5b67]">Looking ahead…</h2>
             <p className="text-[#75818d] text-sm max-w-2xl animate-pulse">Tradevance is checking your live signals and evidence.</p>
@@ -33,7 +33,7 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
     if (error) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4 shadow-lg">
-                <AlertTriangle size={24} className="shrink-0 mt-0.5" />
+                <LucideIcons.AlertTriangle size={24} className="shrink-0 mt-0.5" />
                 <div>
                     <h3 className="text-lg font-bold mb-1">Service Unavailable</h3>
                     <p className="text-sm opacity-90">{error}</p>
@@ -47,13 +47,13 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <BrainCircuit size={14} /> PREDICTIVE OPPORTUNITY & ALERTS
+                        <LucideIcons.BrainCircuit size={14} /> PREDICTIVE OPPORTUNITY & ALERTS
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">See the next risk. Catch the next opportunity.</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Evidence-backed alerts from real Tradevance activity — never synthetic forecasts.</p>
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] text-[#c29631] px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold shrink-0">
-                    <Sparkles size={14} /> Governed intelligence
+                    <LucideIcons.Sparkles size={14} /> Governed intelligence
                 </div>
             </div>
 
@@ -85,7 +85,7 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
                         
                         <div className="flex items-start gap-4 relative z-10">
                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-1 ${x.decision === 'BLOCK' ? 'bg-red-500/10 text-red-500 border border-red-500/20' : x.severity === 'Critical' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'}`}>
-                                {x.decision === 'BLOCK' ? <ShieldAlert size={20} /> : x.severity === 'Critical' ? <AlertTriangle size={20} /> : <CheckCircle2 size={20} />}
+                                {x.decision === 'BLOCK' ? <LucideIcons.ShieldAlert size={20} /> : x.severity === 'Critical' ? <LucideIcons.AlertTriangle size={20} /> : <LucideIcons.CheckCircle2 size={20} />}
                             </div>
                             <div className="flex-1 min-w-0">
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -102,11 +102,11 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
                                 
                                 <div className="flex flex-wrap items-center gap-4 mb-6 text-[11px] font-mono text-[#75818d]">
                                     <span className="flex items-center gap-1.5">
-                                        <Gauge size={14} className="text-blue-400" />
+                                        <LucideIcons.Gauge size={14} className="text-blue-400" />
                                         {x.confidence}% confidence
                                     </span>
                                     <span className="flex items-center gap-1.5">
-                                        <Clock3 size={14} className="text-green-500" />
+                                        <LucideIcons.Clock3 size={14} className="text-green-500" />
                                         {x.dataQuality}
                                     </span>
                                 </div>
@@ -125,7 +125,7 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
                                         className="text-blue-400 hover:text-blue-300 flex items-center gap-2 text-xs font-bold transition-colors group/btn shrink-0"
                                         onClick={() => onNavigate(x.destination)}
                                     >
-                                        Open {x.destination} <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                                        Open {x.destination} <LucideIcons.ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                                     </button>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@ export default function PredictiveAlerts({ onNavigate }: { onNavigate: (s: strin
 
             <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 max-w-4xl mx-auto">
                 <div className="bg-[#0c131b] rounded-full p-3 shrink-0">
-                    <ShieldAlert size={20} className="text-orange-400" />
+                    <LucideIcons.ShieldAlert size={20} className="text-orange-400" />
                 </div>
                 <span className="text-[#eef2f6] text-sm leading-relaxed">
                     Alerts recommend or route work. They never execute transactions and do not override verification, sanctions, risk or human-approval controls.

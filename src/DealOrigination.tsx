@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { ArrowRight, Bot, CheckCircle2, ChevronRight, Globe2, ShieldCheck, Sparkles, Target, TrendingUp, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Opp = { id: string; product: string; buyer?: string; supplier?: string; origin: string; destination: string; quantity: number; estimatedValue: number; opportunityScore: number; commercialFit: number; trust: number; supplyFit: number; demandStrength: number; risk: number; reasons: string[] };
 
@@ -31,7 +31,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
                 <div className="flex justify-between items-end mb-8">
                     <div>
                         <div className="flex items-center gap-2 text-purple-400 text-xs font-bold tracking-widest uppercase mb-3">
-                            <Target size={14} /> AI DEAL ORIGINATION ENGINE
+                            <LucideIcons.Target size={14} /> AI DEAL ORIGINATION ENGINE
                         </div>
                         <h2 className="text-3xl font-extrabold tracking-tight mb-2">Find the deals worth pursuing first.</h2>
                         <p className="text-[#75818d] text-sm max-w-2xl">Tradevance turns demand, supply, trust, risk and commercial fit into explainable deal hypotheses.</p>
@@ -44,10 +44,10 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
 
                 {/* Deal Flow Tracker */}
                 <div className="flex items-center gap-2 text-xs font-bold text-[#4f5b67] uppercase tracking-wider mb-8 bg-[#101922] p-4 rounded-xl border border-[#202b36] overflow-x-auto">
-                    <span className="text-purple-400">Demand signal</span><ChevronRight size={14} />
-                    <span className="text-purple-400">Supply fit</span><ChevronRight size={14} />
-                    <span className="text-purple-400">Trust</span><ChevronRight size={14} />
-                    <span className="text-purple-400">Commercial thesis</span><ChevronRight size={14} />
+                    <span className="text-purple-400">Demand signal</span><LucideIcons.ChevronRight size={14} />
+                    <span className="text-purple-400">Supply fit</span><LucideIcons.ChevronRight size={14} />
+                    <span className="text-purple-400">Trust</span><LucideIcons.ChevronRight size={14} />
+                    <span className="text-purple-400">Commercial thesis</span><LucideIcons.ChevronRight size={14} />
                     <span className="text-white">Next best action</span>
                 </div>
 
@@ -64,7 +64,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
                         ))}
                     </div>
                     <div className="flex items-center gap-2 text-[10px] text-[#75818d] font-bold uppercase tracking-widest">
-                        <ShieldCheck size={14} /> Evidence-backed ranking · Contact details protected
+                        <LucideIcons.ShieldCheck size={14} /> Evidence-backed ranking · Contact details protected
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
                                 </div>
                                 
                                 <div className="flex items-center gap-2 text-xs text-[#eef2f6] mb-6">
-                                    <Globe2 size={14} className="text-[#4f5b67]" />
+                                    <LucideIcons.Globe2 size={14} className="text-[#4f5b67]" />
                                     {o.origin} → {o.destination}
                                     <span className="text-[#4f5b67]">·</span>
                                     <b className="font-mono">{o.quantity.toLocaleString()} MT</b>
@@ -108,7 +108,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
                                 <div className="space-y-2 mb-6">
                                     {o.reasons.map(r => (
                                         <div key={r} className="flex items-start gap-2 text-xs text-[#75818d]">
-                                            <CheckCircle2 size={14} className="text-green-500 shrink-0 mt-0.5" />
+                                            <LucideIcons.CheckCircle2 size={14} className="text-green-500 shrink-0 mt-0.5" />
                                             <span>{r}</span>
                                         </div>
                                     ))}
@@ -116,10 +116,10 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
 
                                 <div className="flex justify-between items-center pt-4 border-t border-[#202b36]">
                                     <span className={`text-xs font-bold flex items-center gap-1 ${o.risk < 30 ? 'text-green-500' : 'text-orange-500'}`}>
-                                        Risk {o.risk}/100 {o.risk > 50 && <AlertTriangle size={12}/>}
+                                        Risk {o.risk}/100 {o.risk > 50 && <LucideIcons.AlertTriangle size={12}/>}
                                     </span>
                                     <span className="text-sm font-bold text-white flex items-center gap-1 group-hover:text-purple-400 transition-colors">
-                                        Est. ${Math.round(o.estimatedValue / 1000000)}M <ArrowRight size={14} />
+                                        Est. ${Math.round(o.estimatedValue / 1000000)}M <LucideIcons.ArrowRight size={14} />
                                     </span>
                                 </div>
                             </button>
@@ -134,7 +134,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
                     <div className="p-6 border-b border-[#202b36] bg-[#0c131b]">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex items-center gap-2 text-purple-400 text-[10px] font-bold tracking-widest uppercase">
-                                <Bot size={14} /> DEAL HYPOTHESIS
+                                <LucideIcons.Bot size={14} /> DEAL HYPOTHESIS
                             </div>
                             <button className="text-[#75818d] hover:text-white" onClick={() => setSelected(null)}>Close</button>
                         </div>
@@ -166,7 +166,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
 
                         <div className="bg-[#070b10] p-5 rounded-xl border border-[#202b36]">
                             <div className="flex items-center gap-2 text-[#c29631] text-[10px] font-bold tracking-widest uppercase mb-4">
-                                <Sparkles size={14} /> COMMERCIAL WHAT-IF
+                                <LucideIcons.Sparkles size={14} /> COMMERCIAL WHAT-IF
                             </div>
                             <div className="space-y-4">
                                 <label className="block">
@@ -185,7 +185,7 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
                                     <input type="range" className="w-full accent-purple-500" min="-20" max="20" value={whatIf.risk} onChange={e => setWhatIf({ ...whatIf, risk: Number(e.target.value) })} />
                                 </label>
                                 <button className="w-full bg-[#202b36] hover:bg-[#4f5b67] text-white py-2 rounded flex justify-center items-center gap-2 text-xs font-bold transition-colors" onClick={simulate}>
-                                    <TrendingUp size={14} /> Run Simulation
+                                    <LucideIcons.Activity size={14} /> Run Simulation
                                 </button>
                             </div>
                             
@@ -203,10 +203,10 @@ export default function DealOrigination({ onNavigate }: { onNavigate: (section: 
 
                     <div className="p-4 bg-[#0c131b] border-t border-[#202b36] space-y-2">
                         <button className="w-full bg-[#202b36] hover:bg-[#4f5b67] text-white py-3 rounded flex justify-center items-center gap-2 text-sm font-bold transition-colors" onClick={() => onNavigate('Network Access')}>
-                            Request Controlled Introduction <ArrowRight size={16} />
+                            Request Controlled Introduction <LucideIcons.ArrowRight size={16} />
                         </button>
                         <button className="w-full bg-purple-600 hover:bg-purple-500 text-white py-3 rounded flex justify-center items-center gap-2 text-sm font-bold transition-colors" onClick={() => onNavigate('RFQ & Tenders')}>
-                            Prepare RFQ <ArrowRight size={16} />
+                            Prepare RFQ <LucideIcons.ArrowRight size={16} />
                         </button>
                     </div>
                 </section>

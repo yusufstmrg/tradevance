@@ -1,15 +1,15 @@
 import React from 'react';
-import { BadgeCheck, BrainCircuit, CheckCircle2, CircleDollarSign, FileCheck2, Globe2, Layers3, PackageSearch, Route, ShieldCheck, Sparkles, Target } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 const steps = [
-    ['Discover', 'Find demand and supply', Globe2],
-    ['Verify', 'Identity, evidence and trust', BadgeCheck],
-    ['Match', 'Fit, risk and commercial signal', Target],
-    ['Deal', 'RFQ, quote and negotiation', Sparkles],
-    ['Finance', 'Payment and funding readiness', CircleDollarSign],
-    ['Ship', 'Logistics and execution', Route],
-    ['Settle', 'Documents and delivery', FileCheck2],
-    ['Learn', 'Outcomes improve the network', BrainCircuit]
+    ['Discover', 'Find demand and supply', LucideIcons.Globe2],
+    ['Verify', 'Identity, evidence and trust', LucideIcons.BadgeCheck],
+    ['Match', 'Fit, risk and commercial signal', LucideIcons.Target],
+    ['Deal', 'RFQ, quote and negotiation', LucideIcons.Sparkles],
+    ['Finance', 'Payment and funding readiness', LucideIcons.CircleDollarSign],
+    ['Ship', 'Logistics and execution', LucideIcons.Route],
+    ['Settle', 'Documents and delivery', LucideIcons.FileCheck2],
+    ['Learn', 'Outcomes improve the network', LucideIcons.BrainCircuit]
 ] as const;
 
 export default function TradeOSFlow() {
@@ -18,13 +18,13 @@ export default function TradeOSFlow() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
                 <div>
                     <div className="flex items-center gap-2 text-blue-400 text-xs font-bold tracking-widest uppercase mb-3">
-                        <Layers3 size={14} /> TRADEVANCE TRADE OS
+                        <LucideIcons.Layers3 size={14} /> TRADEVANCE TRADE OS
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">One operating path from opportunity to outcome.</h3>
                     <p className="text-[#75818d] text-sm">AI finds the opportunity. Verification builds trust. Human-approved controls keep the transaction safe.</p>
                 </div>
                 <div className="bg-[#0c131b] border border-[#202b36] text-[#c29631] px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 shrink-0">
-                    <ShieldCheck size={16} /> Governed end-to-end
+                    <LucideIcons.ShieldCheck size={16} /> Governed end-to-end
                 </div>
             </div>
 
@@ -46,7 +46,7 @@ export default function TradeOSFlow() {
                             <Icon size={20} className="text-[#75818d] group-hover:text-blue-400 transition-colors" />
                             
                             {i < steps.length - 1 && (
-                                <CheckCircle2 size={14} className="hidden lg:block absolute -right-6 lg:right-[-2rem] top-1/2 -translate-y-1/2 text-[#202b36] bg-[#101922] z-20" />
+                                <LucideIcons.CheckCircle2 size={14} className="hidden lg:block absolute -right-6 lg:right-[-2rem] top-1/2 -translate-y-1/2 text-[#202b36] bg-[#101922] z-20" />
                             )}
                         </div>
                         
@@ -60,16 +60,16 @@ export default function TradeOSFlow() {
 
             <div className="flex flex-wrap md:flex-nowrap justify-between gap-4 pt-6 border-t border-[#202b36]">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#75818d] uppercase tracking-widest w-1/2 md:w-auto">
-                    <PackageSearch size={14} className="text-blue-400" /> Buyer + Seller network
+                    <LucideIcons.PackageSearch size={14} className="text-blue-400" /> Buyer + Seller network
                 </div>
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#75818d] uppercase tracking-widest w-1/2 md:w-auto">
-                    <BadgeCheck size={14} className="text-[#c29631]" /> Evidence-backed identity
+                    <LucideIcons.BadgeCheck size={14} className="text-[#c29631]" /> Evidence-backed identity
                 </div>
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#75818d] uppercase tracking-widest w-1/2 md:w-auto">
-                    <BrainCircuit size={14} className="text-purple-400" /> AI decision support
+                    <LucideIcons.BrainCircuit size={14} className="text-purple-400" /> AI decision support
                 </div>
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#75818d] uppercase tracking-widest w-1/2 md:w-auto">
-                    <ShieldCheck size={14} className="text-green-500" /> Human approval required
+                    <LucideIcons.ShieldCheck size={14} className="text-green-500" /> Human approval required
                 </div>
             </div>
         </section>

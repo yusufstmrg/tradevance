@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { ArrowRight, CheckCircle2, CircleDollarSign, FileCheck2, GitBranch, Handshake, LockKeyhole, MessageSquareText, ShieldCheck, Ship, Sparkles, TrendingUp, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Quote = { id: string; tradeId?: string; supplier: string; product: string; quantity: number; currency: string; unit: string; price: number; freight: number; insurance: number; landedCost: number; payment: string; incoterm: string; status: string };
 type Trade = { id: string; product: string; buyer: string; supplier: string; qty: number; value: number; status: string; risk: number };
@@ -130,7 +130,7 @@ export default function ExecutionCenter() {
             <div className="flex justify-between items-end mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c9a34a] text-xs font-bold tracking-widest uppercase mb-3">
-                        <GitBranch size={14} /> TRANSACTION EXECUTION
+                        <LucideIcons.GitBranch size={14} /> TRANSACTION EXECUTION
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Trade Room</h2>
                     <p className="text-[#75818d] text-sm">One controlled workspace for negotiation, approvals, execution readiness and post-trade learning.</p>
@@ -139,7 +139,7 @@ export default function ExecutionCenter() {
                     className="bg-[#c29631] hover:bg-[#a37c23] text-white px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold text-sm transition-colors disabled:opacity-50"
                     onClick={create} disabled={!selected}
                 >
-                    <Sparkles size={16} /> Capture Supplier Quote
+                    <LucideIcons.Sparkles size={16} /> Capture Supplier Quote
                 </button>
             </div>
 
@@ -148,7 +148,7 @@ export default function ExecutionCenter() {
                 <section className="col-span-1 xl:col-span-2 bg-[#101922] border border-[#202b36] rounded-xl overflow-hidden flex flex-col">
                     <div className="p-5 border-b border-[#202b36] bg-[#0c131b] flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-[#c29631]/10 text-[#c29631] flex items-center justify-center">
-                            <Handshake size={16} />
+                            <LucideIcons.Handshake size={16} />
                         </div>
                         <div>
                             <h3 className="font-bold text-sm text-white">Trade Control</h3>
@@ -193,7 +193,7 @@ export default function ExecutionCenter() {
                                         <small className="text-[10px] text-[#75818d] font-bold tracking-wider uppercase block mb-1">RISK</small>
                                         <div className="flex items-center gap-2">
                                             <b className="text-lg text-white font-mono">{trade.risk}/100</b>
-                                            {trade.risk > 50 && <AlertTriangle size={14} className="text-orange-500" />}
+                                            {trade.risk > 50 && <LucideIcons.AlertTriangle size={14} className="text-orange-500" />}
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@ export default function ExecutionCenter() {
                                         {stages.map((s, i) => (
                                             <div key={s} className="flex flex-col items-center gap-2">
                                                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-colors ${i < stageIndex ? 'bg-green-500 text-black border-2 border-[#070b10]' : i === stageIndex ? 'bg-[#c29631] text-black border-4 border-[#070b10] shadow-[0_0_0_2px_#c29631]' : 'bg-[#101922] border-2 border-[#4f5b67] text-[#4f5b67]'}`}>
-                                                    {i < stageIndex ? <CheckCircle2 size={12} /> : i + 1}
+                                                    {i < stageIndex ? <LucideIcons.CheckCircle2 size={12} /> : i + 1}
                                                 </div>
                                                 <b className={`text-[10px] uppercase tracking-wider ${i <= stageIndex ? 'text-white' : 'text-[#4f5b67]'}`}>{s}</b>
                                             </div>
@@ -217,7 +217,7 @@ export default function ExecutionCenter() {
                                     disabled={busy || trade.status === 'Settled'} 
                                     onClick={advance}
                                 >
-                                    {busy ? 'Advancing Workflow...' : 'Advance Controlled Workflow'} <ArrowRight size={16} />
+                                    {busy ? 'Advancing Workflow...' : 'Advance Controlled Workflow'} <LucideIcons.ArrowRight size={16} />
                                 </button>
                             </>
                         )}
@@ -228,7 +228,7 @@ export default function ExecutionCenter() {
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl overflow-hidden flex flex-col">
                     <div className="p-5 border-b border-[#202b36] bg-[#0c131b] flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center">
-                            <FileCheck2 size={16} />
+                            <LucideIcons.FileCheck2 size={16} />
                         </div>
                         <div>
                             <h3 className="font-bold text-sm text-white">Execution Readiness</h3>
@@ -263,7 +263,7 @@ export default function ExecutionCenter() {
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl overflow-hidden flex flex-col">
                     <div className="p-5 border-b border-[#202b36] bg-[#0c131b] flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center">
-                            <CircleDollarSign size={16} />
+                            <LucideIcons.CircleDollarSign size={16} />
                         </div>
                         <div>
                             <h3 className="font-bold text-sm text-white">Quote Desk</h3>
@@ -323,7 +323,7 @@ export default function ExecutionCenter() {
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl overflow-hidden flex flex-col">
                     <div className="p-5 border-b border-[#202b36] bg-[#0c131b] flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-                            <MessageSquareText size={16} />
+                            <LucideIcons.MessageSquareText size={16} />
                         </div>
                         <div>
                             <h3 className="font-bold text-sm text-white">Negotiation Copilot</h3>
@@ -339,7 +339,7 @@ export default function ExecutionCenter() {
                                     value={objective} onChange={e => setObjective(e.target.value)} placeholder="Negotiation objective" 
                                 />
                                 <button className="bg-[#202b36] hover:bg-[#4f5b67] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-colors disabled:opacity-50" onClick={generateStrategy} disabled={!selected}>
-                                    Generate <Sparkles size={14} className="text-[#c29631]" />
+                                    Generate <LucideIcons.Sparkles size={14} className="text-[#c29631]" />
                                 </button>
                             </div>
                         </div>
@@ -347,7 +347,7 @@ export default function ExecutionCenter() {
                         {strategy && (
                             <div className="bg-[#0c131b] border border-[#c29631]/30 rounded-lg p-4 shadow-[0_0_15px_rgba(194,150,49,0.05)]">
                                 <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold mb-3">
-                                    <Sparkles size={14} /> STRUCTURED STRATEGY GENERATED
+                                    <LucideIcons.Sparkles size={14} /> STRUCTURED STRATEGY GENERATED
                                 </div>
                                 <pre className="text-[10px] text-[#eef2f6] font-mono whitespace-pre-wrap max-h-40 overflow-y-auto">
                                     {typeof strategy === 'string' ? strategy : JSON.stringify(strategy, null, 2)}
@@ -363,10 +363,10 @@ export default function ExecutionCenter() {
                                     value={approvalReason} onChange={e => setApprovalReason(e.target.value)} placeholder="Approval rationale" 
                                 />
                                 <button className="bg-[#202b36] hover:bg-[#4f5b67] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-colors" onClick={() => approval('escalate')}>
-                                    <LockKeyhole size={14} /> Escalate
+                                    <LucideIcons.LockKeyhole size={14} /> Escalate
                                 </button>
                                 <button className="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-colors" onClick={() => approval('approve')}>
-                                    <ShieldCheck size={14} /> Approve
+                                    <LucideIcons.ShieldCheck size={14} /> Approve
                                 </button>
                             </div>
                         </div>
@@ -394,13 +394,13 @@ export default function ExecutionCenter() {
             {/* Notifications */}
             {message && (
                 <div className="fixed bottom-6 right-6 bg-[#0c131b] border border-[#c29631] text-white px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 z-50">
-                    <CheckCircle2 size={18} className="text-[#c29631]" />
+                    <LucideIcons.CheckCircle2 size={18} className="text-[#c29631]" />
                     <span className="text-sm font-medium">{message}</span>
                 </div>
             )}
             {roomBusy && (
                 <div className="fixed bottom-6 right-6 bg-blue-900 border border-blue-500 text-white px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 z-50">
-                    <LockKeyhole size={18} className="animate-pulse" />
+                    <LucideIcons.LockKeyhole size={18} className="animate-pulse" />
                     <span className="text-sm font-medium">Synchronizing Trade Room...</span>
                 </div>
             )}

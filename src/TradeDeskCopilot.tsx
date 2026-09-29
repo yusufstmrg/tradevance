@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { api } from '@appdeploy/client';
-import { Bot, Send, ShieldCheck, Sparkles, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 import TradeOSFlow from './TradeOSFlow';
 
 export default function TradeDeskCopilot() {
@@ -38,7 +38,7 @@ export default function TradeDeskCopilot() {
             
             <div className="flex items-start gap-4 mb-8">
                 <div className="mt-1 bg-blue-500/10 text-blue-400 p-2 rounded-lg border border-blue-500/20">
-                    <Bot size={20} />
+                    <LucideIcons.Bot size={20} />
                 </div>
                 <div>
                     <h3 className="text-xl font-bold text-white mb-1">Tradevance Copilot</h3>
@@ -50,7 +50,7 @@ export default function TradeDeskCopilot() {
                 <div className="relative">
                     <div className="absolute inset-0 bg-[#c29631] blur-xl opacity-20 rounded-full animate-pulse"></div>
                     <div className="relative w-16 h-16 bg-[#070b10] border-2 border-[#c29631]/50 rounded-full flex items-center justify-center">
-                        <Sparkles size={24} className={busy ? 'text-[#c29631] animate-spin' : 'text-[#c29631]'} />
+                        <LucideIcons.Sparkles size={24} className={busy ? 'text-[#c29631] animate-spin' : 'text-[#c29631]'} />
                     </div>
                 </div>
                 <div>
@@ -74,7 +74,7 @@ export default function TradeDeskCopilot() {
             {answer && (
                 <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-6 mb-8 relative">
                     <div className="flex items-center gap-2 text-blue-400 text-xs font-bold tracking-widest uppercase mb-4 border-b border-blue-500/10 pb-3">
-                        <ShieldCheck size={14} /> Tradevance Assessment
+                        <LucideIcons.ShieldCheck size={14} /> Tradevance Assessment
                     </div>
                     <p className="text-[#eef2f6] leading-relaxed whitespace-pre-wrap text-sm">{answer}</p>
                 </div>
@@ -82,7 +82,7 @@ export default function TradeDeskCopilot() {
 
             {error && (
                 <div className="bg-red-500/10 border border-red-500/20 text-red-500 p-4 rounded-xl mb-8 text-sm flex items-start gap-3">
-                    <AlertTriangle size={16} className="shrink-0 mt-0.5" />
+                    <LucideIcons.AlertTriangle size={16} className="shrink-0 mt-0.5" />
                     <p>{error}</p>
                 </div>
             )}
@@ -101,7 +101,7 @@ export default function TradeDeskCopilot() {
                     onClick={() => ask()} 
                     disabled={busy || !q.trim()}
                 >
-                    <Send size={18} className={busy ? 'animate-pulse' : ''} />
+                    <LucideIcons.Send size={18} className={busy ? 'animate-pulse' : ''} />
                 </button>
             </div>
         </section>

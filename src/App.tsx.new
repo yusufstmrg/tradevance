@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { api, auth } from "@appdeploy/client";
-import * as LucideIcons from "lucide-react";
+import { Activity, AlertTriangle, ArrowRight, BarChart3, Bell, Bot, BrainCircuit, BriefcaseBusiness, Building2, CircleDollarSign, ChevronRight, Database, FileCheck2, Globe2, GitBranch, Layers3, LockKeyhole, Menu, Moon, PackageSearch, PanelLeft, Search, Send, ShieldCheck, Ship, Sparkles, Sun, Target, UserRound, Users, X } from "lucide-react";
 import EntityIntelligence from "./EntityIntelligence";
 import QuoteIntelligence from "./QuoteIntelligence";
 import CommercialGuardrails from "./CommercialGuardrails";
@@ -66,36 +66,36 @@ type Match = { supplier: Supplier; matchScore: number; reasons: string[] };
 
 const money = (n: number) =>
   "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
-const nav = [
-  ["Command Center", LucideIcons.Activity],
-  ["My Tradeview", LucideIcons.BrainCircuit],
-  ["Daily Trade Command", LucideIcons.Sparkles],
-  ["Predictive Alerts", LucideIcons.Bell],
-  ["Decision Mesh", LucideIcons.BrainCircuit],
-  ["Buyer Workspace", LucideIcons.Users],
-  ["Seller Workspace", LucideIcons.Building2],
-  ["Global Entities", LucideIcons.Globe2],
-  ["Data Fabric", LucideIcons.Database],
-  ["Suppliers", LucideIcons.Building2],
-  ["Products", LucideIcons.PackageSearch],
-  ["RFQ & Tenders", LucideIcons.Send],
-  ["Quote Intelligence", LucideIcons.BarChart3],
-  ["Execution Center", LucideIcons.GitBranch],
-  ["Trades", LucideIcons.BriefcaseBusiness],
-  ["Trade Room", LucideIcons.Layers3],
-  ["Commercial Guardrails", LucideIcons.Target],
-  ["Intelligence", LucideIcons.BarChart3],
-  ["Deal Origination", LucideIcons.Target],
-  ["AI Agents", LucideIcons.Bot],
-  ["Risk & Compliance", LucideIcons.ShieldCheck],
-  ["Trade Finance", LucideIcons.CircleDollarSign],
-  ["Logistics", LucideIcons.Ship],
-  ["Documents", LucideIcons.FileCheck2],
-  ["Network Access", LucideIcons.LockKeyhole],
-  ["Revenue", LucideIcons.Activity],
-  ["Profile & Verification", LucideIcons.UserRound],
-  ["Legal Center", LucideIcons.FileCheck2],
-  ["Admin Intelligence", LucideIcons.Database],
+const getNav = () => [
+  ["Command Center", Activity],
+  ["My Tradeview", BrainCircuit],
+  ["Daily Trade Command", Sparkles],
+  ["Predictive Alerts", Bell],
+  ["Decision Mesh", BrainCircuit],
+  ["Buyer Workspace", Users],
+  ["Seller Workspace", Building2],
+  ["Global Entities", Globe2],
+  ["Data Fabric", Database],
+  ["Suppliers", Building2],
+  ["Products", PackageSearch],
+  ["RFQ & Tenders", Send],
+  ["Quote Intelligence", BarChart3],
+  ["Execution Center", GitBranch],
+  ["Trades", BriefcaseBusiness],
+  ["Trade Room", Layers3],
+  ["Commercial Guardrails", Target],
+  ["Intelligence", BarChart3],
+  ["Deal Origination", Target],
+  ["AI Agents", Bot],
+  ["Risk & Compliance", ShieldCheck],
+  ["Trade Finance", CircleDollarSign],
+  ["Logistics", Ship],
+  ["Documents", FileCheck2],
+  ["Network Access", LockKeyhole],
+  ["Revenue", Activity],
+  ["Profile & Verification", UserRound],
+  ["Legal Center", FileCheck2],
+  ["Admin Intelligence", Database],
 ] as const;
 const languages = {
   en: "English",
@@ -650,7 +650,7 @@ function App() {
         .map(
           ([label, Icon]) =>
             (profile?.role === "seller" && label === "Suppliers"
-              ? ["Buyer Network", LucideIcons.Users]
+              ? ["Buyer Network", Users]
               : [label, Icon]) as const,
         )
         .filter(
@@ -871,14 +871,14 @@ function App() {
               disabled={!onboardCompany.trim()}
               onClick={() => finishOnboarding("buyer", onboardCompany.trim())}
             >
-              <LucideIcons.Users size={16} /> Continue as Buyer
+              <Users size={16} /> Continue as Buyer
             </button>
             <button
               className="btn secondary"
               disabled={!onboardCompany.trim()}
               onClick={() => finishOnboarding("seller", onboardCompany.trim())}
             >
-              <LucideIcons.Building2 size={16} /> Continue as Seller
+              <Building2 size={16} /> Continue as Seller
             </button>
           </div>
           <small>
@@ -895,13 +895,13 @@ function App() {
           className="icon-btn mobile-only"
           onClick={() => setMobile(true)}
         >
-          <LucideIcons.Menu size={19} />
+          <Menu size={19} />
         </button>
         <div className="brand brand-logo-lockup">
           <TradevanceOriginalLogo />
         </div>
         <div className="global-search">
-          <LucideIcons.Search size={17} />
+          <Search size={17} />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -941,7 +941,7 @@ function App() {
               className="theme-btn"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             >
-              {theme === "light" ? <LucideIcons.Moon size={15} /> : <LucideIcons.Sun size={15} />}
+              {theme === "light" ? <Moon size={15} /> : <Sun size={15} />}
             </button>
           </div>
           <div className="role-pill">
@@ -953,7 +953,7 @@ function App() {
             aria-label="Open predictive alerts"
             onClick={() => navTo("Predictive Alerts")}
           >
-            <LucideIcons.Bell size={18} />
+            <Bell size={18} />
           </button>
           <button
             className="avatar"
@@ -973,12 +973,12 @@ function App() {
           <div className="side-head">
             <span>TRADEVANCE OS</span>
             <button className="icon-btn" onClick={() => setMobile(false)}>
-              <LucideIcons.X size={17} />
+              <X size={17} />
             </button>
           </div>
           <div className="workspace-pins">
             {workspaceNav.map((label) => {
-              const Icon = label === "Buyer Workspace" ? LucideIcons.Users : LucideIcons.Building2;
+              const Icon = label === "Buyer Workspace" ? Users : Building2;
               return (
                 <button
                   key={label}
@@ -1018,7 +1018,7 @@ function App() {
               <small>{role} account · access controlled</small>
             </div>
             <button className="nav-item" onClick={signOut}>
-              <LucideIcons.PanelLeft size={17} />
+              <PanelLeft size={17} />
               <span>Sign out</span>
             </button>
           </div>
@@ -1116,7 +1116,7 @@ function App() {
         <div className="toast">
           <CheckCircle text={toast} />
           <button onClick={() => setToast("")}>
-            <LucideIcons.X size={14} />
+            <X size={14} />
           </button>
         </div>
       )}
@@ -1127,7 +1127,7 @@ function App() {
 function CheckCircle({ text }: { text: string }) {
   return (
     <>
-      <LucideIcons.ShieldCheck size={17} />
+      <ShieldCheck size={17} />
       <span>{text}</span>
     </>
   );
@@ -1177,7 +1177,7 @@ function BuyerWorkspace({
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
         <div>
           <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-            <LucideIcons.Users size={14} /> BUYER WORKSPACE
+            <Users size={14} /> BUYER WORKSPACE
           </div>
           <h2 className="text-3xl font-extrabold tracking-tight mb-2">Procurement command center</h2>
           <p className="text-[#75818d] text-sm max-w-2xl">
@@ -1193,7 +1193,7 @@ function BuyerWorkspace({
               ?.scrollIntoView({ behavior: "smooth" })
           }
         >
-          <LucideIcons.Sparkles size={16} /> New demand
+          <Sparkles size={16} /> New demand
         </button>
       </div>
 
@@ -1221,7 +1221,7 @@ function BuyerWorkspace({
             className="w-full bg-[#202b36] hover:bg-[#4f5b67] text-white py-3 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-colors mt-auto"
             onClick={() => setSection("RFQ & Tenders")}
           >
-            View RFQs <LucideIcons.ArrowRight size={15} />
+            View RFQs <ArrowRight size={15} />
           </button>
         </section>
         
@@ -1230,7 +1230,7 @@ function BuyerWorkspace({
           
           <div className="relative z-10 flex items-start gap-4 mb-6">
             <div className="bg-blue-500/20 text-blue-400 p-2.5 rounded-lg border border-blue-500/30 shrink-0">
-              <LucideIcons.Sparkles size={20} />
+              <Sparkles size={20} />
             </div>
             <div>
               <h3 className="text-lg font-bold text-white mb-1">Source with AI</h3>
@@ -1248,7 +1248,7 @@ function BuyerWorkspace({
             className="relative z-10 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-all shadow-lg shadow-blue-500/20 self-start" 
             onClick={runParse}
           >
-            Parse + Match Suppliers <LucideIcons.ArrowRight size={15} />
+            Parse + Match Suppliers <ArrowRight size={15} />
           </button>
           
           {parsed && (
@@ -1267,7 +1267,7 @@ function BuyerWorkspace({
       <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
         <div className="flex items-start gap-4 mb-6 pb-6 border-b border-[#202b36]">
           <div className="bg-[#202b36] text-white p-2.5 rounded-lg border border-[#4f5b67] shrink-0">
-            <LucideIcons.Send size={20} />
+            <Send size={20} />
           </div>
           <div>
             <h3 className="text-lg font-bold text-white mb-1">My Active Demands</h3>
@@ -1280,11 +1280,11 @@ function BuyerWorkspace({
             {myDemands.map((d) => (
               <div className="bg-[#0c131b] border border-[#202b36] rounded-xl p-5 hover:border-[#4f5b67] transition-all group relative overflow-hidden" key={d.id}>
                 <div className="absolute top-0 right-0 p-4 opacity-10 text-white group-hover:opacity-20 transition-opacity">
-                    <LucideIcons.Send size={64} />
+                    <Send size={64} />
                 </div>
                 <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-3">
-                        <LucideIcons.Send size={16} className="text-[#75818d]" />
+                        <Send size={16} className="text-[#75818d]" />
                         <h3 className="font-mono text-sm font-bold text-white">{d.id}</h3>
                     </div>
                     <p className="text-[#eef2f6] text-lg font-bold mb-2">
@@ -1340,7 +1340,7 @@ function SellerWorkspace({
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
         <div>
           <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-            <LucideIcons.Building2 size={14} /> SELLER WORKSPACE
+            <Building2 size={14} /> SELLER WORKSPACE
           </div>
           <h2 className="text-3xl font-extrabold tracking-tight mb-2">Supply command center</h2>
           <p className="text-[#75818d] text-sm max-w-2xl">
@@ -1384,7 +1384,7 @@ function SellerWorkspace({
         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl lg:col-span-2 flex flex-col">
           <div className="flex items-start gap-4 mb-6 pb-6 border-b border-[#202b36]">
             <div className="bg-blue-500/20 text-blue-400 p-2.5 rounded-lg border border-blue-500/30 shrink-0">
-              <LucideIcons.Target size={20} />
+              <Target size={20} />
             </div>
             <div>
               <h3 className="text-lg font-bold text-white mb-1">Matched Buyer Demand</h3>
@@ -1397,7 +1397,7 @@ function SellerWorkspace({
               {matched.map((d) => (
                 <div className="bg-[#0c131b] border border-[#202b36] rounded-xl p-5 hover:border-blue-500/50 transition-all group flex flex-col" key={d.id}>
                   <div className="flex items-start gap-3 mb-3">
-                    <LucideIcons.Target size={16} className="text-blue-400 shrink-0 mt-1" />
+                    <Target size={16} className="text-blue-400 shrink-0 mt-1" />
                     <h3 className="text-white font-bold">{d.product}</h3>
                   </div>
                   <p className="text-blue-400 font-mono text-sm mb-3">
@@ -1427,7 +1427,7 @@ function SellerWorkspace({
       <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
         <div className="flex items-start gap-4 mb-6 pb-6 border-b border-[#202b36]">
           <div className="bg-green-500/20 text-green-400 p-2.5 rounded-lg border border-green-500/30 shrink-0">
-            <LucideIcons.ShieldCheck size={20} />
+            <ShieldCheck size={20} />
           </div>
           <div>
             <h3 className="text-lg font-bold text-white mb-1">Seller Readiness</h3>
@@ -1535,7 +1535,7 @@ function ParsedDemand({
                 {busy
                 ? "Creating RFQ & outreach…"
                 : "Create RFQ & launch supplier outreach"}{" "}
-                <LucideIcons.ChevronRight size={18} />
+                <ChevronRight size={18} />
             </button>
             <div className="text-[#75818d] text-[11px] text-center max-w-xs">
                 {matches.length
@@ -1590,7 +1590,7 @@ function FocusBar({
     <div className="bg-gradient-to-r from-blue-600/10 to-transparent border-l-4 border-blue-500 bg-[#101922] p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-r-lg mb-6 shadow-sm">
       <div className="flex items-start gap-3">
         <div className="bg-blue-500/20 text-blue-400 p-2 rounded shrink-0 mt-0.5">
-          <LucideIcons.Sparkles size={16} />
+          <Sparkles size={16} />
         </div>
         <div>
           <b className="text-white text-sm block mb-1">{title}</b>
@@ -1601,7 +1601,7 @@ function FocusBar({
         className="bg-[#202b36] hover:bg-[#4f5b67] text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-colors shrink-0 whitespace-nowrap" 
         onClick={() => onNavigate(target)}
       >
-        {action} <LucideIcons.ArrowRight size={14} />
+        {action} <ArrowRight size={14} />
       </button>
     </div>
   );
@@ -1627,7 +1627,7 @@ function Metric({
       </div>
       <strong className="text-white text-2xl font-mono mb-2">{value}</strong>
       <span className="flex items-center gap-1 text-xs text-green-400 font-medium">
-        <LucideIcons.Activity size={12} />
+        <Activity size={12} />
         {change}
       </span>
     </div>
@@ -1711,7 +1711,7 @@ function SectionView({
     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
       <div>
         <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-          <LucideIcons.Layers3 size={14} /> TRADEVANCE OS
+          <Layers3 size={14} /> TRADEVANCE OS
         </div>
         <h2 className="text-3xl font-extrabold tracking-tight mb-2 text-white">{section}</h2>
         <p className="text-[#75818d] text-sm max-w-2xl">
@@ -1723,7 +1723,7 @@ function SectionView({
         </p>
       </div>
       <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-all shrink-0 shadow-lg shadow-blue-500/20" onClick={onCreate}>
-        <LucideIcons.Sparkles size={16} /> AI action
+        <Sparkles size={16} /> AI action
       </button>
     </div>
   );
@@ -1735,11 +1735,11 @@ function SectionView({
           <div className="p-4 border-b border-[#202b36] flex items-center justify-between bg-[#0c131b]">
             <div className="relative w-full max-w-md">
               <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#75818d]">
-                <LucideIcons.Search size={16} />
+                <Search size={16} />
               </div>
               <input
                 className="w-full bg-[#101922] border border-[#202b36] rounded-lg pl-10 pr-4 py-2.5 text-sm text-[#eef2f6] focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="LucideIcons.Search supplier or product..."
+                placeholder="Search supplier or product..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -1773,20 +1773,20 @@ function SectionView({
                 </div>
                 <div className="flex flex-wrap items-center gap-3 text-xs text-[#75818d] mb-5 mt-auto">
                   <span className="flex items-center gap-1.5">
-                    <LucideIcons.ShieldCheck size={14} className="text-green-500" /> {s.verified}
+                    <ShieldCheck size={14} className="text-green-500" /> {s.verified}
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <LucideIcons.PackageSearch size={14} className="text-blue-400" /> {s.capacity}
+                    <PackageSearch size={14} className="text-blue-400" /> {s.capacity}
                   </span>
                   <span className={`flex items-center gap-1.5 ${s.risk === "Low" ? "text-green-400" : "text-orange-400"}`}>
-                    <LucideIcons.AlertTriangle size={14} /> {s.risk} risk
+                    <AlertTriangle size={14} /> {s.risk} risk
                   </span>
                 </div>
                 <button
                   className="w-full bg-[#202b36] hover:bg-blue-600 text-white py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-colors"
                   onClick={() => onNavigate("Global Entities")}
                 >
-                  Open supplier dossier <LucideIcons.ChevronRight size={16} />
+                  Open supplier dossier <ChevronRight size={16} />
                 </button>
               </div>
             ))}
@@ -1802,7 +1802,7 @@ function SectionView({
           {data.demands.map((d) => (
             <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6 hover:border-[#4f5b67] transition-all group flex flex-col sm:flex-row gap-6 items-start" key={d.id}>
               <div className="bg-blue-500/10 text-blue-400 p-4 rounded-xl border border-blue-500/20 shrink-0">
-                  <LucideIcons.Send size={24} />
+                  <Send size={24} />
               </div>
               <div className="flex-1 min-w-0">
                   <h3 className="text-white text-lg font-bold mb-1 truncate">
@@ -1821,7 +1821,7 @@ function SectionView({
                     className="text-blue-400 hover:text-blue-300 font-bold text-sm flex items-center gap-1.5 transition-colors"
                     onClick={() => onNavigate("RFQ & Tenders")}
                   >
-                    Open RFQ <LucideIcons.ArrowRight size={14} />
+                    Open RFQ <ArrowRight size={14} />
                   </button>
               </div>
             </div>
@@ -1867,7 +1867,7 @@ function SectionView({
                         className="text-blue-400 hover:text-blue-300 font-bold text-xs flex items-center gap-1.5 ml-auto transition-colors"
                         onClick={() => setSelected(t)}
                       >
-                        Open Trade Room <LucideIcons.ArrowRight size={14} />
+                        Open Trade Room <ArrowRight size={14} />
                       </button>
                     </td>
                   </tr>
@@ -1906,7 +1906,7 @@ function SectionView({
           <PanelTitle
             title="AI Agent Control Plane"
             subtitle="Bounded autonomy, approval thresholds and auditability"
-            icon={LucideIcons.Bot}
+            icon={Bot}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {[
@@ -1923,7 +1923,7 @@ function SectionView({
             ].map((x, i) => (
               <div className="bg-[#0c131b] border border-[#202b36] rounded-xl p-5 hover:border-[#4f5b67] transition-all group" key={x}>
                 <div className="w-10 h-10 bg-blue-500/10 text-blue-400 rounded-lg flex items-center justify-center mb-4 border border-blue-500/20">
-                    <LucideIcons.Bot size={20} />
+                    <Bot size={20} />
                 </div>
                 <h3 className="text-white font-bold mb-1">{x}</h3>
                 <p className="text-[#75818d] text-xs mb-4 min-h-[32px]">
@@ -1947,7 +1947,7 @@ function SectionView({
                   className="w-full text-blue-400 hover:text-blue-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
                   onClick={() => onNavigate("AI Agents")}
                 >
-                  Open audit trail <LucideIcons.ArrowRight size={14} />
+                  Open audit trail <ArrowRight size={14} />
                 </button>
               </div>
             ))}
@@ -1960,96 +1960,96 @@ function SectionView({
       [
         "Industrial Chemicals",
         "Sulphur · Caustic Soda · Activated Carbon · Industrial Salt · Carbon Black",
-        LucideIcons.PackageSearch,
+        PackageSearch,
       ],
-      ["Energy", "Coal · EN590 · Fuel Oil · Jet Fuel", LucideIcons.Ship],
+      ["Energy", "Coal · EN590 · Fuel Oil · Jet Fuel", Ship],
       [
         "Metals & Minerals",
         "Copper Cathode · Nickel · Iron · Silica Sand",
-        LucideIcons.Globe2,
+        Globe2,
       ],
-      ["Agriculture", "CPO · UCO · Sugar · Soybean", LucideIcons.Target],
+      ["Agriculture", "CPO · UCO · Sugar · Soybean", Target],
     ],
     Intelligence: [
       [
         "Fair Price Engine",
         "Market range, landed cost and quote normalization",
-        LucideIcons.BarChart3,
+        BarChart3,
       ],
       [
         "Demand Radar",
         "Detect new buyer demand before RFQ issuance",
-        LucideIcons.Activity,
+        Activity,
       ],
       [
         "Supply Radar",
         "Detect new supply capacity and allocation signals",
-        LucideIcons.PackageSearch,
+        PackageSearch,
       ],
       [
         "What-if Simulator",
         "Compare origin, freight, terms and risk scenarios",
-        LucideIcons.Target,
+        Target,
       ],
     ],
     "Risk & Compliance": [
-      ["KYB / UBO", "Identity and beneficial ownership workflow", LucideIcons.ShieldCheck],
-      ["Sanctions", "Licensed screening integration boundary", LucideIcons.ShieldCheck],
+      ["KYB / UBO", "Identity and beneficial ownership workflow", ShieldCheck],
+      ["Sanctions", "Licensed screening integration boundary", ShieldCheck],
       [
         "Product Compliance",
         "Origin, export controls and restricted goods",
-        LucideIcons.ShieldCheck,
+        ShieldCheck,
       ],
-      ["Document Integrity", "Cross-document consistency checks", LucideIcons.FileCheck2],
+      ["Document Integrity", "Cross-document consistency checks", FileCheck2],
     ],
     "Trade Finance": [
       [
         "Letters of Credit",
         "LC readiness and discrepancy prevention",
-        LucideIcons.CircleDollarSign,
+        CircleDollarSign,
       ],
       [
         "Receivables Finance",
         "Match approved receivable opportunities",
-        LucideIcons.CircleDollarSign,
+        CircleDollarSign,
       ],
       [
         "Inventory Finance",
         "Finance structured inventory exposure",
-        LucideIcons.CircleDollarSign,
+        CircleDollarSign,
       ],
       [
         "Partner Network",
         "Finance providers and insurer integration boundary",
-        LucideIcons.Users,
+        Users,
       ],
     ],
     Logistics: [
       [
         "Freight Intelligence",
         "Route, freight and transit scenario analysis",
-        LucideIcons.Ship,
+        Ship,
       ],
-      ["Shipment Monitoring", "ETA, delays and exception escalation", LucideIcons.Ship],
-      ["Port Intelligence", "Congestion and operational risk signals", LucideIcons.Globe2],
-      ["Insurance", "Cargo cover workflow and document readiness", LucideIcons.ShieldCheck],
+      ["Shipment Monitoring", "ETA, delays and exception escalation", Ship],
+      ["Port Intelligence", "Congestion and operational risk signals", Globe2],
+      ["Insurance", "Cargo cover workflow and document readiness", ShieldCheck],
     ],
     Documents: [
       [
         "Contract Intelligence",
         "Clause extraction and deviation mapping",
-        LucideIcons.FileCheck2,
+        FileCheck2,
       ],
       [
         "Trade Documents",
         "Invoice, packing list, COO, COA and BL readiness",
-        LucideIcons.FileCheck2,
+        FileCheck2,
       ],
-      ["Reconciliation", "Cross-document mismatch detection", LucideIcons.ShieldCheck],
+      ["Reconciliation", "Cross-document mismatch detection", ShieldCheck],
       [
         "Digital Trade Room",
         "Single source of truth for transaction documents",
-        LucideIcons.Layers3,
+        Layers3,
       ],
     ],
     Revenue: [
@@ -2083,7 +2083,7 @@ function SectionView({
         {head}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {labels[section].map(([a, b, I]) => {
-            const Icon = typeof I === "string" ? LucideIcons.Activity : I;
+            const Icon = typeof I === "string" ? Activity : I;
             return (
               <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6 hover:border-[#4f5b67] transition-all group flex flex-col" key={String(a)}>
                 <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center mb-5 border border-blue-500/20">
@@ -2097,7 +2097,7 @@ function SectionView({
                     </div>
                 )}
                 <button className="w-full text-blue-400 hover:text-blue-300 font-bold text-sm flex items-center justify-center gap-1.5 transition-colors mt-auto">
-                  Explore <LucideIcons.ArrowRight size={14} />
+                  Explore <ArrowRight size={14} />
                 </button>
               </div>
             );
@@ -2113,37 +2113,37 @@ function SectionView({
           [
             "Discover",
             "AI-powered supplier and buyer discovery",
-            LucideIcons.PackageSearch,
+            PackageSearch,
             "Global Entities",
           ],
           [
             "Verify",
             "KYB, product capability and trust intelligence",
-            LucideIcons.ShieldCheck,
+            ShieldCheck,
             "Profile & Verification",
           ],
           [
             "Match",
             "Multi-factor demand/supply matching",
-            LucideIcons.Target,
+            Target,
             "Buyer Workspace",
           ],
           [
             "Execute",
             "RFQ, negotiation, contracts and trade room",
-            LucideIcons.BriefcaseBusiness,
+            BriefcaseBusiness,
             "RFQ & Tenders",
           ],
           [
             "Finance",
             "Trade finance matching and readiness",
-            LucideIcons.CircleDollarSign,
+            CircleDollarSign,
             "Trade Finance",
           ],
           [
             "Logistics",
             "Freight and shipment orchestration",
-            LucideIcons.Ship,
+            Ship,
             "Logistics",
           ],
         ].map(([a, b, I, destination]) => {
@@ -2159,7 +2159,7 @@ function SectionView({
                 className="text-blue-400 hover:text-blue-300 font-bold text-sm flex items-center gap-1.5 transition-colors"
                 onClick={() => onNavigate(String(destination))}
               >
-                Explore <LucideIcons.ArrowRight size={14} />
+                Explore <ArrowRight size={14} />
               </button>
             </div>
           );

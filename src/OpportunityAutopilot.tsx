@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { ArrowRight, Bell, BrainCircuit, CheckCircle2, CircleAlert, Gauge, ShieldCheck, Sparkles, Target, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: string) => void }) {
     const [data, setData] = useState<any>(null);
@@ -23,7 +23,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3 animate-pulse">
-                <BrainCircuit size={14} /> DAILY TRADE COMMAND
+                <LucideIcons.BrainCircuit size={14} /> DAILY TRADE COMMAND
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight mb-2 animate-pulse text-[#4f5b67]">Preparing your priorities…</h2>
             <p className="text-[#75818d] text-sm max-w-2xl animate-pulse">Tradevance is combining live risk, opportunity, memory and decision signals.</p>
@@ -33,7 +33,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
     if (err) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4 shadow-lg">
-                <AlertTriangle size={24} className="shrink-0 mt-0.5" />
+                <LucideIcons.AlertTriangle size={24} className="shrink-0 mt-0.5" />
                 <div>
                     <h3 className="text-lg font-bold mb-1">Service Unavailable</h3>
                     <p className="text-sm opacity-90">{err}</p>
@@ -47,13 +47,13 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <Sparkles size={14} /> GOVERNED OPPORTUNITY AUTOPILOT
+                        <LucideIcons.Sparkles size={14} /> GOVERNED OPPORTUNITY AUTOPILOT
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">{data.headline}</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">{data.subhead}</p>
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] text-[#75818d] px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold shrink-0">
-                    <Bell size={14} className="text-blue-400" />
+                    <LucideIcons.Bell size={14} className="text-blue-400" />
                     {data.role} · Governed
                 </div>
             </div>
@@ -87,7 +87,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
                             
                             <div className="flex items-start gap-4 relative z-10">
                                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${x.decision === 'BLOCK' ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-green-500/10 text-green-500 border border-green-500/20'}`}>
-                                    {x.decision === 'BLOCK' ? <CircleAlert size={20} /> : <CheckCircle2 size={20} />}
+                                    {x.decision === 'BLOCK' ? <LucideIcons.CircleAlert size={20} /> : <LucideIcons.CheckCircle2 size={20} />}
                                 </div>
                                 <div className="flex-1">
                                     <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -103,8 +103,8 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
                                     <p className="text-[#eef2f6] text-sm leading-relaxed mb-4">{x.summary}</p>
                                     
                                     <div className="flex flex-wrap items-center gap-4 mb-6 text-[11px] font-mono text-[#75818d]">
-                                        <span className="flex items-center gap-1.5"><Gauge size={14} className="text-blue-400" />{x.confidence}% confidence</span>
-                                        <span className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-green-500" />{x.dataQuality}</span>
+                                        <span className="flex items-center gap-1.5"><LucideIcons.Gauge size={14} className="text-blue-400" />{x.confidence}% confidence</span>
+                                        <span className="flex items-center gap-1.5"><LucideIcons.ShieldCheck size={14} className="text-green-500" />{x.dataQuality}</span>
                                     </div>
 
                                     <div className="bg-[#0c131b] border border-[#202b36] rounded-xl p-4 mb-4">
@@ -128,7 +128,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
                                             className="text-blue-400 hover:text-blue-300 flex items-center gap-2 text-xs font-bold transition-colors group/btn"
                                             onClick={() => onNavigate(x.destination)}
                                         >
-                                            Open {x.destination} <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                                            Open {x.destination} <LucideIcons.ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                                         </button>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-lg">
                         <div className="flex items-start gap-4 mb-6">
                             <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-2.5 text-[#c29631] shrink-0">
-                                <Target size={20} />
+                                <LucideIcons.Target size={20} />
                             </div>
                             <div>
                                 <h3 className="text-white font-bold mb-1">How Autopilot works</h3>
@@ -168,7 +168,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
                             <small className="text-blue-400 text-[10px] font-bold tracking-widest uppercase block mb-4">TRADE MEMORY</small>
                             <div className="flex flex-col gap-1 mb-4">
                                 <div className="flex items-center gap-2 text-white">
-                                    <BrainCircuit size={20} className="text-blue-400" />
+                                    <LucideIcons.BrainCircuit size={20} className="text-blue-400" />
                                     <b className="text-2xl font-bold">{data.memory.learningSamples}</b>
                                 </div>
                                 <span className="text-[#75818d] text-xs font-mono pl-7">learning samples</span>
@@ -178,7 +178,7 @@ export default function OpportunityAutopilot({ onNavigate }: { onNavigate: (s: s
                                 className="w-full bg-[#0c131b] hover:bg-[#131c26] border border-[#202b36] hover:border-blue-500 text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-all"
                                 onClick={() => onNavigate('Trade Memory')}
                             >
-                                Open Trade Memory <ArrowRight size={14} />
+                                Open Trade Memory <LucideIcons.ArrowRight size={14} />
                             </button>
                         </div>
                     </section>

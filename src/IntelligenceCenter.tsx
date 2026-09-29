@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { ArrowRight, Bot, Globe2, PackageSearch, Sparkles, Target, TrendingUp } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Opportunity = { id: string; product: string; buyer: string; supplier: string; origin: string; destination: string; quantity: number; estimatedValue: number; opportunityScore: number; commercialFit: number; trust: number; supplyFit: number; demandStrength: number; risk: number; reasons: string[] };
 type RadarItem = { id: string; name: string; product: string; country: string; signal: string; strength: number; lastSignal: string };
@@ -35,7 +35,7 @@ export default function IntelligenceCenter() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <Sparkles size={14} /> TRADEVANCE INTELLIGENCE ENGINE
+                        <LucideIcons.Sparkles size={14} /> TRADEVANCE INTELLIGENCE ENGINE
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Find the next trade before the market does.</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Demand, supply, trust and commercial signals converge into explainable opportunity scores.</p>
@@ -54,14 +54,14 @@ export default function IntelligenceCenter() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl flex flex-col">
-                    <PanelTitle title="Demand Radar" subtitle="Signals that a buyer may need supply" icon={Target} />
+                    <PanelTitle title="Demand Radar" subtitle="Signals that a buyer may need supply" icon={LucideIcons.Target} />
                     <div className="flex-1 overflow-y-auto max-h-[400px] pr-2 no-scrollbar">
                         {loading ? <Empty text="Loading demand signals…" /> : (
                             <div className="space-y-3">
                                 {demandRadar.map(r => (
                                     <div className="bg-[#0c131b] border border-[#202b36] hover:border-[#4f5b67] rounded-xl p-4 flex items-center gap-4 transition-colors group" key={r.id}>
                                         <div className="bg-blue-500/10 text-blue-400 border border-blue-500/20 p-2.5 rounded-lg shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                                            <TrendingUp size={18} />
+                                            <LucideIcons.Activity size={18} />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <b className="text-white text-sm block truncate mb-1">{r.name}</b>
@@ -79,14 +79,14 @@ export default function IntelligenceCenter() {
                 </section>
 
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl flex flex-col">
-                    <PanelTitle title="Supply Radar" subtitle="Signals that supply or allocation may be available" icon={PackageSearch} />
+                    <PanelTitle title="Supply Radar" subtitle="Signals that supply or allocation may be available" icon={LucideIcons.PackageSearch} />
                     <div className="flex-1 overflow-y-auto max-h-[400px] pr-2 no-scrollbar">
                         {loading ? <Empty text="Loading supply signals…" /> : (
                             <div className="space-y-3">
                                 {supplyRadar.map(r => (
                                     <div className="bg-[#0c131b] border border-[#202b36] hover:border-[#4f5b67] rounded-xl p-4 flex items-center gap-4 transition-colors group" key={r.id}>
                                         <div className="bg-green-500/10 text-green-500 border border-green-500/20 p-2.5 rounded-lg shrink-0 group-hover:bg-green-500 group-hover:text-white transition-colors">
-                                            <PackageSearch size={18} />
+                                            <LucideIcons.PackageSearch size={18} />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <b className="text-white text-sm block truncate mb-1">{r.name}</b>
@@ -105,7 +105,7 @@ export default function IntelligenceCenter() {
             </div>
 
             <section className="bg-[#101922] border border-[#202b36] rounded-xl p-8 mb-8 shadow-xl">
-                <PanelTitle title="Opportunity Radar" subtitle="AI-ranked buyer × supplier opportunities" icon={Sparkles} />
+                <PanelTitle title="Opportunity Radar" subtitle="AI-ranked buyer × supplier opportunities" icon={LucideIcons.Sparkles} />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {opportunities.map(o => (
                         <button 
@@ -124,7 +124,7 @@ export default function IntelligenceCenter() {
                             </div>
                             
                             <div className="flex items-center gap-2 text-xs text-[#eef2f6] mb-6">
-                                <Globe2 size={14} className="text-[#75818d]" />
+                                <LucideIcons.Globe2 size={14} className="text-[#75818d]" />
                                 <span className="truncate">{o.origin} → {o.destination} · {o.quantity.toLocaleString()} MT</span>
                             </div>
                             
@@ -146,7 +146,7 @@ export default function IntelligenceCenter() {
                             <div className="flex justify-between items-center text-[10px] font-bold tracking-widest uppercase border-t border-[#202b36] pt-4 w-full">
                                 <span className={o.risk > 50 ? 'text-orange-400' : 'text-[#75818d]'}>Risk {o.risk}/100</span>
                                 <span className="text-blue-400 flex items-center gap-1 group-hover:text-blue-300">
-                                    Est. ${Math.round(o.estimatedValue / 1000).toLocaleString()}k <ArrowRight size={12} />
+                                    Est. ${Math.round(o.estimatedValue / 1000).toLocaleString()}k <LucideIcons.ArrowRight size={12} />
                                 </span>
                             </div>
                         </button>
@@ -159,7 +159,7 @@ export default function IntelligenceCenter() {
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 border-b border-[#202b36] pb-6">
                         <div>
                             <div className="flex items-center gap-2 text-blue-400 text-[10px] font-bold tracking-widest uppercase mb-3">
-                                <Bot size={14} /> WHAT-IF SIMULATOR
+                                <LucideIcons.Bot size={14} /> WHAT-IF SIMULATOR
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-2">{selected.product} · {selected.buyer}</h3>
                             <p className="text-[#75818d] text-sm">Test commercial and risk changes before you send an RFQ or approve a trade.</p>
@@ -211,7 +211,7 @@ export default function IntelligenceCenter() {
                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-all shadow-lg shadow-blue-500/20 mt-4" 
                                 onClick={simulate}
                             >
-                                <Sparkles size={16} /> Run Scenario
+                                <LucideIcons.Sparkles size={16} /> Run Scenario
                             </button>
                         </div>
                         

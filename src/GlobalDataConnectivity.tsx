@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { AlertTriangle, CheckCircle2, Database, ExternalLink, Globe2, LoaderCircle, RefreshCw, ShieldCheck, XCircle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Source = { id: string; name: string; category: string; purpose: string; access: string; status: string; url: string; next: string };
 type Snapshot = { pipeline: { rawEvidence: number; normalizedEvidence: number; resolvedEntities: number; operationalDemands: number; opportunities: number; ingestionRuns: number }; sources: Source[]; lastRuns: any[]; resolution: any };
@@ -8,10 +8,10 @@ type Snapshot = { pipeline: { rawEvidence: number; normalizedEvidence: number; r
 const tone = (s: string) => s.toLowerCase().replace('_', '-');
 
 function StatusIcon({ status }: { status: string }) {
-    if (status === 'HEALTHY' || status === 'ACTIVE') return <CheckCircle2 size={16} />;
-    if (status === 'BLOCKED' || status === 'AUTH_REQUIRED' || status === 'LICENSE_REQUIRED') return <ShieldCheck size={16} />;
-    if (status === 'ERROR' || status === 'UNHEALTHY') return <XCircle size={16} />;
-    return <AlertTriangle size={16} />;
+    if (status === 'HEALTHY' || status === 'ACTIVE') return <LucideIcons.CheckCircle2 size={16} />;
+    if (status === 'BLOCKED' || status === 'AUTH_REQUIRED' || status === 'LICENSE_REQUIRED') return <LucideIcons.ShieldCheck size={16} />;
+    if (status === 'ERROR' || status === 'UNHEALTHY') return <LucideIcons.XCircle size={16} />;
+    return <LucideIcons.AlertTriangle size={16} />;
 }
 
 export default function GlobalDataConnectivity() {
@@ -50,7 +50,7 @@ export default function GlobalDataConnectivity() {
     if (loading) return (
         <section className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32 flex items-center justify-center">
             <div className="flex items-center gap-3 text-[#75818d] text-sm animate-pulse">
-                <LoaderCircle size={20} className="animate-spin" /> Building ingestion control plane…
+                <LucideIcons.LoaderCircle size={20} className="animate-spin" /> Building ingestion control plane…
             </div>
         </section>
     );
@@ -58,7 +58,7 @@ export default function GlobalDataConnectivity() {
     if (!data) return (
         <section className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4 shadow-lg max-w-2xl mx-auto mt-12">
-                <AlertTriangle size={24} className="shrink-0 mt-0.5" />
+                <LucideIcons.AlertTriangle size={24} className="shrink-0 mt-0.5" />
                 <div>
                     <h3 className="text-lg font-bold mb-1">Access Denied</h3>
                     <p className="text-sm opacity-90">{error || 'No ingestion snapshot available.'}</p>
@@ -72,7 +72,7 @@ export default function GlobalDataConnectivity() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <Globe2 size={14} /> GLOBAL INTELLIGENCE INGESTION
+                        <LucideIcons.Globe2 size={14} /> GLOBAL INTELLIGENCE INGESTION
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Production data-source control plane</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Source health and data sync are separate states. A reachable public page never becomes a live trade-data connector automatically.</p>
@@ -81,7 +81,7 @@ export default function GlobalDataConnectivity() {
                     className="bg-[#101922] hover:bg-[#131c26] border border-[#202b36] hover:border-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-all shrink-0"
                     onClick={load}
                 >
-                    <RefreshCw size={14} /> Refresh pipeline
+                    <LucideIcons.RefreshCw size={14} /> Refresh pipeline
                 </button>
             </div>
 
@@ -112,7 +112,7 @@ export default function GlobalDataConnectivity() {
                         {data.resolution.duplicateGroups} duplicate groups · {data.resolution.candidatePairs.length} candidate pairs · {data.resolution.unresolvedConflicts} unresolved conflicts
                     </p>
                     <div className="bg-orange-500/10 border border-orange-500/20 rounded-lg p-4 flex items-start gap-3">
-                        <ShieldCheck size={18} className="text-orange-400 shrink-0 mt-0.5" />
+                        <LucideIcons.ShieldCheck size={18} className="text-orange-400 shrink-0 mt-0.5" />
                         <span className="text-[#eef2f6] text-sm leading-relaxed">Ambiguous entities are never auto-merged. Operator review is required before identity consolidation.</span>
                     </div>
                 </div>
@@ -182,14 +182,14 @@ export default function GlobalDataConnectivity() {
                                     rel="noreferrer"
                                     className="flex-1 bg-[#0c131b] hover:bg-[#131c26] border border-[#202b36] hover:border-[#4f5b67] text-[#75818d] hover:text-white px-3 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-colors"
                                 >
-                                    Source docs <ExternalLink size={14} />
+                                    Source docs <LucideIcons.ExternalLink size={14} />
                                 </a>
                                 <button 
                                     className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:bg-[#202b36] disabled:text-[#75818d] text-white px-3 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-all shadow-lg shadow-blue-500/20 disabled:shadow-none"
                                     onClick={() => run(s.id)} 
                                     disabled={busy || s.status === 'AUTH_REQUIRED' || s.status === 'LICENSE_REQUIRED'}
                                 >
-                                    {busy ? <LoaderCircle size={14} className="animate-spin" /> : <RefreshCw size={14} />} 
+                                    {busy ? <LucideIcons.LoaderCircle size={14} className="animate-spin" /> : <LucideIcons.RefreshCw size={14} />} 
                                     {busy ? 'Checking…' : 'Run check'}
                                 </button>
                             </div>
@@ -200,7 +200,7 @@ export default function GlobalDataConnectivity() {
 
             <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div className="bg-[#0c131b] rounded-full p-3 shrink-0">
-                    <AlertTriangle size={20} className="text-red-400" />
+                    <LucideIcons.AlertTriangle size={20} className="text-red-400" />
                 </div>
                 <span className="text-[#eef2f6] text-sm leading-relaxed">
                     <b className="text-white mr-1">Production rule:</b> 

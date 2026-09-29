@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, FileCheck2, Globe2, ShieldCheck } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 const docs = [
     ['Terms of Service', 'All users', 'DRAFT — NOT EFFECTIVE', 'Platform role, accounts, verification, transactions, AI, fees, IP, confidentiality, sanctions, suspension, liability and dispute framework.'],
@@ -32,13 +32,13 @@ export default function LegalCenter() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <FileCheck2 size={14} /> TRADEVANCE LEGAL & COMPLIANCE
+                        <LucideIcons.FileCheck2 size={14} /> TRADEVANCE LEGAL & COMPLIANCE
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Global Legal Center</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Controlled master policies, regional coverage and publication governance for the Tradevance platform.</p>
                 </div>
                 <div className="bg-orange-500/10 border border-orange-500/30 text-orange-400 p-4 rounded-xl flex items-start gap-3 max-w-sm shrink-0">
-                    <ShieldCheck size={20} className="shrink-0 mt-0.5" />
+                    <LucideIcons.ShieldCheck size={20} className="shrink-0 mt-0.5" />
                     <div>
                         <b className="block text-sm mb-1">Publication controlled</b>
                         <span className="text-xs opacity-90 leading-relaxed block">Draft documents are not legally effective until approved, dated, localized where required and published.</span>
@@ -50,7 +50,7 @@ export default function LegalCenter() {
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
                     <div className="flex items-start gap-4 mb-6">
                         <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-3 text-[#4f5b67] shrink-0">
-                            <FileCheck2 size={20} />
+                            <LucideIcons.FileCheck2 size={20} />
                         </div>
                         <div>
                             <h3 className="text-white font-bold mb-1">Policy library</h3>
@@ -72,7 +72,7 @@ export default function LegalCenter() {
                             >
                                 <div className="flex justify-between items-start w-full mb-2">
                                     <div className="flex items-center gap-3">
-                                        <FileCheck2 size={18} className={sel === i ? 'text-blue-400' : 'text-[#4f5b67] group-hover:text-blue-400 transition-colors'} />
+                                        <LucideIcons.FileCheck2 size={18} className={sel === i ? 'text-blue-400' : 'text-[#4f5b67] group-hover:text-blue-400 transition-colors'} />
                                         <h3 className={`font-bold ${sel === i ? 'text-blue-400' : 'text-white'}`}>{x[0]}</h3>
                                     </div>
                                     <span className="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase">
@@ -89,7 +89,7 @@ export default function LegalCenter() {
                 <section className="bg-gradient-to-br from-[#101922] to-[#0c131b] border border-[#202b36] rounded-xl p-8 shadow-xl sticky top-8 h-fit">
                     <div className="flex items-start gap-4 mb-6">
                         <div className="bg-orange-500/10 border border-orange-500/20 rounded-lg p-3 text-orange-400 shrink-0">
-                            <ShieldCheck size={24} />
+                            <LucideIcons.ShieldCheck size={24} />
                         </div>
                         <div>
                             <h3 className="text-2xl font-bold text-white mb-2">{d[0]}</h3>
@@ -126,7 +126,7 @@ export default function LegalCenter() {
                     </div>
                     
                     <div className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 flex items-start gap-4">
-                        <AlertTriangle size={20} className="text-blue-400 shrink-0 mt-0.5" />
+                        <LucideIcons.AlertTriangle size={20} className="text-blue-400 shrink-0 mt-0.5" />
                         <span className="text-[#eef2f6] text-sm leading-relaxed">{d[3]}</span>
                     </div>
                 </section>
@@ -135,7 +135,7 @@ export default function LegalCenter() {
             <section className="bg-[#101922] border border-[#202b36] rounded-xl p-8 mb-8 shadow-xl">
                 <div className="flex items-start gap-4 mb-8">
                     <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-3 text-[#4f5b67] shrink-0">
-                        <Globe2 size={24} />
+                        <LucideIcons.Globe2 size={24} />
                     </div>
                     <div>
                         <h3 className="text-2xl font-bold text-white mb-2">Regional & global coverage</h3>
@@ -146,7 +146,7 @@ export default function LegalCenter() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {regions.map(r => (
                         <div className="bg-[#0c131b] border border-[#202b36] p-5 rounded-xl group hover:border-[#4f5b67] transition-colors" key={r[0]}>
-                            <Globe2 size={20} className="text-[#4f5b67] mb-3 group-hover:text-[#c29631] transition-colors" />
+                            <LucideIcons.Globe2 size={20} className="text-[#4f5b67] mb-3 group-hover:text-[#c29631] transition-colors" />
                             <h3 className="text-white font-bold mb-2">{r[0]}</h3>
                             <p className="text-[#eef2f6] text-sm leading-relaxed mb-4">{r[1]}</p>
                             <small className="text-[#75818d] text-[10px] font-bold tracking-widest uppercase block border-t border-[#202b36] pt-3">FRAMEWORK / APPLICABILITY REVIEW</small>

@@ -1,20 +1,20 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, BarChart3, BriefcaseBusiness, Building2, ChevronRight, FileCheck2, Globe2, LockKeyhole, PackageSearch, Search, Send, ShieldCheck, Sparkles, Users, X } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Props = { onSignIn: (role: 'buyer' | 'seller') => void };
 type Item = { name: string; country: string; details: string; signal: string };
 type Tab = { id: string; label: string; icon: any };
 
 const tabs: Tab[] = [
-    { id: 'overview', label: 'Overview', icon: Globe2 },
-    { id: 'buyers', label: 'Buyers', icon: Users },
-    { id: 'sellers', label: 'Sellers', icon: Building2 },
-    { id: 'commodities', label: 'Commodities', icon: PackageSearch },
-    { id: 'intelligence', label: 'Intelligence', icon: Sparkles },
-    { id: 'rfq', label: 'RFQ & Tenders', icon: Send },
-    { id: 'trust', label: 'Trust & Verification', icon: ShieldCheck },
-    { id: 'workflow', label: 'Trade Workflow', icon: BriefcaseBusiness },
-    { id: 'resources', label: 'Resources', icon: FileCheck2 }
+    { id: 'overview', label: 'Overview', icon: LucideIcons.Globe2 },
+    { id: 'buyers', label: 'Buyers', icon: LucideIcons.Users },
+    { id: 'sellers', label: 'Sellers', icon: LucideIcons.Building2 },
+    { id: 'commodities', label: 'Commodities', icon: LucideIcons.PackageSearch },
+    { id: 'intelligence', label: 'Intelligence', icon: LucideIcons.Sparkles },
+    { id: 'rfq', label: 'RFQ & Tenders', icon: LucideIcons.Send },
+    { id: 'trust', label: 'Trust & Verification', icon: LucideIcons.ShieldCheck },
+    { id: 'workflow', label: 'Trade Workflow', icon: LucideIcons.BriefcaseBusiness },
+    { id: 'resources', label: 'Resources', icon: LucideIcons.FileCheck2 }
 ];
 
 const buyers: Item[] = [
@@ -53,7 +53,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
             className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-500/20 px-6 py-3 rounded-full flex items-center gap-2 font-bold text-sm transition-all z-50 hover:-translate-y-1"
             onClick={() => setOpen(true)}
         >
-            <Globe2 size={18} /> Explore Tradevance <ArrowRight size={16} />
+            <LucideIcons.Globe2 size={18} /> Explore Tradevance <LucideIcons.ArrowRight size={16} />
         </button>
     );
 
@@ -69,7 +69,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                     className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs font-bold transition-all shrink-0"
                     onClick={() => choose('buyer')}
                 >
-                    {action} <ArrowRight size={14} />
+                    {action} <LucideIcons.ArrowRight size={14} />
                 </button>
             )}
         </div>
@@ -79,7 +79,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
         <div className="bg-[#0c131b] border border-[#202b36] rounded-xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mt-8">
             <div className="flex items-start gap-4">
                 <div className="bg-[#c29631]/10 text-[#c29631] p-2 rounded-lg mt-1 border border-[#c29631]/20">
-                    <LockKeyhole size={20} />
+                    <LucideIcons.LockKeyhole size={20} />
                 </div>
                 <div>
                     <b className="text-white text-base block mb-1">Protected controls active.</b>
@@ -90,7 +90,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                 className="bg-white hover:bg-gray-100 text-black px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs font-bold transition-all shrink-0"
                 onClick={() => choose('buyer')}
             >
-                {btn} <ArrowRight size={14} />
+                {btn} <LucideIcons.ArrowRight size={14} />
             </button>
         </div>
     );
@@ -138,9 +138,9 @@ export default function PublicExplorer({ onSignIn }: Props) {
             </section>
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 {[
-                    ['Buyers', 'Explore public buyer demand and procurement focus.', 'buyers', Users],
-                    ['Sellers', 'Explore public supplier capabilities and products.', 'sellers', Building2],
-                    ['Commodities', 'Browse the trade universe by product and resource.', 'commodities', PackageSearch]
+                    ['Buyers', 'Explore public buyer demand and procurement focus.', 'buyers', LucideIcons.Users],
+                    ['Sellers', 'Explore public supplier capabilities and products.', 'sellers', LucideIcons.Building2],
+                    ['Commodities', 'Browse the trade universe by product and resource.', 'commodities', LucideIcons.PackageSearch]
                 ].map(([title, desc, id, Icon]: any) => (
                     <button 
                         key={id} 
@@ -151,7 +151,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                         <b className="text-white text-lg block mb-2">{title}</b>
                         <p className="text-[#75818d] text-sm flex-1">{desc}</p>
                         <span className="flex items-center gap-1 text-[10px] text-blue-400 font-bold uppercase tracking-widest mt-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                            Explore <ArrowRight size={12} />
+                            Explore <LucideIcons.ArrowRight size={12} />
                         </span>
                     </button>
                 ))}
@@ -176,7 +176,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                             <span className="bg-[#0c131b] border border-[#202b36] text-[#75818d] px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase">Network-visible</span>
                             <span className="bg-[#c29631]/10 text-[#c29631] px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase border border-[#c29631]/20">{x.signal}</span>
                         </div>
-                        <ChevronRight size={20} className="text-[#4f5b67] group-hover:text-blue-400 transition-colors shrink-0" />
+                        <LucideIcons.ChevronRight size={20} className="text-[#4f5b67] group-hover:text-blue-400 transition-colors shrink-0" />
                     </article>
                 ))}
             </div>
@@ -199,7 +199,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                             <span className="bg-[#0c131b] border border-[#202b36] text-[#75818d] px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase">Evidence-led</span>
                             <span className="bg-blue-500/10 text-blue-400 px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase border border-blue-500/20">{x.signal}</span>
                         </div>
-                        <ChevronRight size={20} className="text-[#4f5b67] group-hover:text-blue-400 transition-colors shrink-0" />
+                        <LucideIcons.ChevronRight size={20} className="text-[#4f5b67] group-hover:text-blue-400 transition-colors shrink-0" />
                     </article>
                 ))}
             </div>
@@ -216,10 +216,10 @@ export default function PublicExplorer({ onSignIn }: Props) {
                         className="bg-[#101922] border border-[#202b36] hover:border-[#c29631]/50 p-5 rounded-xl text-left transition-colors group flex flex-col h-full shadow-lg" 
                         onClick={() => setDetail({ name: c, type: 'Commodity', description: 'Explore public intelligence, counterparties, sourcing context and trade workflows for ' + c + '.' })}
                     >
-                        <PackageSearch size={20} className="text-[#4f5b67] group-hover:text-[#c29631] transition-colors mb-3" />
+                        <LucideIcons.PackageSearch size={20} className="text-[#4f5b67] group-hover:text-[#c29631] transition-colors mb-3" />
                         <b className="text-white text-sm block mb-4 flex-1">{c}</b>
                         <span className="flex items-center gap-1 text-[10px] text-[#c29631] font-bold uppercase tracking-widest">
-                            Explore intelligence <ArrowRight size={10} />
+                            Explore intelligence <LucideIcons.ArrowRight size={10} />
                         </span>
                     </button>
                 ))}
@@ -241,7 +241,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                 ].map(x => (
                     <div className="bg-[#101922] border border-[#202b36] p-6 rounded-xl shadow-lg" key={x[0]}>
                         <div className="w-10 h-10 bg-[#0c131b] border border-[#202b36] rounded-lg flex items-center justify-center mb-4 text-[#c29631]">
-                            <BarChart3 size={18} />
+                            <LucideIcons.BarChart3 size={18} />
                         </div>
                         <b className="text-white text-base block mb-2">{x[0]}</b>
                         <p className="text-[#75818d] text-sm leading-relaxed">{x[1]}</p>
@@ -294,7 +294,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                 ].map(x => (
                     <div className="bg-[#101922] border border-[#202b36] p-6 rounded-xl shadow-lg" key={x[0]}>
                         <div className="w-10 h-10 bg-[#0c131b] border border-[#202b36] rounded-lg flex items-center justify-center mb-4 text-green-500">
-                            <ShieldCheck size={18} />
+                            <LucideIcons.ShieldCheck size={18} />
                         </div>
                         <b className="text-white text-base block mb-2">{x[0]}</b>
                         <p className="text-[#75818d] text-sm leading-relaxed">{x[1]}</p>
@@ -328,7 +328,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                     className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg flex items-center gap-2 text-sm font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]"
                     onClick={() => choose('buyer')}
                 >
-                    Enter Trade OS <ArrowRight size={16} />
+                    Enter Trade OS <LucideIcons.ArrowRight size={16} />
                 </button>
             </div>
         </div>
@@ -348,7 +348,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                 ].map(x => (
                     <div className="bg-[#101922] border border-[#202b36] p-6 rounded-xl shadow-lg cursor-pointer hover:border-blue-500/50 hover:bg-[#131c26] transition-all group" key={x[0]}>
                         <div className="w-10 h-10 bg-[#0c131b] border border-[#202b36] group-hover:border-blue-500/30 rounded-lg flex items-center justify-center mb-4 text-[#75818d] group-hover:text-blue-400 transition-colors">
-                            <FileCheck2 size={18} />
+                            <LucideIcons.FileCheck2 size={18} />
                         </div>
                         <b className="text-white text-base block mb-2 group-hover:text-blue-400 transition-colors">{x[0]}</b>
                         <p className="text-[#75818d] text-sm leading-relaxed">{x[1]}</p>
@@ -365,7 +365,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
             <header className="bg-[#101922] border-b border-[#202b36] px-6 py-4 flex justify-between items-start shrink-0">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-[10px] font-bold tracking-widest uppercase mb-2">
-                        <Sparkles size={12} /> PUBLIC TRADE DISCOVERY
+                        <LucideIcons.Sparkles size={12} /> PUBLIC TRADE DISCOVERY
                     </div>
                     <h2 className="text-xl font-bold text-white mb-1">Explore the Tradevance network before you sign in.</h2>
                     <p className="text-[#75818d] text-xs max-w-3xl">Browse buyers, sellers, commodities, intelligence and the transaction model. Public discovery is read-only; transaction actions require a Buyer or Seller account.</p>
@@ -376,18 +376,18 @@ export default function PublicExplorer({ onSignIn }: Props) {
                     onClick={() => setOpen(false)} 
                     aria-label="Close"
                 >
-                    <X size={20} />
+                    <LucideIcons.X size={20} />
                 </button>
             </header>
 
             <div className="bg-[#0c131b] border-b border-[#202b36] px-6 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
                 <div className="relative w-full sm:w-96">
-                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4f5b67]" />
+                    <LucideIcons.Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4f5b67]" />
                     <input 
                         className="w-full bg-[#101922] border border-[#202b36] focus:border-blue-500 rounded-lg py-2 pl-9 pr-4 text-sm text-white outline-none transition-colors"
                         value={q} 
                         onChange={e => setQ(e.target.value)} 
-                        placeholder="Search buyers, sellers, commodities..." 
+                        placeholder="LucideIcons.Search buyers, sellers, commodities..." 
                     />
                 </div>
                 <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -396,14 +396,14 @@ export default function PublicExplorer({ onSignIn }: Props) {
                         className="flex-1 sm:flex-none bg-[#101922] hover:bg-[#131c26] border border-[#202b36] hover:border-blue-500 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-colors"
                         onClick={() => choose('buyer')}
                     >
-                        Join as Buyer <ArrowRight size={14} />
+                        Join as Buyer <LucideIcons.ArrowRight size={14} />
                     </button>
                     <button 
                         type="button" 
                         className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-colors"
                         onClick={() => choose('seller')}
                     >
-                        Join as Seller <ArrowRight size={14} />
+                        Join as Seller <LucideIcons.ArrowRight size={14} />
                     </button>
                 </div>
             </div>
@@ -450,7 +450,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                                 onClick={() => setDetail(null)} 
                                 aria-label="Close detail"
                             >
-                                <X size={18} />
+                                <LucideIcons.X size={18} />
                             </button>
                             <span className="text-blue-400 text-[10px] font-bold tracking-widest uppercase block mb-3">{detail.type || 'COUNTERPARTY'}</span>
                             <h3 className="text-2xl font-bold text-white mb-3 leading-tight">{detail.name}</h3>
@@ -459,7 +459,7 @@ export default function PublicExplorer({ onSignIn }: Props) {
                         
                         <div className="px-6 py-5 bg-[#0c131b] border-y border-[#202b36] flex items-start gap-4">
                             <div className="bg-[#c29631]/10 text-[#c29631] p-2 rounded-lg mt-0.5 border border-[#c29631]/20 shrink-0">
-                                <LockKeyhole size={18} />
+                                <LucideIcons.LockKeyhole size={18} />
                             </div>
                             <div>
                                 <b className="text-white text-sm block mb-1">Want to take action?</b>

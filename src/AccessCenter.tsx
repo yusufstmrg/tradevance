@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { BadgeCheck, LockKeyhole, ShieldCheck, Users, WalletCards, ChevronRight, Fingerprint, Activity, Clock } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 export default function AccessCenter() {
     const [d, setD] = useState<any>(null);
@@ -12,7 +12,7 @@ export default function AccessCenter() {
     if (!d) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32 flex items-center justify-center">
             <div className="text-center text-[#75818d] animate-pulse">
-                <LockKeyhole size={32} className="mx-auto mb-4 opacity-50" />
+                <LucideIcons.LockKeyhole size={32} className="mx-auto mb-4 opacity-50" />
                 <p>Authenticating network access controls...</p>
             </div>
         </div>
@@ -22,7 +22,7 @@ export default function AccessCenter() {
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="mb-8">
                 <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                    <LockKeyhole size={14} /> NETWORK ACCESS & REVENUE PROTECTION
+                    <LucideIcons.LockKeyhole size={14} /> NETWORK ACCESS & REVENUE PROTECTION
                 </div>
                 <h2 className="text-3xl font-extrabold tracking-tight mb-2">Protected Introductions. Auditable Revenue.</h2>
                 <p className="text-[#75818d] text-sm max-w-2xl">Counterparty contacts stay protected while every introduction receives a cryptographic referral identity and strict audit trail.</p>
@@ -32,7 +32,7 @@ export default function AccessCenter() {
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
                 <div className="bg-[#101922] border border-[#202b36] p-4 rounded-xl flex flex-col justify-between">
                     <div className="flex items-center gap-2 text-[#75818d] mb-4">
-                        <ShieldCheck size={16} className="text-[#c29631]" />
+                        <LucideIcons.ShieldCheck size={16} className="text-[#c29631]" />
                         <span className="text-[10px] uppercase tracking-wider font-bold">Contacts</span>
                     </div>
                     <div>
@@ -42,7 +42,7 @@ export default function AccessCenter() {
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] p-4 rounded-xl flex flex-col justify-between">
                     <div className="flex items-center gap-2 text-[#75818d] mb-4">
-                        <Clock size={16} className="text-[#c29631]" />
+                        <LucideIcons.Clock size={16} className="text-[#c29631]" />
                         <span className="text-[10px] uppercase tracking-wider font-bold">Referral Tail</span>
                     </div>
                     <div>
@@ -52,7 +52,7 @@ export default function AccessCenter() {
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] p-4 rounded-xl flex flex-col justify-between">
                     <div className="flex items-center gap-2 text-[#75818d] mb-4">
-                        <Users size={16} className="text-[#c29631]" />
+                        <LucideIcons.Users size={16} className="text-[#c29631]" />
                         <span className="text-[10px] uppercase tracking-wider font-bold">Role</span>
                     </div>
                     <div>
@@ -62,7 +62,7 @@ export default function AccessCenter() {
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] p-4 rounded-xl flex flex-col justify-between">
                     <div className="flex items-center gap-2 text-[#75818d] mb-4">
-                        <WalletCards size={16} className="text-[#c29631]" />
+                        <LucideIcons.WalletCards size={16} className="text-[#c29631]" />
                         <span className="text-[10px] uppercase tracking-wider font-bold">Revenue</span>
                     </div>
                     <div>
@@ -72,7 +72,7 @@ export default function AccessCenter() {
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] p-4 rounded-xl flex flex-col justify-between">
                     <div className="flex items-center gap-2 text-[#75818d] mb-4">
-                        <BadgeCheck size={16} className="text-green-500" />
+                        <LucideIcons.BadgeCheck size={16} className="text-green-500" />
                         <span className="text-[10px] uppercase tracking-wider font-bold">Audit</span>
                     </div>
                     <div>
@@ -86,7 +86,7 @@ export default function AccessCenter() {
                 {/* Plans section */}
                 <section className="xl:col-span-2 space-y-6">
                     <div className="flex items-center gap-3">
-                        <WalletCards size={20} className="text-[#c29631]" />
+                        <LucideIcons.WalletCards size={20} className="text-[#c29631]" />
                         <div>
                             <h3 className="font-bold text-white">Access Plans</h3>
                             <p className="text-xs text-[#75818d]">Value is delivered through qualified demand and workflow, not raw database exports.</p>
@@ -109,7 +109,7 @@ export default function AccessCenter() {
                                     </div>
                                     <ul className="text-xs text-[#eef2f6] space-y-2 mt-auto">
                                         <li className="flex items-start gap-2">
-                                            <BadgeCheck size={14} className="text-green-500 shrink-0 mt-0.5" />
+                                            <LucideIcons.BadgeCheck size={14} className="text-green-500 shrink-0 mt-0.5" />
                                             <span>
                                                 {p[2] === 'seller_free' ? 'Basic profile · limited buyer discovery' : 
                                                  p[2] === 'seller_verified' ? 'Verified profile · qualified buyer access' : 
@@ -128,7 +128,7 @@ export default function AccessCenter() {
                 {/* Audit section */}
                 <aside className="space-y-6">
                     <div className="flex items-center gap-3">
-                        <ShieldCheck size={20} className="text-blue-400" />
+                        <LucideIcons.ShieldCheck size={20} className="text-blue-400" />
                         <div>
                             <h3 className="font-bold text-white">Introduction Ledger</h3>
                             <p className="text-xs text-[#75818d]">Protected commercial relationships.</p>
@@ -142,7 +142,7 @@ export default function AccessCenter() {
                                     <div key={x.id} className="p-4 hover:bg-[#16212c] transition-colors group">
                                         <div className="flex justify-between items-start mb-2">
                                             <div className="flex items-center gap-2">
-                                                <Fingerprint size={14} className="text-[#c29631]" />
+                                                <LucideIcons.Fingerprint size={14} className="text-[#c29631]" />
                                                 <strong className="text-sm font-mono text-white">{x.referralId}</strong>
                                             </div>
                                             <span className="bg-green-500/10 text-green-500 border border-green-500/20 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Audited</span>
@@ -161,7 +161,7 @@ export default function AccessCenter() {
                             </div>
                         ) : (
                             <div className="p-8 text-center text-[#75818d]">
-                                <LockKeyhole size={24} className="mx-auto mb-3 opacity-50" />
+                                <LucideIcons.LockKeyhole size={24} className="mx-auto mb-3 opacity-50" />
                                 <p className="text-sm">No controlled introductions yet.</p>
                             </div>
                         )}

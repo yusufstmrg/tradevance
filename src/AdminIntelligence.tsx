@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { Activity, ArrowRight, BarChart3, BriefcaseBusiness, CircleDollarSign, Database, Eye, FileCheck2, Globe2, RefreshCw, ShieldCheck, Sparkles, Target, TrendingUp, Users, X } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 import GlobalDataConnectivity from './GlobalDataConnectivity';
 import TrustCompliance from './TrustCompliance';
 
@@ -48,7 +48,7 @@ export default function AdminIntelligence() {
         }
     };
 
-    const tabs = ['Overview', 'CRM Intelligence', 'Traffic', 'Users', 'Captured Data', 'Advisory Operations', 'Growth Copilot', 'Execution Intelligence', 'Data Connectivity', 'Trust & Compliance', 'Release Audit'];
+    const tabs = ['Overview', 'CRM Intelligence', 'Traffic', 'LucideIcons.Users', 'Captured Data', 'Advisory Operations', 'Growth Copilot', 'Execution Intelligence', 'Data Connectivity', 'Trust & Compliance', 'Release Audit'];
     const pages = useMemo(() => data?.traffic?.topPages || [], [data]);
     
     const [executionData, setExecutionData] = useState<any>(null);
@@ -88,7 +88,7 @@ export default function AdminIntelligence() {
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 flex justify-center items-center">
             <div className="flex items-center gap-3 text-[#75818d] text-sm animate-pulse">
-                <RefreshCw size={16} className="animate-spin" /> Preparing Tradevance intelligence…
+                <LucideIcons.RefreshCw size={16} className="animate-spin" /> Preparing Tradevance intelligence…
             </div>
         </div>
     );
@@ -96,7 +96,7 @@ export default function AdminIntelligence() {
     if (err) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4 shadow-lg max-w-2xl mx-auto mt-12">
-                <ShieldCheck size={24} className="shrink-0 mt-0.5" />
+                <LucideIcons.ShieldCheck size={24} className="shrink-0 mt-0.5" />
                 <div>
                     <h3 className="text-lg font-bold mb-1">Access Denied</h3>
                     <p className="text-sm opacity-90">{err}</p>
@@ -159,7 +159,7 @@ export default function AdminIntelligence() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <Database size={14} /> TRADEVANCE ADMIN INTELLIGENCE
+                        <LucideIcons.Database size={14} /> TRADEVANCE ADMIN INTELLIGENCE
                     </div>
                     <h1 className="text-3xl font-extrabold tracking-tight mb-2">Global Revenue & Customer Command Center</h1>
                     <p className="text-[#75818d] text-sm max-w-2xl">One operating view across acquisition, CRM, trust, activity, trade execution, revenue and every captured signal.</p>
@@ -168,7 +168,7 @@ export default function AdminIntelligence() {
                     className="bg-[#101922] hover:bg-[#131c26] border border-[#202b36] hover:border-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-all shrink-0"
                     onClick={load}
                 >
-                    <RefreshCw size={14} /> Refresh intelligence
+                    <LucideIcons.RefreshCw size={14} /> Refresh intelligence
                 </button>
             </div>
 
@@ -187,17 +187,17 @@ export default function AdminIntelligence() {
             {tab === 'Overview' && (
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
-                        <Kpi label="Registered Users" value={data.users.total} sub={`${data.users.buyers} buyers · ${data.users.sellers} sellers`} icon={Users} />
-                        <Kpi label="Verified Accounts" value={data.users.verified} sub={`${data.users.verificationRate}% verification rate`} icon={ShieldCheck} />
-                        <Kpi label="Unique Visitors" value={data.traffic.uniqueVisitors} sub={`${data.traffic.sessions} sessions`} icon={Eye} />
-                        <Kpi label="Open RFQs" value={data.funnel.openRfqs} sub={`${data.funnel.totalRfqs} total RFQs`} icon={Target} />
-                        <Kpi label="Trade Value" value={data.revenue.tradeValue} sub={`${data.revenue.activeTrades} active trades`} icon={CircleDollarSign} />
-                        <Kpi label="Revenue Signals" value={data.revenue.revenueSignals} sub="subscriptions + fees + managed trade" icon={TrendingUp} />
+                        <Kpi label="Registered LucideIcons.Users" value={data.users.total} sub={`${data.users.buyers} buyers · ${data.users.sellers} sellers`} icon={LucideIcons.Users} />
+                        <Kpi label="Verified Accounts" value={data.users.verified} sub={`${data.users.verificationRate}% verification rate`} icon={LucideIcons.ShieldCheck} />
+                        <Kpi label="Unique Visitors" value={data.traffic.uniqueVisitors} sub={`${data.traffic.sessions} sessions`} icon={LucideIcons.Eye} />
+                        <Kpi label="Open RFQs" value={data.funnel.openRfqs} sub={`${data.funnel.totalRfqs} total RFQs`} icon={LucideIcons.Target} />
+                        <Kpi label="Trade Value" value={data.revenue.tradeValue} sub={`${data.revenue.activeTrades} active trades`} icon={LucideIcons.CircleDollarSign} />
+                        <Kpi label="Revenue Signals" value={data.revenue.revenueSignals} sub="subscriptions + fees + managed trade" icon={LucideIcons.Activity} />
                     </div>
                     
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl flex flex-col">
-                            <Head icon={Users} title="CRM Intelligence" sub="Customer 360, lead pipeline and engagement health" />
+                            <Head icon={LucideIcons.Users} title="CRM Intelligence" sub="Customer 360, lead pipeline and engagement health" />
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
                                 <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-4 flex flex-col">
                                     <b className="text-white text-2xl font-mono mb-1">{data.crm.totalAccounts}</b>
@@ -217,12 +217,12 @@ export default function AdminIntelligence() {
                                 </div>
                             </div>
                             <button className="mt-auto text-blue-400 hover:text-blue-300 flex items-center justify-between gap-2 text-xs font-bold transition-colors group border border-[#202b36] hover:border-blue-500/30 bg-[#0c131b] px-4 py-3 rounded-lg" onClick={() => setTab('CRM Intelligence')}>
-                                Open Customer 360 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                Open Customer 360 <LucideIcons.ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                             </button>
                         </section>
                         
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl flex flex-col">
-                            <Head icon={Globe2} title="Website & Acquisition" sub="Traffic, sources, conversion and user journeys" />
+                            <Head icon={LucideIcons.Globe2} title="Website & Acquisition" sub="Traffic, sources, conversion and user journeys" />
                             <div className="flex flex-col gap-3 mb-6">
                                 {pages.slice(0, 5).map((x: any) => (
                                     <div key={x.page} className="flex flex-col gap-1.5">
@@ -237,19 +237,19 @@ export default function AdminIntelligence() {
                                 ))}
                             </div>
                             <button className="mt-auto text-blue-400 hover:text-blue-300 flex items-center justify-between gap-2 text-xs font-bold transition-colors group border border-[#202b36] hover:border-blue-500/30 bg-[#0c131b] px-4 py-3 rounded-lg" onClick={() => setTab('Traffic')}>
-                                Open traffic intelligence <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                Open traffic intelligence <LucideIcons.ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                             </button>
                         </section>
                     </div>
                     
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={FileCheck2} title="Verification Command" sub="Identity, evidence and transaction access gates" />
+                            <Head icon={LucideIcons.FileCheck2} title="Verification Command" sub="Identity, evidence and transaction access gates" />
                             <List rows={data.verification.queue} cols={['company', 'role', 'status', 'submitted']} />
                         </section>
                         
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={BriefcaseBusiness} title="Recent Trade Activity" sub="RFQ → quote → trade execution signals" />
+                            <Head icon={LucideIcons.BriefcaseBusiness} title="Recent Trade LucideIcons.Activity" sub="RFQ → quote → trade execution signals" />
                             <List rows={data.recent.trades} cols={['id', 'product', 'status', 'value']} />
                         </section>
                     </div>
@@ -265,16 +265,16 @@ export default function AdminIntelligence() {
                         <span className="px-3 py-1">Lifecycle & value</span>
                     </div>
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl mb-6">
-                        <Head icon={Users} title="Customer 360°" sub="Each organization becomes a longitudinal commercial record." />
+                        <Head icon={LucideIcons.Users} title="Customer 360°" sub="Each organization becomes a longitudinal commercial record." />
                         <List rows={data.crm.customer360} cols={['company', 'role', 'verification', 'plan', 'rfqs', 'introductions', 'trades', 'lifetimeValue', 'lastSeen']} />
                     </section>
                     <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={Target} title="Lead Management" sub="Lead score combines identity, engagement, demand and transaction signals." />
+                            <Head icon={LucideIcons.Target} title="Lead Management" sub="Lead score combines identity, engagement, demand and transaction signals." />
                             <List rows={data.crm.leads} cols={['company', 'role', 'stage', 'score', 'source', 'nextAction']} />
                         </div>
                         <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={Activity} title="Advisory Operations" sub="Tasks for sales/advisory teams to turn intelligence into action." />
+                            <Head icon={LucideIcons.Activity} title="Advisory Operations" sub="Tasks for sales/advisory teams to turn intelligence into action." />
                             <List rows={data.crm.advisory} cols={['company', 'priority', 'reason', 'owner', 'nextAction']} />
                         </div>
                     </section>
@@ -284,33 +284,33 @@ export default function AdminIntelligence() {
             {tab === 'Traffic' && (
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
-                        <Kpi label="Page Views" value={data.traffic.pageViews} sub="all tracked page views" icon={Eye} />
-                        <Kpi label="Unique Visitors" value={data.traffic.uniqueVisitors} sub="visitor IDs" icon={Users} />
-                        <Kpi label="Sessions" value={data.traffic.sessions} sub="session starts" icon={Activity} />
-                        <Kpi label="Login Events" value={data.traffic.logins} sub="successful auth signals" icon={ShieldCheck} />
-                        <Kpi label="CTA Clicks" value={data.traffic.ctaClicks} sub="Try Free + key CTAs" icon={Target} />
-                        <Kpi label="Conversion" value={`${data.traffic.conversionRate}%`} sub="login / unique visitors" icon={TrendingUp} />
+                        <Kpi label="Page Views" value={data.traffic.pageViews} sub="all tracked page views" icon={LucideIcons.Eye} />
+                        <Kpi label="Unique Visitors" value={data.traffic.uniqueVisitors} sub="visitor IDs" icon={LucideIcons.Users} />
+                        <Kpi label="Sessions" value={data.traffic.sessions} sub="session starts" icon={LucideIcons.Activity} />
+                        <Kpi label="Login Events" value={data.traffic.logins} sub="successful auth signals" icon={LucideIcons.ShieldCheck} />
+                        <Kpi label="CTA Clicks" value={data.traffic.ctaClicks} sub="Try Free + key CTAs" icon={LucideIcons.Target} />
+                        <Kpi label="Conversion" value={`${data.traffic.conversionRate}%`} sub="login / unique visitors" icon={LucideIcons.Activity} />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={BarChart3} title="Pages & Journeys" sub="Where visitors spend attention" />
+                            <Head icon={LucideIcons.BarChart3} title="Pages & Journeys" sub="Where visitors spend attention" />
                             <List rows={data.traffic.topPages} cols={['page', 'views', 'uniqueVisitors']} />
                         </section>
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={TrendingUp} title="Acquisition Sources" sub="Referrer and campaign intelligence" />
+                            <Head icon={LucideIcons.Activity} title="Acquisition Sources" sub="Referrer and campaign intelligence" />
                             <List rows={data.traffic.sources} cols={['source', 'visits', 'qualified']} />
                         </section>
                     </div>
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                        <Head icon={Activity} title="Recent Events" sub="Every captured public and authenticated interaction is stored as an event." />
+                        <Head icon={LucideIcons.Activity} title="Recent Events" sub="Every captured public and authenticated interaction is stored as an event." />
                         <List rows={data.traffic.recentEvents} cols={['event', 'page', 'visitorId', 'userId', 'createdAt']} />
                     </section>
                 </>
             )}
 
-            {tab === 'Users' && (
+            {tab === 'LucideIcons.Users' && (
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                    <Head icon={Users} title="User Database" sub="Registered accounts, roles, plans, verification and activity." />
+                    <Head icon={LucideIcons.Users} title="User LucideIcons.Database" sub="Registered accounts, roles, plans, verification and activity." />
                     <List rows={data.users.rows} cols={['name', 'email', 'company', 'role', 'verification', 'plan', 'createdAt', 'lastSeen']} />
                 </section>
             )}
@@ -318,15 +318,15 @@ export default function AdminIntelligence() {
             {tab === 'Captured Data' && (
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
-                        <Kpi label="Analytics Events" value={data.captured.analyticsEvents} sub="traffic + interaction events" icon={Activity} />
-                        <Kpi label="Profiles" value={data.captured.profiles} sub="organization records" icon={Users} />
-                        <Kpi label="RFQs" value={data.captured.rfqs} sub="demand records" icon={Target} />
-                        <Kpi label="Introductions" value={data.captured.introductions} sub="controlled referrals" icon={ShieldCheck} />
-                        <Kpi label="Quotes" value={data.captured.quotes} sub="commercial submissions" icon={CircleDollarSign} />
-                        <Kpi label="Audit Records" value={data.captured.audit} sub="governance events" icon={FileCheck2} />
+                        <Kpi label="Analytics Events" value={data.captured.analyticsEvents} sub="traffic + interaction events" icon={LucideIcons.Activity} />
+                        <Kpi label="Profiles" value={data.captured.profiles} sub="organization records" icon={LucideIcons.Users} />
+                        <Kpi label="RFQs" value={data.captured.rfqs} sub="demand records" icon={LucideIcons.Target} />
+                        <Kpi label="Introductions" value={data.captured.introductions} sub="controlled referrals" icon={LucideIcons.ShieldCheck} />
+                        <Kpi label="Quotes" value={data.captured.quotes} sub="commercial submissions" icon={LucideIcons.CircleDollarSign} />
+                        <Kpi label="Audit Records" value={data.captured.audit} sub="governance events" icon={LucideIcons.FileCheck2} />
                     </div>
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                        <Head icon={Database} title="Data Inventory" sub="Tables currently feeding Tradevance intelligence." />
+                        <Head icon={LucideIcons.Database} title="Data Inventory" sub="Tables currently feeding Tradevance intelligence." />
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {data.captured.inventory.map((x: any) => (
                                 <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-5 flex flex-col gap-1" key={x.table}>
@@ -344,16 +344,16 @@ export default function AdminIntelligence() {
                 <>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={ShieldCheck} title="Verification Queue" sub="Profiles requiring review before transaction access." />
+                            <Head icon={LucideIcons.ShieldCheck} title="Verification Queue" sub="Profiles requiring review before transaction access." />
                             <List rows={data.verification.queue} cols={['company', 'role', 'status', 'submitted']} />
                         </section>
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={Activity} title="AI Operations" sub="Governed agent activity and decision packets." />
+                            <Head icon={LucideIcons.Activity} title="AI Operations" sub="Governed agent activity and decision packets." />
                             <List rows={data.advisory.agents} cols={['agent', 'status', 'authority', 'runs']} />
                         </section>
                     </div>
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                        <Head icon={BriefcaseBusiness} title="Commercial Exceptions" sub="Active deals needing human attention." />
+                        <Head icon={LucideIcons.BriefcaseBusiness} title="Commercial Exceptions" sub="Active deals needing human attention." />
                         <List rows={data.advisory.exceptions} cols={['id', 'type', 'priority', 'action']} />
                     </section>
                 </>
@@ -364,7 +364,7 @@ export default function AdminIntelligence() {
                     <section className="bg-gradient-to-br from-[#101922] to-[#0c131b] border border-[#202b36] rounded-xl p-8 shadow-xl mb-6 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
                         <div className="relative z-10">
-                            <Head icon={Sparkles} title="AI Growth & Revenue Copilot" sub="Ask the operator AI about acquisition, customers, verification, RFQs, revenue and the biggest next actions." />
+                            <Head icon={LucideIcons.Sparkles} title="AI Growth & Revenue Copilot" sub="Ask the operator AI about acquisition, customers, verification, RFQs, revenue and the biggest next actions." />
                             
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {['Where is the biggest conversion leak right now?', 'Which customer segments are most valuable to prioritize?', 'What should Tradevance do next to increase qualified RFQs?', 'Which operational risks could reduce revenue?'].map(x => (
@@ -391,14 +391,14 @@ export default function AdminIntelligence() {
                                     onClick={() => ask()} 
                                     disabled={thinking || !q.trim()}
                                 >
-                                    {thinking ? 'Analyzing…' : 'Ask Growth Copilot'} <ArrowRight size={16} />
+                                    {thinking ? 'Analyzing…' : 'Ask Growth Copilot'} <LucideIcons.ArrowRight size={16} />
                                 </button>
                             </div>
                             
                             {answer && (
                                 <div className="mt-8 bg-blue-900/10 border border-blue-500/20 rounded-xl p-6">
                                     <div className="flex items-center gap-2 text-blue-400 font-bold mb-4">
-                                        <Sparkles size={16} /> Tradevance assessment
+                                        <LucideIcons.Sparkles size={16} /> Tradevance assessment
                                     </div>
                                     <pre className="text-[#eef2f6] text-sm whitespace-pre-wrap font-sans leading-relaxed">{answer}</pre>
                                 </div>
@@ -408,7 +408,7 @@ export default function AdminIntelligence() {
                     
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={TrendingUp} title="Revenue lens" sub="Observed platform economics, not forecasted revenue." />
+                            <Head icon={LucideIcons.Activity} title="Revenue lens" sub="Observed platform economics, not forecasted revenue." />
                             <div className="flex flex-col gap-3">
                                 <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-4 flex justify-between items-center">
                                     <b className="text-white text-sm">Current trade value</b>
@@ -425,7 +425,7 @@ export default function AdminIntelligence() {
                             </div>
                         </section>
                         <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                            <Head icon={Target} title="Funnel lens" sub="Where users are moving toward commercial value." />
+                            <Head icon={LucideIcons.Target} title="Funnel lens" sub="Where users are moving toward commercial value." />
                             <div className="flex flex-col gap-3">
                                 <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-4 flex justify-between items-center">
                                     <b className="text-white text-sm">Unique visitors</b>
@@ -448,34 +448,34 @@ export default function AdminIntelligence() {
             {tab === 'Execution Intelligence' && (
                 <section className="bg-[#070b10] flex flex-col gap-6">
                     <div className="bg-gradient-to-br from-[#101922] to-[#0c131b] border border-[#202b36] rounded-xl p-8 shadow-xl">
-                        <Head icon={CircleDollarSign} title="Execution Intelligence & Revenue Opportunity" sub="Risk-adjusted economics, approval readiness and monetization opportunities derived only from persisted operational data." />
+                        <Head icon={LucideIcons.CircleDollarSign} title="Execution Intelligence & Revenue Opportunity" sub="Risk-adjusted economics, approval readiness and monetization opportunities derived only from persisted operational data." />
                         
                         {executionLoading ? (
                             <div className="flex items-center justify-center py-12 text-[#75818d] text-sm gap-2 animate-pulse">
-                                <RefreshCw size={16} className="animate-spin" /> Calculating live execution intelligence…
+                                <LucideIcons.RefreshCw size={16} className="animate-spin" /> Calculating live execution intelligence…
                             </div>
                         ) : executionData ? (
                             <>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-                                    <Kpi label="Risk-adjusted Deal Value" value={executionData.dealEconomics.riskAdjustedValue} sub="planning value after risk" icon={Target} />
-                                    <Kpi label="Margin Ready" value={executionData.dealEconomics.marginReady} sub={`${executionData.dealEconomics.marginMissingCostBasis} missing cost basis`} icon={TrendingUp} />
-                                    <Kpi label="Illustrative Fee Opp" value={executionData.revenueOpportunity.illustrativeTransactionFeeOpportunity} sub={`assumption ${executionData.revenueOpportunity.illustrativeTransactionFeeRate * 100}%`} icon={CircleDollarSign} />
-                                    <Kpi label="Subscription Upside / Mo" value={executionData.revenueOpportunity.subscriptionUpgradeMonthly} sub="premium-plan opportunity" icon={Users} />
+                                    <Kpi label="Risk-adjusted Deal Value" value={executionData.dealEconomics.riskAdjustedValue} sub="planning value after risk" icon={LucideIcons.Target} />
+                                    <Kpi label="Margin Ready" value={executionData.dealEconomics.marginReady} sub={`${executionData.dealEconomics.marginMissingCostBasis} missing cost basis`} icon={LucideIcons.Activity} />
+                                    <Kpi label="Illustrative Fee Opp" value={executionData.revenueOpportunity.illustrativeTransactionFeeOpportunity} sub={`assumption ${executionData.revenueOpportunity.illustrativeTransactionFeeRate * 100}%`} icon={LucideIcons.CircleDollarSign} />
+                                    <Kpi label="Subscription Upside / Mo" value={executionData.revenueOpportunity.subscriptionUpgradeMonthly} sub="premium-plan opportunity" icon={LucideIcons.Users} />
                                 </div>
                                 
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
                                     <section className="bg-[#0c131b] border border-[#202b36] rounded-xl p-5">
-                                        <Head icon={BriefcaseBusiness} title="Deal Action Queue" sub="What needs to happen before a deal can progress." />
+                                        <Head icon={LucideIcons.BriefcaseBusiness} title="Deal Action Queue" sub="What needs to happen before a deal can progress." />
                                         <List rows={executionData.rows.slice(0, 20)} cols={['id', 'type', 'company', 'value', 'riskScore', 'decision', 'action', 'approval']} />
                                     </section>
                                     <section className="bg-[#0c131b] border border-[#202b36] rounded-xl p-5">
-                                        <Head icon={TrendingUp} title="Subscription Opportunity" sub="Free-plan accounts with a defined premium upgrade path." />
+                                        <Head icon={LucideIcons.Activity} title="Subscription Opportunity" sub="Free-plan accounts with a defined premium upgrade path." />
                                         <List rows={executionData.revenueOpportunity.subscriptionUpgradeRows} cols={['company', 'role', 'currentPlan', 'recommendedPlan', 'monthlyUpside', 'action']} />
                                     </section>
                                 </div>
                                 
                                 <section className="bg-[#0c131b] border border-[#202b36] rounded-xl p-5 mt-6">
-                                    <Head icon={FileCheck2} title="Economics Readiness" sub="Gross margin is shown only when a real acquisition-cost basis exists." />
+                                    <Head icon={LucideIcons.FileCheck2} title="Economics Readiness" sub="Gross margin is shown only when a real acquisition-cost basis exists." />
                                     <List rows={executionData.rows.slice(0, 20).map((x: any) => ({ id: x.id, type: x.type, company: x.company, value: x.value, marginReadiness: x.marginReadiness, margin: x.margin === null ? '—' : x.margin, marginPct: x.marginPct === null ? '—' : x.marginPct + '%' }))} cols={['id', 'type', 'company', 'value', 'marginReadiness', 'margin', 'marginPct']} />
                                 </section>
                                 
@@ -506,7 +506,7 @@ export default function AdminIntelligence() {
                     <section className="bg-[#101922] border border-blue-500/30 rounded-xl p-8 shadow-[0_0_30px_rgba(59,130,246,0.1)] relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
                         <div className="relative z-10">
-                            <Head icon={Sparkles} title="AI Trade Execution & Negotiation Intelligence" sub="Generate a structured negotiation strategy for a persisted Quote or Trade. AI cannot execute, send, approve or commit anything." />
+                            <Head icon={LucideIcons.Sparkles} title="AI Trade Execution & Negotiation Intelligence" sub="Generate a structured negotiation strategy for a persisted Quote or Trade. AI cannot execute, send, approve or commit anything." />
                             
                             <div className="flex flex-col sm:flex-row gap-3 mt-6">
                                 <select 
@@ -528,14 +528,14 @@ export default function AdminIntelligence() {
                                     onClick={generateNegotiation} 
                                     disabled={negBusy || !negId.trim()}
                                 >
-                                    {negBusy ? 'Generating…' : 'Generate Strategy'} <Sparkles size={16} />
+                                    {negBusy ? 'Generating…' : 'Generate Strategy'} <LucideIcons.Sparkles size={16} />
                                 </button>
                             </div>
                             
                             {negResult && (
                                 <div className={`mt-6 rounded-xl p-6 border ${negResult.error ? 'bg-red-500/10 border-red-500/20' : 'bg-[#0c131b] border-blue-500/30'}`}>
                                     <div className={`flex items-center gap-2 font-bold mb-4 ${negResult.error ? 'text-red-400' : 'text-blue-400'}`}>
-                                        <ShieldCheck size={16} /> {negResult.error ? 'Strategy unavailable' : 'Structured negotiation strategy'}
+                                        <LucideIcons.ShieldCheck size={16} /> {negResult.error ? 'Strategy unavailable' : 'Structured negotiation strategy'}
                                     </div>
                                     <pre className="text-[#eef2f6] text-xs whitespace-pre-wrap font-mono leading-relaxed overflow-x-auto p-4 bg-[#070b10] rounded-lg border border-[#202b36]">
                                         {JSON.stringify(negResult.error ? { error: negResult.error } : negResult.strategy || negResult, null, 2)}
@@ -553,7 +553,7 @@ export default function AdminIntelligence() {
             {tab === 'Release Audit' && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                        <Head icon={ShieldCheck} title="Release readiness audit" sub="Current evidence from deployed QA plus explicit production integration gaps." />
+                        <Head icon={LucideIcons.ShieldCheck} title="Release readiness audit" sub="Current evidence from deployed QA plus explicit production integration gaps." />
                         <div className="flex flex-col gap-3 mt-6">
                             {auditRows.map(x => (
                                 <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4" key={x.area}>
@@ -574,7 +574,7 @@ export default function AdminIntelligence() {
                     </section>
                     
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
-                        <Head icon={Database} title="What still blocks global production scale" sub="These are infrastructure/integration gaps, not hidden UI tasks." />
+                        <Head icon={LucideIcons.Database} title="What still blocks global production scale" sub="These are infrastructure/integration gaps, not hidden UI tasks." />
                         <div className="flex flex-col gap-4 mt-6">
                             <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-5 flex flex-col gap-1">
                                 <b className="text-red-400 text-sm">Automated E2E</b>
@@ -606,7 +606,7 @@ export default function AdminIntelligence() {
                                 <h3 className="text-xl font-bold text-white truncate pr-4">{selected.company || selected.name || selected.id || selected.event}</h3>
                             </div>
                             <button className="text-[#75818d] hover:text-white bg-[#0c131b] hover:bg-[#202b36] rounded-lg p-2 transition-colors shrink-0" onClick={() => setSelected(null)}>
-                                <X size={18} />
+                                <LucideIcons.X size={18} />
                             </button>
                         </div>
                         <div className="p-6 flex-1 overflow-y-auto">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'; 
 import { api } from '@appdeploy/client'; 
-import { ArrowRight, BrainCircuit, CheckCircle2, CircleAlert, Gauge, ShieldCheck, Sparkles, Target, TrendingUp, ChevronRight } from 'lucide-react'; 
+import * as LucideIcons from "lucide-react"; 
 
 type Props = { role: string; onNavigate: (section: string) => void }; 
 
@@ -25,7 +25,7 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] flex items-center justify-center">
             <div className="text-center text-[#c29631] animate-pulse flex flex-col items-center">
-                <BrainCircuit size={40} className="mb-4 opacity-50" />
+                <LucideIcons.BrainCircuit size={40} className="mb-4 opacity-50" />
                 <span className="text-sm font-bold tracking-widest uppercase">Preparing intelligent workspace…</span>
             </div>
         </div>
@@ -44,13 +44,13 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
             <div className="flex justify-between items-end mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <BrainCircuit size={14} /> ADAPTIVE TRADE WORKSPACE
+                        <LucideIcons.BrainCircuit size={14} /> ADAPTIVE TRADE WORKSPACE
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">{data.greeting}</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">{data.company} · Your workspace is prioritized around what matters now, with complexity kept behind the scenes.</p>
                 </div>
                 <div className="bg-[#c29631]/10 text-[#c29631] border border-[#c29631]/30 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
-                    <Sparkles size={14} /> <span className="capitalize">{role}</span> · Context-Aware
+                    <LucideIcons.Sparkles size={14} /> <span className="capitalize">{role}</span> · Context-Aware
                 </div>
             </div>
 
@@ -64,17 +64,17 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
                         className="bg-[#c29631] hover:bg-[#a37c23] text-[#070b10] px-6 py-3 rounded-xl flex items-center gap-2 text-sm font-bold transition-colors w-max"
                         onClick={() => onNavigate(data.primary.action)}
                     >
-                        {data.primary.label} <ArrowRight size={16} />
+                        {data.primary.label} <LucideIcons.ArrowRight size={16} />
                     </button>
                 </div>
                 <div className="p-8 md:w-1/3 flex flex-col items-center justify-center bg-[#070b10]/50 relative">
                     <div className="w-32 h-32 rounded-full border-4 border-[#202b36] border-t-[#c29631] border-r-[#c29631] flex flex-col items-center justify-center relative mb-6 shadow-[0_0_20px_rgba(194,150,49,0.2)]">
-                        <Gauge size={24} className="text-[#c29631] mb-1" />
+                        <LucideIcons.Gauge size={24} className="text-[#c29631] mb-1" />
                         <span className="text-3xl font-mono font-bold text-white leading-none">{data.stats.signals}</span>
                         <span className="text-[10px] text-[#75818d] uppercase font-bold tracking-widest mt-1">Live Signals</span>
                     </div>
                     <div className="flex items-center gap-2 text-[10px] text-[#75818d] bg-[#101922] px-3 py-2 rounded-lg border border-[#202b36]">
-                        <ShieldCheck size={14} className="text-[#c29631]" />
+                        <LucideIcons.ShieldCheck size={14} className="text-[#c29631]" />
                         <span>Governed by verification & privacy policies.</span>
                     </div>
                 </div>
@@ -82,17 +82,17 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
 
             {/* Metrics */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <Metric title="Active Trades" value={data.stats.activeTrades} icon={Target} />
-                <Metric title="My Demands" value={data.stats.demands} icon={TrendingUp} />
-                <Metric title="My Quotes" value={data.stats.quotes} icon={Sparkles} />
-                <Metric title="Learning Samples" value={data.stats.learningSamples} icon={BrainCircuit} />
+                <Metric title="Active Trades" value={data.stats.activeTrades} icon={LucideIcons.Target} />
+                <Metric title="My Demands" value={data.stats.demands} icon={LucideIcons.Activity} />
+                <Metric title="My Quotes" value={data.stats.quotes} icon={LucideIcons.Sparkles} />
+                <Metric title="Learning Samples" value={data.stats.learningSamples} icon={LucideIcons.BrainCircuit} />
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 {/* Signals */}
                 <section className="xl:col-span-2 space-y-6">
                     <div className="flex items-center gap-3">
-                        <Target size={20} className="text-[#c29631]" />
+                        <LucideIcons.Target size={20} className="text-[#c29631]" />
                         <div>
                             <h3 className="font-bold text-white">What deserves your attention</h3>
                             <p className="text-xs text-[#75818d]">Prioritized from live Tradevance signals — not synthetic activity.</p>
@@ -114,7 +114,7 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
                                         <div className={`mt-1 ${
                                             x.decision === 'BLOCK' ? 'text-red-500' : 'text-green-500'
                                         }`}>
-                                            {x.decision === 'BLOCK' ? <CircleAlert size={20} /> : <CheckCircle2 size={20} />}
+                                            {x.decision === 'BLOCK' ? <LucideIcons.CircleAlert size={20} /> : <LucideIcons.CheckCircle2 size={20} />}
                                         </div>
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
@@ -138,19 +138,19 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
                                 <p className="text-sm text-[#eef2f6] leading-relaxed mb-6 pl-9">{x.reason}</p>
                                 <div className="flex justify-between items-center pt-4 border-t border-[#202b36] pl-9">
                                     <span className="text-[10px] font-bold text-[#75818d] uppercase tracking-widest flex items-center gap-1">
-                                        <ShieldCheck size={14} /> Evidence-backed guidance
+                                        <LucideIcons.ShieldCheck size={14} /> Evidence-backed guidance
                                     </span>
                                     <button 
                                         className="text-xs font-bold text-white flex items-center gap-1 hover:text-[#c29631] transition-colors"
                                         onClick={() => onNavigate(x.destination)}
                                     >
-                                        {x.destination} <ArrowRight size={14} />
+                                        {x.destination} <LucideIcons.ArrowRight size={14} />
                                     </button>
                                 </div>
                             </article>
                         )) : (
                             <div className="bg-[#101922] border border-[#202b36] rounded-xl p-8 text-center text-[#75818d]">
-                                <Target size={24} className="mx-auto mb-3 opacity-50" />
+                                <LucideIcons.Target size={24} className="mx-auto mb-3 opacity-50" />
                                 <p className="text-sm">No priority signals yet. As real RFQs, quotes and trades accumulate, this workspace will become more useful.</p>
                             </div>
                         )}
@@ -161,7 +161,7 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
                 <aside className="space-y-6">
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
                         <div className="flex items-center gap-3 mb-6">
-                            <ShieldCheck size={20} className="text-[#c29631]" />
+                            <LucideIcons.ShieldCheck size={20} className="text-[#c29631]" />
                             <div>
                                 <h3 className="font-bold text-white">How Tradevance Guides You</h3>
                                 <p className="text-[10px] text-[#75818d] uppercase tracking-widest">Simple on surface. Rigorous underneath.</p>
@@ -195,7 +195,7 @@ export default function AdaptiveWorkspace({ role, onNavigate }: Props) {
                             className="w-full bg-[#202b36] hover:bg-[#4f5b67] text-white py-2.5 rounded-lg flex justify-center items-center gap-2 text-xs font-bold transition-colors" 
                             onClick={() => onNavigate('Trade Memory')}
                         >
-                            Open Trade Memory <ArrowRight size={14} />
+                            Open Trade Memory <LucideIcons.ArrowRight size={14} />
                         </button>
                     </section>
                 </aside>

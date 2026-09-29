@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AlertTriangle, CheckCircle2, Database, Lock, RefreshCw, ShieldCheck, XCircle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 import { api } from '@appdeploy/client';
 
 export default function TrustCompliance() {
@@ -52,7 +52,7 @@ export default function TrustCompliance() {
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] flex items-center justify-center">
             <div className="flex items-center gap-2 text-blue-400 font-bold tracking-widest uppercase animate-pulse">
-                <RefreshCw size={18} className="animate-spin" /> Building compliance control plane…
+                <LucideIcons.RefreshCw size={18} className="animate-spin" /> Building compliance control plane…
             </div>
         </div>
     );
@@ -60,7 +60,7 @@ export default function TrustCompliance() {
     if (err || !data) return (
         <div className="bg-[#070b10] min-h-screen p-8">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4">
-                <AlertTriangle size={24} className="shrink-0" />
+                <LucideIcons.AlertTriangle size={24} className="shrink-0" />
                 <div>
                     <b className="block text-lg mb-1">Access Restricted</b>
                     <span className="text-sm opacity-80">{err || 'No compliance snapshot available.'}</span>
@@ -74,7 +74,7 @@ export default function TrustCompliance() {
             <div className="flex justify-between items-end mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <ShieldCheck size={14} /> TRADEVANCE TRUST & COMPLIANCE
+                        <LucideIcons.ShieldCheck size={14} /> TRADEVANCE TRUST & COMPLIANCE
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Counterparty Risk Control Plane</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Trust, verification, official screening and decision support are separate controls. Risk decisions never substitute for legal clearance.</p>
@@ -84,14 +84,14 @@ export default function TrustCompliance() {
                         className="bg-[#101922] hover:bg-[#131c26] border border-[#202b36] hover:border-[#4f5b67] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-all"
                         onClick={load}
                     >
-                        <RefreshCw size={14} /> Refresh Controls
+                        <LucideIcons.RefreshCw size={14} /> Refresh Controls
                     </button>
                     <button 
                         className="bg-blue-500 hover:bg-blue-600 disabled:bg-[#202b36] disabled:text-[#75818d] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-all"
                         onClick={sync} 
                         disabled={syncing}
                     >
-                        <Database size={14} className={syncing ? 'animate-pulse' : ''} /> {syncing ? 'Syncing…' : 'Sync Structured Lists'}
+                        <LucideIcons.Database size={14} className={syncing ? 'animate-pulse' : ''} /> {syncing ? 'Syncing…' : 'Sync Structured Lists'}
                     </button>
                 </div>
             </div>
@@ -110,7 +110,7 @@ export default function TrustCompliance() {
                         <p className="text-xs text-[#75818d]">Explainable decision support from verification, official screening, Trust Graph evidence and freshness.</p>
                     </div>
                     <div className="bg-[#c29631]/10 text-[#c29631] border border-[#c29631]/20 px-3 py-1.5 rounded flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase">
-                        <Lock size={12} /> AI CANNOT OVERRIDE
+                        <LucideIcons.Lock size={12} /> AI CANNOT OVERRIDE
                     </div>
                 </div>
                 <div className="overflow-x-auto">
@@ -141,7 +141,7 @@ export default function TrustCompliance() {
                                 <tr>
                                     <td colSpan={6} className="px-6 py-8 text-center text-[#75818d] text-sm">
                                         <div className="flex flex-col items-center justify-center gap-2">
-                                            <CheckCircle2 size={24} className="opacity-50" />
+                                            <LucideIcons.CheckCircle2 size={24} className="opacity-50" />
                                             <span>No Buyer/Seller risk records yet.</span>
                                         </div>
                                     </td>
@@ -159,7 +159,7 @@ export default function TrustCompliance() {
                         <p className="text-xs text-[#75818d]">Deal-level risk across real RFQs, quotes and active trades. No synthetic deal records are created.</p>
                     </div>
                     <div className="bg-[#c29631]/10 text-[#c29631] border border-[#c29631]/20 px-3 py-1.5 rounded flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase">
-                        <Lock size={12} /> REVIEW/BLOCK HELD
+                        <LucideIcons.Lock size={12} /> REVIEW/BLOCK HELD
                     </div>
                 </div>
                 
@@ -201,7 +201,7 @@ export default function TrustCompliance() {
                                 <tr>
                                     <td colSpan={6} className="px-6 py-8 text-center text-[#75818d] text-sm">
                                         <div className="flex flex-col items-center justify-center gap-2">
-                                            <CheckCircle2 size={24} className="opacity-50" />
+                                            <LucideIcons.CheckCircle2 size={24} className="opacity-50" />
                                             <span>No operational RFQ, quote or trade records are available for Deal Guardian yet.</span>
                                         </div>
                                     </td>
@@ -234,7 +234,7 @@ export default function TrustCompliance() {
                             <p className="text-xs text-[#75818d]">Current state of the official-source sanctions control.</p>
                         </div>
                         <div className="bg-red-500/10 text-red-500 border border-red-500/20 px-3 py-1.5 rounded flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase">
-                            <ShieldCheck size={12} /> {data.screening.status}
+                            <LucideIcons.ShieldCheck size={12} /> {data.screening.status}
                         </div>
                     </div>
                     <div className="p-6 bg-[#0c131b]">
@@ -254,7 +254,7 @@ export default function TrustCompliance() {
                         <p className="text-xs text-[#75818d]">These counterparties must not be presented as "cleared".</p>
                     </div>
                     <div className="bg-[#c29631]/10 text-[#c29631] border border-[#c29631]/20 px-3 py-1.5 rounded flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase">
-                        <Lock size={12} /> TRANSACTION GATES ACTIVE
+                        <LucideIcons.Lock size={12} /> TRANSACTION GATES ACTIVE
                     </div>
                 </div>
                 <div className="overflow-x-auto">
@@ -281,12 +281,12 @@ export default function TrustCompliance() {
                                     <td className="px-6 py-4"><span className="text-xs text-white">{x.freshnessDays}d</span></td>
                                     <td className="px-6 py-4">
                                         <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase bg-red-500/10 text-red-500 border border-red-500/20 px-2 py-1 rounded">
-                                            <XCircle size={12} /> {x.screening}
+                                            <LucideIcons.XCircle size={12} /> {x.screening}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase bg-[#c29631]/10 text-[#c29631] border border-[#c29631]/20 px-2 py-1 rounded">
-                                            <Lock size={12} /> {x.transactionGate}
+                                            <LucideIcons.Lock size={12} /> {x.transactionGate}
                                         </span>
                                     </td>
                                 </tr>
@@ -294,7 +294,7 @@ export default function TrustCompliance() {
                                 <tr>
                                     <td colSpan={6} className="px-6 py-8 text-center text-[#75818d] text-sm">
                                         <div className="flex flex-col items-center justify-center gap-2">
-                                            <CheckCircle2 size={24} className="opacity-50" />
+                                            <LucideIcons.CheckCircle2 size={24} className="opacity-50" />
                                             <span>No high-priority review cases currently derived from the operational graph.</span>
                                         </div>
                                     </td>
@@ -306,7 +306,7 @@ export default function TrustCompliance() {
             </section>
 
             <div className="flex items-start gap-3 bg-[#101922] p-4 rounded-xl border border-[#202b36] text-xs text-[#75818d]">
-                <Database size={16} className="text-blue-400 shrink-0 mt-0.5" />
+                <LucideIcons.Database size={16} className="text-blue-400 shrink-0 mt-0.5" />
                 <p><b>Policy:</b> Risk Engine is decision support only. It is not legal clearance, credit underwriting, UBO/KYB, PEP, adverse-media screening, or jurisdiction-specific legal advice.</p>
             </div>
         </div>

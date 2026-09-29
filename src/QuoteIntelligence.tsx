@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { api } from '@appdeploy/client';
-import { ArrowRight, BarChart3, CircleDollarSign, FileCheck2, Sparkles, Target, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Quote = { supplier: string; product: string; currency: string; unit: string; price: number; freight: number; insurance: number; payment: string; incoterm: string; leadTime: string };
 
@@ -41,7 +41,7 @@ export default function QuoteIntelligence({ onNavigate }: { onNavigate?: (sectio
             <div className="flex justify-between items-end mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <BarChart3 size={14} /> QUOTE INTELLIGENCE
+                        <LucideIcons.BarChart3 size={14} /> QUOTE INTELLIGENCE
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Normalize. Compare. Negotiate.</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Convert supplier quotations into a comparable landed-cost view before you negotiate or award.</p>
@@ -51,14 +51,14 @@ export default function QuoteIntelligence({ onNavigate }: { onNavigate?: (sectio
                     onClick={analyze} 
                     disabled={loading}
                 >
-                    <Sparkles size={16} className={loading ? 'animate-pulse' : ''} />
+                    <LucideIcons.Sparkles size={16} className={loading ? 'animate-pulse' : ''} />
                     {loading ? 'Analyzing…' : 'Analyze Quotes'}
                 </button>
             </div>
 
             {error && (
                 <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-4 rounded-xl mb-8 flex items-start gap-3 text-sm">
-                    <AlertTriangle size={16} className="shrink-0 mt-0.5" />
+                    <LucideIcons.AlertTriangle size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                 </div>
             )}
@@ -74,7 +74,7 @@ export default function QuoteIntelligence({ onNavigate }: { onNavigate?: (sectio
                     />
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] p-4 rounded-xl">
-                    <label className="block text-[10px] text-[#75818d] font-bold tracking-widest uppercase mb-2">Target landed cost / MT</label>
+                    <label className="block text-[10px] text-[#75818d] font-bold tracking-widest uppercase mb-2">LucideIcons.Target landed cost / MT</label>
                     <input 
                         className="w-full bg-[#0c131b] border border-[#202b36] focus:border-blue-500 rounded-lg px-4 py-2 text-white outline-none transition-colors"
                         value={targetPrice} 
@@ -173,13 +173,13 @@ export default function QuoteIntelligence({ onNavigate }: { onNavigate?: (sectio
                         <div className="p-8 border-b border-[#202b36] flex flex-col md:flex-row justify-between md:items-center gap-6">
                             <div>
                                 <div className="flex items-center gap-2 text-green-500 text-[10px] font-bold tracking-widest uppercase mb-3">
-                                    <Target size={14} /> BEST LANDED COST
+                                    <LucideIcons.Target size={14} /> BEST LANDED COST
                                 </div>
                                 <h3 className="text-3xl font-bold text-white mb-2">{result.best.supplier}</h3>
                                 <p className="text-[#c29631] font-mono text-xl">{result.best.landedCost.toFixed(2)} {result.best.currency} / {result.best.unit}</p>
                             </div>
                             <div className="bg-[#0c131b] border border-[#202b36] rounded-xl p-4 flex items-center gap-3 shrink-0">
-                                <CircleDollarSign size={24} className={result.best.deltaPercent === null ? 'text-[#75818d]' : (result.best.deltaPercent > 0 ? 'text-red-500' : 'text-green-500')} />
+                                <LucideIcons.CircleDollarSign size={24} className={result.best.deltaPercent === null ? 'text-[#75818d]' : (result.best.deltaPercent > 0 ? 'text-red-500' : 'text-green-500')} />
                                 <span className="font-mono text-lg font-bold">
                                     {result.best.deltaPercent === null ? 'No target' : `${result.best.deltaPercent > 0 ? '+' : ''}${result.best.deltaPercent}% vs target`}
                                 </span>
@@ -207,7 +207,7 @@ export default function QuoteIntelligence({ onNavigate }: { onNavigate?: (sectio
                         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2"></div>
                         <div className="relative z-10">
                             <div className="flex items-center gap-2 text-blue-400 text-[10px] font-bold tracking-widest uppercase mb-3">
-                                <Sparkles size={14} /> COMMERCIAL GUIDANCE
+                                <LucideIcons.Sparkles size={14} /> COMMERCIAL GUIDANCE
                             </div>
                             <h3 className="text-xl font-bold text-white mb-2">Next move</h3>
                             <p className="text-[#eef2f6] text-sm leading-relaxed mb-6 max-w-3xl">{result.negotiation}</p>
@@ -217,13 +217,13 @@ export default function QuoteIntelligence({ onNavigate }: { onNavigate?: (sectio
                                     className="bg-[#0c131b] hover:bg-[#131c26] border border-[#202b36] hover:border-[#4f5b67] text-white px-4 py-2.5 rounded-lg flex items-center gap-2 text-xs font-bold transition-all"
                                     onClick={() => onNavigate?.('RFQ & Tenders')}
                                 >
-                                    <FileCheck2 size={15} /> Prepare RFQ follow-up
+                                    <LucideIcons.FileCheck2 size={15} /> Prepare RFQ follow-up
                                 </button>
                                 <button 
                                     className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs font-bold transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]"
                                     onClick={() => onNavigate?.('Trade Room')}
                                 >
-                                    Open Trade Room <ArrowRight size={15} />
+                                    Open Trade Room <LucideIcons.ArrowRight size={15} />
                                 </button>
                             </div>
                         </div>

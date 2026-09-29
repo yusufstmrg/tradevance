@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { AlertTriangle, CheckCircle2, ExternalLink, Filter, Globe2, Search, ShieldCheck, Sparkles, TrendingUp, X } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Evidence = { type: string; claim: string; sourceUrl?: string };
 type Entity = { id: string; name: string; entityType: 'Buyer' | 'Seller'; country: string; products: string[]; verificationLevel: string; confidence: number; evidence: Evidence[]; officialUrl?: string; tradeEvidence?: string; lastVerified: string; notes: string };
@@ -53,7 +53,7 @@ export default function EntityIntelligence() {
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="mb-8">
                 <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                    <Globe2 size={14} /> GLOBAL ENTITY INTELLIGENCE
+                    <LucideIcons.Globe2 size={14} /> GLOBAL ENTITY INTELLIGENCE
                 </div>
                 <h2 className="text-3xl font-extrabold tracking-tight mb-2 text-white">Evidence-Backed Buyer & Seller Network</h2>
                 <p className="text-[#75818d] text-sm max-w-2xl">Public-source discovery with provenance, confidence and trade-evidence layers. This is intelligence, not a legal guarantee.</p>
@@ -71,17 +71,17 @@ export default function EntityIntelligence() {
 
             <section className="flex flex-col md:flex-row gap-4 mb-8">
                 <div className="flex-1 bg-[#101922] border border-[#202b36] rounded-lg px-4 py-2 flex items-center gap-3 focus-within:border-blue-500 transition-colors">
-                    <Search size={16} className="text-[#75818d]" />
+                    <LucideIcons.Search size={16} className="text-[#75818d]" />
                     <input 
                         className="bg-transparent border-none outline-none w-full text-sm text-white placeholder:text-[#4f5b67]"
                         value={q} 
                         onChange={e => setQ(e.target.value)} 
-                        placeholder="Search company, country or product..." 
+                        placeholder="LucideIcons.Search company, country or product..." 
                     />
                 </div>
                 <div className="flex gap-4">
                     <div className="bg-[#101922] border border-[#202b36] rounded-lg px-4 py-2 flex items-center gap-3">
-                        <Filter size={14} className="text-[#75818d]" />
+                        <LucideIcons.Filter size={14} className="text-[#75818d]" />
                         <select className="bg-transparent border-none outline-none text-sm text-white focus:ring-0" value={type} onChange={e => setType(e.target.value)}>
                             <option value="All">All Entities</option>
                             <option value="Buyer">Buyers</option>
@@ -89,7 +89,7 @@ export default function EntityIntelligence() {
                         </select>
                     </div>
                     <div className="bg-[#101922] border border-[#202b36] rounded-lg px-4 py-2 flex items-center gap-3">
-                        <Filter size={14} className="text-[#75818d]" />
+                        <LucideIcons.Filter size={14} className="text-[#75818d]" />
                         <select className="bg-transparent border-none outline-none text-sm text-white focus:ring-0" value={product} onChange={e => setProduct(e.target.value)}>
                             {products.map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
@@ -141,16 +141,16 @@ export default function EntityIntelligence() {
                             <div className="mt-auto pt-4 border-t border-[#202b36] w-full space-y-3">
                                 <div className="flex justify-between items-center text-xs text-[#75818d]">
                                     <span className="flex items-center gap-1.5 text-blue-400">
-                                        <ShieldCheck size={14} /> {e.verificationLevel}
+                                        <LucideIcons.ShieldCheck size={14} /> {e.verificationLevel}
                                     </span>
                                     <span className="flex items-center gap-1.5">
-                                        <TrendingUp size={14} /> {e.lastVerified}
+                                        <LucideIcons.Activity size={14} /> {e.lastVerified}
                                     </span>
                                 </div>
                                 <div className="flex justify-between items-center text-[10px] font-bold tracking-widest uppercase">
                                     <span className="text-[#4f5b67]">{e.evidence.length} evidence signals</span>
                                     <span className="text-blue-400 group-hover:text-blue-300 flex items-center gap-1">
-                                        Open dossier <ExternalLink size={12} />
+                                        Open dossier <LucideIcons.ExternalLink size={12} />
                                     </span>
                                 </div>
                             </div>
@@ -168,13 +168,13 @@ export default function EntityIntelligence() {
                         <div className="flex justify-between items-start mb-6">
                             <div>
                                 <div className="flex items-center gap-2 text-[#c29631] text-[10px] font-bold tracking-widest uppercase mb-2">
-                                    <ShieldCheck size={14} /> ENTITY DOSSIER
+                                    <LucideIcons.ShieldCheck size={14} /> ENTITY DOSSIER
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-1">{selected.name}</h3>
                                 <p className="text-sm text-[#75818d]">{selected.entityType} · {selected.country}</p>
                             </div>
                             <button className="text-[#75818d] hover:text-white transition-colors" onClick={() => setSelected(null)}>
-                                <X size={24} />
+                                <LucideIcons.X size={24} />
                             </button>
                         </div>
 
@@ -187,7 +187,7 @@ export default function EntityIntelligence() {
                             <div>
                                 <b className="block text-xs font-bold text-[#4f5b67] tracking-widest uppercase mb-2">Verification Level</b>
                                 <span className="text-sm text-white flex items-center gap-2">
-                                    <ShieldCheck size={16} className="text-blue-400" /> {selected.verificationLevel}
+                                    <LucideIcons.ShieldCheck size={16} className="text-blue-400" /> {selected.verificationLevel}
                                 </span>
                             </div>
 
@@ -207,13 +207,13 @@ export default function EntityIntelligence() {
                                 <div className="space-y-3">
                                     {selected.evidence.map((x, i) => (
                                         <div className="bg-[#101922] border border-[#202b36] rounded-lg p-3 text-sm flex gap-3" key={i}>
-                                            <CheckCircle2 size={16} className="text-green-500 shrink-0 mt-0.5" />
+                                            <LucideIcons.CheckCircle2 size={16} className="text-green-500 shrink-0 mt-0.5" />
                                             <div>
                                                 <strong className="text-white mr-2">{x.type}</strong>
                                                 <span className="text-[#75818d]">{x.claim}</span>
                                                 {x.sourceUrl && (
                                                     <a href={x.sourceUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline ml-2 flex items-center gap-1 inline-flex text-xs">
-                                                        source <ExternalLink size={10} />
+                                                        source <LucideIcons.ExternalLink size={10} />
                                                     </a>
                                                 )}
                                             </div>
@@ -236,7 +236,7 @@ export default function EntityIntelligence() {
                                         onClick={verify} 
                                         disabled={verifying}
                                     >
-                                        {verifying ? <Sparkles size={16} className="animate-spin" /> : <ShieldCheck size={16} />}
+                                        {verifying ? <LucideIcons.Sparkles size={16} className="animate-spin" /> : <LucideIcons.ShieldCheck size={16} />}
                                         {verifying ? 'Verifying…' : 'Verify'}
                                     </button>
                                 </div>
@@ -283,11 +283,11 @@ export default function EntityIntelligence() {
                                     target="_blank" 
                                     rel="noreferrer"
                                 >
-                                    Open Official Source <ExternalLink size={16} />
+                                    Open Official Source <LucideIcons.ExternalLink size={16} />
                                 </a>
                             )}
                             <div className="flex items-start gap-3 bg-red-500/10 text-red-500/80 p-4 rounded-lg border border-red-500/20 text-xs">
-                                <AlertTriangle size={16} className="shrink-0 mt-0.5" />
+                                <LucideIcons.AlertTriangle size={16} className="shrink-0 mt-0.5" />
                                 <p>Tradevance evidence status is an intelligence layer. Final KYC/KYB, sanctions, UBO and transaction verification require licensed/contracted data sources and direct documentary checks.</p>
                             </div>
                         </div>

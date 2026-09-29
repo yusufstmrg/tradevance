@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { Building2, Camera, CheckCircle2, FileCheck2, Globe2, Mail, Phone, Save, ShieldCheck, Upload, UserRound, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Profile = { role: string; verificationStatus?: string; verificationSubmittedAt?: string; verifiedAt?: string; verificationReason?: string; avatarUrl?: string; company?: string; legalName?: string; country?: string; website?: string; industry?: string; description?: string; address?: string; city?: string; postalCode?: string; taxId?: string; registrationNumber?: string; contactName?: string; contactTitle?: string; phone?: string; products?: string[]; capacity?: string; port?: string; incoterms?: string; paymentTerms?: string; annualVolume?: string; email?: string };
 
@@ -71,14 +71,14 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="mb-8">
                 <div className="flex items-center gap-2 text-[#c9a34a] text-xs font-bold tracking-widest uppercase mb-3">
-                    <Building2 size={14} /> PROFILE & VERIFICATION
+                    <LucideIcons.Building2 size={14} /> PROFILE & VERIFICATION
                 </div>
                 <h2 className="text-3xl font-extrabold tracking-tight mb-2">Organization Identity</h2>
                 <p className="text-[#75818d] text-sm max-w-2xl">Complete your company profile, upload your photo, and submit evidence before any transaction can move.</p>
             </div>
 
             <div className={`mb-8 p-4 rounded-xl border flex items-start gap-4 ${verified ? 'bg-green-500/10 border-green-500/30 text-green-500' : p.verificationStatus === 'review' ? 'bg-[#c29631]/10 border-[#c29631]/30 text-[#c29631]' : 'bg-red-500/10 border-red-500/30 text-red-500'}`}>
-                {verified ? <ShieldCheck size={24} /> : <AlertTriangle size={24} />}
+                {verified ? <LucideIcons.ShieldCheck size={24} /> : <LucideIcons.AlertTriangle size={24} />}
                 <div>
                     <h3 className="font-bold text-lg mb-1">{status}</h3>
                     <p className="text-sm opacity-80">
@@ -92,13 +92,13 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
                     <div className="bg-[#101922] border border-[#202b36] rounded-xl overflow-hidden">
                         <div className="p-6 border-b border-[#202b36] flex items-center gap-6">
                             <div className="w-20 h-20 rounded-xl bg-[#202b36] border border-[#4f5b67] flex items-center justify-center overflow-hidden shrink-0">
-                                {preview ? <img src={preview} alt="Profile" className="w-full h-full object-cover" /> : <Building2 size={32} className="text-[#4f5b67]" />}
+                                {preview ? <img src={preview} alt="Profile" className="w-full h-full object-cover" /> : <LucideIcons.Building2 size={32} className="text-[#4f5b67]" />}
                             </div>
                             <div>
                                 <b className="text-lg text-white block mb-1">Company Logo / Photo</b>
                                 <span className="text-xs text-[#75818d] block mb-3">Use a clear company representative or authorized account photo.</span>
                                 <label className="inline-flex items-center gap-2 bg-[#202b36] hover:bg-[#4f5b67] text-white px-4 py-2 rounded text-xs font-bold cursor-pointer transition-colors">
-                                    <Camera size={14} /> Upload Photo
+                                    <LucideIcons.Camera size={14} /> LucideIcons.Upload Photo
                                     <input type="file" accept="image/*" className="hidden" onChange={e => avatar(e.target.files?.[0])} />
                                 </label>
                             </div>
@@ -106,7 +106,7 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
 
                         <div className="p-6 space-y-8">
                             <div>
-                                <h3 className="text-[#c9a34a] font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2"><Globe2 size={16}/> Core Organization</h3>
+                                <h3 className="text-[#c9a34a] font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2"><LucideIcons.Globe2 size={16}/> Core Organization</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {[
                                         ['company', 'Company / trading name'],
@@ -133,7 +133,7 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
                             </div>
 
                             <div>
-                                <h3 className="text-[#c9a34a] font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2"><Globe2 size={16}/> Commercial Profile</h3>
+                                <h3 className="text-[#c9a34a] font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2"><LucideIcons.Globe2 size={16}/> Commercial Profile</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {[
                                         ['products', 'Products / commodities'],
@@ -152,12 +152,12 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
                             </div>
 
                             <div>
-                                <h3 className="text-[#c9a34a] font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2"><UserRound size={16}/> Authorized Contact</h3>
+                                <h3 className="text-[#c9a34a] font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2"><LucideIcons.UserRound size={16}/> Authorized Contact</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {[
                                         ['contactName', 'Full name'],
                                         ['contactTitle', 'Title / position'],
-                                        ['phone', 'Phone number']
+                                        ['phone', 'LucideIcons.Phone number']
                                     ].map(([k, l]) => (
                                         <label key={k} className="block">
                                             <span className="text-xs text-[#75818d] block mb-1">{l}</span>
@@ -174,11 +174,11 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
 
                         <div className="p-6 bg-[#0c131b] border-t border-[#202b36] flex justify-end gap-3">
                             <button className="bg-[#202b36] hover:bg-[#4f5b67] text-white px-6 py-2.5 rounded-lg flex items-center gap-2 text-sm font-bold transition-colors disabled:opacity-50" onClick={save} disabled={saving}>
-                                <Save size={16} /> {saving ? 'Saving…' : 'Save Profile'}
+                                <LucideIcons.Save size={16} /> {saving ? 'Saving…' : 'LucideIcons.Save Profile'}
                             </button>
                             {!verified && (
                                 <button className="bg-[#c29631] hover:bg-[#a37c23] text-[#070b10] px-6 py-2.5 rounded-lg flex items-center gap-2 text-sm font-bold transition-colors disabled:opacity-50" onClick={submit} disabled={submitting}>
-                                    <FileCheck2 size={16} /> {submitting ? 'Submitting…' : 'Submit Verification'}
+                                    <LucideIcons.FileCheck2 size={16} /> {submitting ? 'Submitting…' : 'Submit Verification'}
                                 </button>
                             )}
                         </div>
@@ -188,7 +188,7 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
                 <aside className="space-y-6">
                     <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
                         <div className="flex items-center gap-3 mb-6">
-                            <ShieldCheck size={20} className="text-[#c29631]" />
+                            <LucideIcons.ShieldCheck size={20} className="text-[#c29631]" />
                             <h3 className="font-bold text-white">Verification Gate</h3>
                         </div>
                         <div className="space-y-4 mb-6">
@@ -202,7 +202,7 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
                             ].map(([label, ok]) => (
                                 <div key={label as string} className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <CheckCircle2 size={16} className={ok ? 'text-green-500' : 'text-[#4f5b67]'} />
+                                        <LucideIcons.CheckCircle2 size={16} className={ok ? 'text-green-500' : 'text-[#4f5b67]'} />
                                         <span className="text-sm text-[#eef2f6]">{label as string}</span>
                                     </div>
                                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${ok ? 'bg-green-500/10 text-green-500' : 'bg-[#202b36] text-[#75818d]'}`}>
@@ -219,7 +219,7 @@ export default function ProfileCenter({ onToast }: { onToast: (x: string) => voi
 
                     <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
                         <div className="flex items-center gap-3 mb-4">
-                            <Globe2 size={20} className="text-blue-400" />
+                            <LucideIcons.Globe2 size={20} className="text-blue-400" />
                             <h3 className="font-bold text-white">Profile Visibility</h3>
                         </div>
                         <p className="text-sm text-[#75818d] leading-relaxed">

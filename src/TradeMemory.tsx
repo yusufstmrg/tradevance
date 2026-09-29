@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { Activity, ArrowRight, BrainCircuit, CircleDollarSign, GitBranch, PackageSearch, ShieldCheck, Sparkles, Target, TrendingUp, Users } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 export default function TradeMemory() {
     const [data, setData] = useState<any>(null);
@@ -28,7 +28,7 @@ export default function TradeMemory() {
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] flex items-center justify-center">
             <div className="text-center text-[#c29631] animate-pulse flex flex-col items-center">
-                <BrainCircuit size={40} className="mb-4 opacity-50" />
+                <LucideIcons.BrainCircuit size={40} className="mb-4 opacity-50" />
                 <span className="text-sm font-bold tracking-widest uppercase">Building your trade memory…</span>
                 <p className="text-xs text-[#75818d] mt-2">Reading only persisted RFQ, quote, trade and post-trade records.</p>
             </div>
@@ -48,13 +48,13 @@ export default function TradeMemory() {
             <div className="flex justify-between items-end mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <BrainCircuit size={14} /> TRADE MEMORY GRAPH
+                        <LucideIcons.BrainCircuit size={14} /> TRADE MEMORY GRAPH
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Turn every real trade into better intelligence.</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Observed patterns from your persisted trade history — not synthetic activity, not hidden data, and not automatic model training.</p>
                 </div>
                 <div className="bg-[#c29631]/10 text-[#c29631] border border-[#c29631]/30 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2 shrink-0">
-                    <Sparkles size={14} /> Observed data only
+                    <LucideIcons.Sparkles size={14} /> Observed data only
                 </div>
             </div>
 
@@ -67,29 +67,29 @@ export default function TradeMemory() {
                 </div>
                 <div className="md:w-1/3 flex flex-col items-center justify-center p-6 bg-[#070b10] border border-[#202b36] rounded-xl relative overflow-hidden group">
                     <div className="absolute inset-0 bg-[#c29631] opacity-5 blur-xl group-hover:opacity-10 transition-opacity"></div>
-                    <GitBranch size={48} className="text-[#c29631] mb-4 relative z-10" />
+                    <LucideIcons.GitBranch size={48} className="text-[#c29631] mb-4 relative z-10" />
                     <span className="text-sm font-bold text-white font-mono relative z-10">{data.graph.nodes.length} nodes · {data.graph.edges.length} relationships</span>
                 </div>
             </div>
 
             {/* Metrics */}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
-                <Metric title="Trade Records" value={String(data.memoryHealth.tradeRecords)} sub="persisted transactions" icon={Activity} />
-                <Metric title="Learning Samples" value={String(data.memoryHealth.learningSamples)} sub="post-trade outcomes" icon={BrainCircuit} />
-                <Metric title="Memory Coverage" value={data.memoryHealth.coveragePercent + '%'} sub="trades with captured outcome" icon={ShieldCheck} />
-                <Metric title="Average Deal Value" value={'$' + Number(data.outcomes.avgDealValue || 0).toLocaleString('en-US')} sub="observed trade history" icon={CircleDollarSign} />
-                <Metric title="Graph Density" value={graphDensity + '%'} sub="relationship richness" icon={GitBranch} />
+                <Metric title="Trade Records" value={String(data.memoryHealth.tradeRecords)} sub="persisted transactions" icon={LucideIcons.Activity} />
+                <Metric title="Learning Samples" value={String(data.memoryHealth.learningSamples)} sub="post-trade outcomes" icon={LucideIcons.BrainCircuit} />
+                <Metric title="Memory Coverage" value={data.memoryHealth.coveragePercent + '%'} sub="trades with captured outcome" icon={LucideIcons.ShieldCheck} />
+                <Metric title="Average Deal Value" value={'$' + Number(data.outcomes.avgDealValue || 0).toLocaleString('en-US')} sub="observed trade history" icon={LucideIcons.CircleDollarSign} />
+                <Metric title="Graph Density" value={graphDensity + '%'} sub="relationship richness" icon={LucideIcons.GitBranch} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 {/* Observed Patterns */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 flex flex-col">
-                    <PanelTitle title="Observed Patterns" subtitle="Signals the memory layer can support today" icon={TrendingUp} />
+                    <PanelTitle title="Observed Patterns" subtitle="Signals the memory layer can support today" icon={LucideIcons.Activity} />
                     <div className="space-y-3 mt-6 flex-1">
                         {data.patterns.map((x: any) => (
                             <div className="bg-[#0c131b] border border-[#202b36] p-4 rounded-xl flex items-start gap-4 transition-colors hover:border-[#4f5b67]" key={x.kind + x.title}>
                                 <div className="mt-1 bg-[#c29631]/10 text-[#c29631] p-1.5 rounded text-[10px]">
-                                    <Sparkles size={14} />
+                                    <LucideIcons.Sparkles size={14} />
                                 </div>
                                 <div className="flex-1">
                                     <b className="block text-sm text-white mb-0.5">{x.title}</b>
@@ -108,7 +108,7 @@ export default function TradeMemory() {
 
                 {/* Outcome Picture */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 flex flex-col">
-                    <PanelTitle title="Outcome Picture" subtitle="What the stored learning records actually say" icon={Target} />
+                    <PanelTitle title="Outcome Picture" subtitle="What the stored learning records actually say" icon={LucideIcons.Target} />
                     <div className="grid grid-cols-2 gap-4 mt-6 mb-6 flex-1">
                         <div className="bg-[#0c131b] border border-[#202b36] p-6 rounded-xl flex flex-col items-center justify-center text-center">
                             <b className="text-4xl text-green-500 font-mono mb-2">{data.outcomes.won}</b>
@@ -128,7 +128,7 @@ export default function TradeMemory() {
                         </div>
                     </div>
                     <div className="flex items-start gap-2 text-xs text-[#75818d] bg-[#0c131b] px-4 py-3 rounded-lg border border-[#202b36]">
-                        <ShieldCheck size={14} className="text-blue-400 shrink-0 mt-0.5" />
+                        <LucideIcons.ShieldCheck size={14} className="text-blue-400 shrink-0 mt-0.5" />
                         <span>Win rate is shown only when operator-recorded learning samples exist.</span>
                     </div>
                 </section>
@@ -137,7 +137,7 @@ export default function TradeMemory() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 {/* Product Patterns */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                    <PanelTitle title="Product Patterns" subtitle="Repeated products in the visible trade history" icon={PackageSearch} />
+                    <PanelTitle title="Product Patterns" subtitle="Repeated products in the visible trade history" icon={LucideIcons.PackageSearch} />
                     <div className="mt-6 space-y-2">
                         {data.productPatterns.length ? data.productPatterns.map((x: any) => (
                             <div className="flex items-center justify-between bg-[#0c131b] border border-[#202b36] p-3 rounded-lg hover:border-[#4f5b67] transition-colors" key={x.label}>
@@ -158,7 +158,7 @@ export default function TradeMemory() {
 
                 {/* Counterparty Patterns */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                    <PanelTitle title={data.profileRole === 'seller' ? 'Buyer patterns' : 'Supplier patterns'} subtitle="Role-scoped counterparties only" icon={Users} />
+                    <PanelTitle title={data.profileRole === 'seller' ? 'Buyer patterns' : 'Supplier patterns'} subtitle="Role-scoped counterparties only" icon={LucideIcons.Users} />
                     <div className="mt-6 space-y-2">
                         {data.counterpartyPatterns.length ? data.counterpartyPatterns.map((x: any) => (
                             <div className="flex items-center justify-between bg-[#0c131b] border border-[#202b36] p-3 rounded-lg hover:border-[#4f5b67] transition-colors" key={x.label}>
@@ -180,7 +180,7 @@ export default function TradeMemory() {
 
             {/* Relationship Map */}
             <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                <PanelTitle title="Relationship Map" subtitle="Products connected to visible counterparties through persisted trade records" icon={GitBranch} />
+                <PanelTitle title="Relationship Map" subtitle="Products connected to visible counterparties through persisted trade records" icon={LucideIcons.GitBranch} />
                 <div className="flex flex-wrap gap-3 mt-6 mb-6">
                     {data.graph.nodes.slice(0, 18).map((x: any) => (
                         <div 
@@ -192,7 +192,7 @@ export default function TradeMemory() {
                             key={x.id}
                         >
                             <span className="opacity-70">
-                                {x.type === 'product' ? <PackageSearch size={16} /> : x.type === 'buyer' || x.type === 'supplier' ? <Users size={16} /> : <GitBranch size={16} />}
+                                {x.type === 'product' ? <LucideIcons.PackageSearch size={16} /> : x.type === 'buyer' || x.type === 'supplier' ? <LucideIcons.Users size={16} /> : <LucideIcons.GitBranch size={16} />}
                             </span>
                             <div className="flex flex-col">
                                 <b className="text-xs font-bold leading-tight">{x.label}</b>
@@ -202,7 +202,7 @@ export default function TradeMemory() {
                     ))}
                 </div>
                 <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-[#75818d] border-t border-[#202b36] pt-4">
-                    <ShieldCheck size={14} className="text-green-500" />
+                    <LucideIcons.ShieldCheck size={14} className="text-green-500" />
                     <span>{data.privacy}</span>
                 </div>
             </section>

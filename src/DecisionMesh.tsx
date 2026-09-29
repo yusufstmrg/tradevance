@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { ArrowRight, BrainCircuit, CheckCircle2, CircleAlert, DatabaseZap, Gauge, ShieldCheck, Sparkles, Target, UserRoundCheck, AlertTriangle } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: string) => void; role: string }) {
     const [data, setData] = useState<any>(null);
@@ -23,7 +23,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3 animate-pulse">
-                <BrainCircuit size={14} /> DECISION MESH
+                <LucideIcons.BrainCircuit size={14} /> DECISION MESH
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight mb-2 animate-pulse text-[#4f5b67]">Connecting live intelligence…</h2>
             <p className="text-[#75818d] text-sm max-w-2xl animate-pulse">Trust, risk, memory and opportunity are being assembled into one action queue.</p>
@@ -33,7 +33,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
     if (error) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4 shadow-lg">
-                <AlertTriangle size={24} className="shrink-0 mt-0.5" />
+                <LucideIcons.AlertTriangle size={24} className="shrink-0 mt-0.5" />
                 <div>
                     <h3 className="text-lg font-bold mb-1">Service Unavailable</h3>
                     <p className="text-sm opacity-90">{error}</p>
@@ -47,13 +47,13 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-[#c29631] text-xs font-bold tracking-widest uppercase mb-3">
-                        <BrainCircuit size={14} /> GLOBAL AI DECISION MESH
+                        <LucideIcons.BrainCircuit size={14} /> GLOBAL AI DECISION MESH
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">One answer. One next action.</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Tradevance combines the intelligence already available to you and tells you what matters now, why it matters and what to do next.</p>
                 </div>
                 <div className="bg-[#101922] border border-[#202b36] text-[#c29631] px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold shrink-0 shadow-lg">
-                    <Sparkles size={14} /> {data.role} · Governed AI
+                    <LucideIcons.Sparkles size={14} /> {data.role} · Governed AI
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
                     <div className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
                         <div className="flex items-start gap-4 mb-6">
                             <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-3 text-blue-400 shrink-0">
-                                <Target size={20} />
+                                <LucideIcons.Target size={20} />
                             </div>
                             <div>
                                 <h3 className="text-white font-bold mb-1">What needs your attention</h3>
@@ -98,7 +98,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
                                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
                                         <div className="flex items-start gap-4">
                                             <div className={`mt-1 shrink-0 ${c.decision === 'BLOCK' ? 'text-red-500' : c.decision === 'REVIEW' ? 'text-orange-400' : 'text-green-500'}`}>
-                                                {c.decision === 'BLOCK' ? <CircleAlert size={20} /> : c.decision === 'REVIEW' ? <ShieldCheck size={20} /> : <CheckCircle2 size={20} />}
+                                                {c.decision === 'BLOCK' ? <LucideIcons.CircleAlert size={20} /> : c.decision === 'REVIEW' ? <LucideIcons.ShieldCheck size={20} /> : <LucideIcons.CheckCircle2 size={20} />}
                                             </div>
                                             <div>
                                                 <small className="text-[#75818d] text-[10px] font-bold tracking-widest uppercase block mb-1">{c.type}</small>
@@ -131,14 +131,14 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
 
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-[#202b36]">
                                         <div className="flex items-center gap-2 text-xs text-[#75818d]">
-                                            <DatabaseZap size={14} className="text-blue-400" />
+                                            <LucideIcons.DatabaseZap size={14} className="text-blue-400" />
                                             <span>{c.dataQuality} evidence · {c.evidence[0]}</span>
                                         </div>
                                         <button 
                                             className="text-blue-400 hover:text-blue-300 flex items-center gap-2 text-xs font-bold transition-colors group/btn shrink-0"
                                             onClick={() => onNavigate(c.destination)}
                                         >
-                                            {c.nextAction} <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                                            {c.nextAction} <LucideIcons.ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                                         </button>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
                     <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 shadow-xl">
                         <div className="flex items-start gap-4 mb-6">
                             <div className="bg-[#0c131b] border border-[#202b36] rounded-lg p-2.5 text-[#4f5b67] shrink-0">
-                                <Gauge size={20} />
+                                <LucideIcons.Gauge size={20} />
                             </div>
                             <div>
                                 <h3 className="text-white font-bold mb-1">How Tradevance decides</h3>
@@ -161,7 +161,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
                         <div className="space-y-4">
                             {data.principles.map((x: string) => (
                                 <div className="flex gap-3 text-sm text-[#eef2f6]" key={x}>
-                                    <CheckCircle2 size={16} className="text-[#4f5b67] shrink-0 mt-0.5" />
+                                    <LucideIcons.CheckCircle2 size={16} className="text-[#4f5b67] shrink-0 mt-0.5" />
                                     <span className="leading-relaxed">{x}</span>
                                 </div>
                             ))}
@@ -171,7 +171,7 @@ export default function DecisionMesh({ onNavigate, role }: { onNavigate: (x: str
                     <section className="bg-blue-900/10 border border-blue-500/20 rounded-xl p-6 shadow-xl">
                         <div className="flex items-start gap-4 mb-6">
                             <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-2.5 text-blue-400 shrink-0">
-                                <UserRoundCheck size={20} />
+                                <LucideIcons.UserRoundCheck size={20} />
                             </div>
                             <div>
                                 <h3 className="text-white font-bold mb-1">Memory coverage</h3>

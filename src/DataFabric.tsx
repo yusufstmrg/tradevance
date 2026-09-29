@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '@appdeploy/client';
-import { Activity, AlertTriangle, BarChart3, Database, Globe2, Layers3, RefreshCw, ShieldCheck, Sparkles, TrendingUp, GitBranch } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Graph = { nodesCount: number; edgesCount: number; avgTrust: number; scoreBuckets: { low: number; medium: number; high: number }; staleNodes: number; avgEvidenceDepth: number; relationCounts: Record<string, number>; reviewQueue: any[] };
 type Fabric = { registryCount: number; buyers: number; sellers: number; avgConfidence: number; evidenceBacked: number; tradeVerified: number; sourceVerified: number; freshnessDays: number; verification: Record<string, number>; productCounts: Record<string, number>; countryCounts: Record<string, number>; sourceCoverage: { source: string; coverage: number; status: string }[]; gaps: { label: string; priority: string; action: string }[]; trustGraph: Graph };
@@ -51,7 +51,7 @@ export default function DataFabric() {
     if (loading) return (
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] flex items-center justify-center">
             <div className="text-center text-blue-400 animate-pulse flex flex-col items-center">
-                <Sparkles size={40} className="mb-4 opacity-50" />
+                <LucideIcons.Sparkles size={40} className="mb-4 opacity-50" />
                 <span className="text-sm font-bold tracking-widest uppercase">Building the intelligence graph…</span>
             </div>
         </div>
@@ -60,7 +60,7 @@ export default function DataFabric() {
     if (error) return (
         <div className="bg-[#070b10] min-h-screen p-8">
             <div className="bg-red-500/10 border border-red-500/30 text-red-500 p-6 rounded-xl flex items-start gap-4">
-                <AlertTriangle size={24} className="shrink-0" />
+                <LucideIcons.AlertTriangle size={24} className="shrink-0" />
                 <div>
                     <b className="block text-lg mb-1">Operator Intelligence Boundary</b>
                     <span className="text-sm opacity-80">{error}</span>
@@ -77,13 +77,13 @@ export default function DataFabric() {
             <div className="flex justify-between items-end mb-8">
                 <div>
                     <div className="flex items-center gap-2 text-blue-400 text-xs font-bold tracking-widest uppercase mb-3">
-                        <Database size={14} /> TRADEVANCE DATA FABRIC
+                        <LucideIcons.Database size={14} /> TRADEVANCE DATA FABRIC
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Global Trade Intelligence Graph</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Measure entity coverage, trust quality, evidence depth, freshness and relationship signals before they become commercial risk.</p>
                 </div>
                 <button className="bg-[#202b36] hover:bg-[#4f5b67] text-white px-4 py-2 rounded-lg flex items-center gap-2 text-xs font-bold transition-colors" onClick={load}>
-                    <RefreshCw size={14} /> Refresh Graph
+                    <LucideIcons.RefreshCw size={14} /> Refresh Graph
                 </button>
             </div>
 
@@ -105,7 +105,7 @@ export default function DataFabric() {
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
                 {/* Trust Graph Health */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 xl:col-span-2">
-                    <Title icon={GitBranch} title="Trust Graph Health" sub="Deterministic trust score from identity, evidence, verification, freshness and operational relationships" />
+                    <Title icon={LucideIcons.GitBranch} title="Trust Graph Health" sub="Deterministic trust score from identity, evidence, verification, freshness and operational relationships" />
                     <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
                         <div className="bg-[#0c131b] border border-[#202b36] p-3 rounded-lg"><small className="text-[10px] text-[#75818d] uppercase block mb-1">Low risk</small><b className="text-lg text-green-500 font-mono">{g.scoreBuckets.low}</b></div>
                         <div className="bg-[#0c131b] border border-[#202b36] p-3 rounded-lg"><small className="text-[10px] text-[#75818d] uppercase block mb-1">Medium risk</small><b className="text-lg text-[#c29631] font-mono">{g.scoreBuckets.medium}</b></div>
@@ -115,14 +115,14 @@ export default function DataFabric() {
                         <div className="bg-[#0c131b] border border-[#202b36] p-3 rounded-lg"><small className="text-[10px] text-[#75818d] uppercase block mb-1">Graph edges</small><b className="text-lg text-white font-mono">{g.edgesCount}</b></div>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-[#75818d] bg-[#0c131b] px-4 py-3 rounded-lg border border-[#202b36]">
-                        <ShieldCheck size={16} className="text-blue-400" />
+                        <LucideIcons.ShieldCheck size={16} className="text-blue-400" />
                         <span>{g.reviewQueue.length} entities currently require trust review based on risk, evidence depth or freshness.</span>
                     </div>
                 </section>
 
                 {/* Verification Ladder */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                    <Title icon={ShieldCheck} title="Verification Ladder" sub="How much of the graph has defensible evidence" />
+                    <Title icon={LucideIcons.ShieldCheck} title="Verification Ladder" sub="How much of the graph has defensible evidence" />
                     <div className="space-y-4 mb-6">
                         {Object.entries(data.verification).sort((a, b) => b[1] - a[1]).map(([k, v]) => (
                             <div key={k}>
@@ -137,14 +137,14 @@ export default function DataFabric() {
                         ))}
                     </div>
                     <div className="flex items-start gap-2 text-[10px] text-[#75818d] bg-[#0c131b] px-4 py-3 rounded-lg border border-[#202b36]">
-                        <ShieldCheck size={14} className="text-blue-400 shrink-0 mt-0.5" />
+                        <LucideIcons.ShieldCheck size={14} className="text-blue-400 shrink-0 mt-0.5" />
                         <p>{data.evidenceBacked} entities have at least two evidence signals. {data.freshnessDays === 0 ? 'All current curated registry records are current for today.' : data.freshnessDays + ' records need freshness review.'}</p>
                     </div>
                 </section>
 
                 {/* Trust Review Queue */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 lg:col-span-2">
-                    <Title icon={AlertTriangle} title="Trust Review Queue" sub="Entities needing stronger evidence or fresher verification" />
+                    <Title icon={LucideIcons.AlertTriangle} title="Trust Review Queue" sub="Entities needing stronger evidence or fresher verification" />
                     <div className="space-y-2">
                         {g.reviewQueue.slice(0, 10).map((x: any) => (
                             <div key={x.id} className="bg-[#0c131b] border border-[#202b36] p-3 rounded-lg flex items-center justify-between group hover:border-[#4f5b67] transition-colors">
@@ -155,7 +155,7 @@ export default function DataFabric() {
                                         <span className="text-xs text-[#75818d]">Trust {x.trustScore} · Evidence {x.evidenceDepth} · Freshness {x.freshnessDays}d · {x.reasons.join(' · ')}</span>
                                     </div>
                                 </div>
-                                <TrendingUp size={16} className="text-[#4f5b67] group-hover:text-white transition-colors" />
+                                <LucideIcons.Activity size={16} className="text-[#4f5b67] group-hover:text-white transition-colors" />
                             </div>
                         ))}
                         {!g.reviewQueue.length && <div className="text-center text-[#75818d] py-4 text-sm">No trust review items currently meet the review thresholds.</div>}
@@ -164,7 +164,7 @@ export default function DataFabric() {
 
                 {/* Source Coverage */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                    <Title icon={Globe2} title="Source Coverage" sub="Evidence channels and integration readiness" />
+                    <Title icon={LucideIcons.Globe2} title="Source Coverage" sub="Evidence channels and integration readiness" />
                     <div className="space-y-4">
                         {data.sourceCoverage.map(x => (
                             <div key={x.source}>
@@ -185,19 +185,19 @@ export default function DataFabric() {
 
                 {/* Product Concentration */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                    <Title icon={BarChart3} title="Product Concentration" sub="Where the current commercial graph is deepest" />
+                    <Title icon={LucideIcons.BarChart3} title="Product Concentration" sub="Where the current commercial graph is deepest" />
                     <Bars data={data.productCounts} />
                 </section>
 
                 {/* Geographic Coverage */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6">
-                    <Title icon={Globe2} title="Geographic Coverage" sub="Entity footprint by operating country / region" />
+                    <Title icon={LucideIcons.Globe2} title="Geographic Coverage" sub="Entity footprint by operating country / region" />
                     <Bars data={data.countryCounts} />
                 </section>
                 
                 {/* Data Moat Architecture */}
                 <section className="bg-[#101922] border border-[#202b36] rounded-xl p-6 xl:col-span-3">
-                    <Title icon={Layers3} title="Data Moat Architecture" sub="How raw signals become protected commercial intelligence" />
+                    <Title icon={LucideIcons.Layers3} title="Data Moat Architecture" sub="How raw signals become protected commercial intelligence" />
                     <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 mt-6">
                         {['Official sources', 'Trade statistics', 'Licensed feeds', 'Entity resolution', 'Evidence scoring', 'Trust graph', 'AI opportunity engine'].map((x, i) => (
                             <React.Fragment key={x}>
@@ -205,7 +205,7 @@ export default function DataFabric() {
                                     <span className="text-[10px] text-blue-400 font-bold font-mono mb-1">{String(i + 1).padStart(2, '0')}</span>
                                     <b className="text-xs text-[#eef2f6]">{x}</b>
                                 </div>
-                                {i < 6 && <TrendingUp size={16} className="text-[#4f5b67] hidden md:block shrink-0" />}
+                                {i < 6 && <LucideIcons.Activity size={16} className="text-[#4f5b67] hidden md:block shrink-0" />}
                             </React.Fragment>
                         ))}
                     </div>
@@ -213,7 +213,7 @@ export default function DataFabric() {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-[#75818d] border-t border-[#202b36] pt-6 font-bold uppercase tracking-widest">
-                <span className="flex items-center gap-2"><Activity size={14} className="text-green-500" /> Graph health: Operational</span>
+                <span className="flex items-center gap-2"><LucideIcons.Activity size={14} className="text-green-500" /> Graph health: Operational</span>
                 <span>Trust scores are deterministic decision support; they are not legal, sanctions or KYB determinations.</span>
             </div>
         </div>

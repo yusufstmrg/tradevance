@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { api } from '@appdeploy/client';
-import { Globe2, ShieldCheck, Target, Users, MapPin, Briefcase, Activity, CheckCircle, BarChart3, LockKeyhole } from 'lucide-react';
+import * as LucideIcons from "lucide-react";
 
 type Buyer = { id: string; name: string; country: string; industry: string; activeDemands: number; credit: string };
 type Supplier = { id: string; name: string; country: string; products: string[]; score: number; status: string; capacity: string; port: string; verified: string; risk: string };
@@ -28,7 +28,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
             <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
                 <div className="mb-8">
                     <div className="flex items-center gap-2 text-[#c9a34a] text-xs font-bold tracking-widest uppercase mb-3">
-                        <Users size={14} /> BUYER NETWORK
+                        <LucideIcons.Users size={14} /> BUYER NETWORK
                     </div>
                     <h2 className="text-3xl font-extrabold tracking-tight mb-2">Qualified Buyer Intelligence</h2>
                     <p className="text-[#75818d] text-sm max-w-2xl">Seller-side discovery exposes buyer intelligence only. Private contact details remain protected and are brokered exclusively through Tradevance introductions.</p>
@@ -48,21 +48,21 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-1 truncate" title={b.name}>{b.name}</h3>
                                 <div className="flex items-center gap-4 text-xs text-[#75818d] mb-6">
-                                    <span className="flex items-center gap-1"><MapPin size={12}/> {b.country}</span>
-                                    <span className="flex items-center gap-1"><Briefcase size={12}/> {b.industry}</span>
+                                    <span className="flex items-center gap-1"><LucideIcons.MapPin size={12}/> {b.country}</span>
+                                    <span className="flex items-center gap-1"><LucideIcons.Briefcase size={12}/> {b.industry}</span>
                                 </div>
                                 
                                 <div className="space-y-3 mt-auto">
                                     <div className="flex justify-between items-center text-xs">
-                                        <span className="text-[#4f5b67] flex items-center gap-1"><Activity size={14}/> Demand Signal</span>
+                                        <span className="text-[#4f5b67] flex items-center gap-1"><LucideIcons.Activity size={14}/> Demand Signal</span>
                                         <b className={b.activeDemands > 0 ? 'text-green-500' : 'text-[#75818d]'}>{b.activeDemands > 0 ? 'Active' : 'Monitor'}</b>
                                     </div>
                                     <div className="flex justify-between items-center text-xs pb-4 border-b border-[#202b36]">
-                                        <span className="text-[#4f5b67] flex items-center gap-1"><BarChart3 size={14}/> Credit Rating</span>
+                                        <span className="text-[#4f5b67] flex items-center gap-1"><LucideIcons.BarChart3 size={14}/> Credit Rating</span>
                                         <b className="text-white">{b.credit}</b>
                                     </div>
                                     <div className="flex items-center gap-2 text-[10px] text-[#c29631] font-bold">
-                                        <LockKeyhole size={12}/> CONTACT PROTECTED
+                                        <LucideIcons.LockKeyhole size={12}/> CONTACT PROTECTED
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                                     disabled={m === b.id} 
                                     onClick={() => request('buyer', b)}
                                 >
-                                    <Target size={14} /> {m === b.id ? 'Requesting…' : 'Request Introduction'}
+                                    <LucideIcons.Target size={14} /> {m === b.id ? 'Requesting…' : 'Request Introduction'}
                                 </button>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                 </div>
                 {msg && (
                     <div className="fixed bottom-6 right-6 bg-[#0c131b] border border-[#c29631] text-white px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 z-50">
-                        <CheckCircle size={18} className="text-[#c29631]" />
+                        <LucideIcons.CheckCircle size={18} className="text-[#c29631]" />
                         <span className="text-sm font-medium">{msg}</span>
                     </div>
                 )}
@@ -92,7 +92,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
         <div className="bg-[#070b10] min-h-screen text-[#eef2f6] p-8 pb-32">
             <div className="mb-8">
                 <div className="flex items-center gap-2 text-blue-400 text-xs font-bold tracking-widest uppercase mb-3">
-                    <Globe2 size={14} /> SUPPLIER NETWORK
+                    <LucideIcons.Globe2 size={14} /> SUPPLIER NETWORK
                 </div>
                 <h2 className="text-3xl font-extrabold tracking-tight mb-2">Qualified Global Supply</h2>
                 <p className="text-[#75818d] text-sm max-w-2xl">Buyer-side discovery exposes supplier capability, trust, and risk metrics without leaking private contact information.</p>
@@ -109,7 +109,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                                     </div>
                                     <div>
                                         <b className="text-lg text-white block mb-1">{s.name}</b>
-                                        <span className="text-xs text-[#75818d] flex items-center gap-1"><MapPin size={12}/> {s.country} · {s.port}</span>
+                                        <span className="text-xs text-[#75818d] flex items-center gap-1"><LucideIcons.MapPin size={12}/> {s.country} · {s.port}</span>
                                     </div>
                                 </div>
                                 <div className="text-right">
@@ -127,7 +127,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                             <div className="grid grid-cols-3 gap-4 border-y border-[#202b36] py-4 mb-4">
                                 <div>
                                     <span className="text-[10px] text-[#4f5b67] uppercase block mb-1">Status</span>
-                                    <b className="text-xs text-green-500 flex items-center gap-1"><ShieldCheck size={12}/> {s.verified}</b>
+                                    <b className="text-xs text-green-500 flex items-center gap-1"><LucideIcons.ShieldCheck size={12}/> {s.verified}</b>
                                 </div>
                                 <div>
                                     <span className="text-[10px] text-[#4f5b67] uppercase block mb-1">Capacity</span>
@@ -140,7 +140,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                             </div>
 
                             <div className="flex items-center gap-2 text-[10px] text-[#75818d] font-bold">
-                                <LockKeyhole size={12}/> IDENTITY PROTECTED · 24-MONTH REFERRAL TAIL
+                                <LucideIcons.LockKeyhole size={12}/> IDENTITY PROTECTED · 24-MONTH REFERRAL TAIL
                             </div>
                         </div>
                         <div className="p-4 bg-[#0c131b] border-t border-[#202b36]">
@@ -149,7 +149,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
                                 disabled={m === s.id} 
                                 onClick={() => request('seller', s, s.products[0])}
                             >
-                                <Target size={16} /> {m === s.id ? 'Requesting…' : 'Request Controlled Introduction'}
+                                <LucideIcons.Target size={16} /> {m === s.id ? 'Requesting…' : 'Request Controlled Introduction'}
                             </button>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ export default function NetworkView({ mode, data }: { mode: 'buyers' | 'supplier
             </div>
             {msg && (
                 <div className="fixed bottom-6 right-6 bg-[#0c131b] border border-blue-500 text-white px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 z-50">
-                    <CheckCircle size={18} className="text-blue-400" />
+                    <LucideIcons.CheckCircle size={18} className="text-blue-400" />
                     <span className="text-sm font-medium">{msg}</span>
                 </div>
             )}
