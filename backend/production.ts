@@ -43,7 +43,7 @@ export async function liveOpportunityContext(){
   return matches.slice(0,8).map(s=>{
    const fit=entityScore(s); const quantity=Number(d.quantity||0); const valueHint=Number(d.estimatedValue||0);
    const score=Math.round(Math.min(100,Math.max(0,(fit*0.65)+(quantity>0?18:8)+(d.incoterm?8:0)+(d.payment?6:0))));
-   return{id:'live-'+d.id+'-'+s.id,sourceDemandId:d.id,product:d.product||'Unspecified',buyer:d.buyer||'Verified buyer account',supplier:s.name,origin:s.country||'To confirm',destination:d.destination||'To confirm',quantity,estimatedValue:valueHint,opportunityScore:score,trust:fit,supplyFit:fit,demandStrength:d.confidence||0,risk:Math.max(5,100-fit),reasons:['Live RFQ record','Evidence-backed supplier profile',d.incoterm?'Incoterm specified':'Incoterm pending']};
+   return{id:'live-'+d.id+'-'+s.id,sourceDemandId:d.id,demandOwnerUserId:d.ownerUserId||null,supplierEntityId:s.id,product:d.product||'Unspecified',buyer:d.buyer||'Verified buyer account',supplier:s.name,origin:s.country||'To confirm',destination:d.destination||'To confirm',quantity,estimatedValue:valueHint,opportunityScore:score,trust:fit,supplyFit:fit,demandStrength:d.confidence||0,risk:Math.max(5,100-fit),reasons:['Live RFQ record','Evidence-backed supplier profile',d.incoterm?'Incoterm specified':'Incoterm pending']};
   });
  }).sort((a,b)=>b.opportunityScore-a.opportunityScore).slice(0,30);
  return{demands,buyers:buyers.map(entityToCompact),sellers:sellers.map(entityToCompact),opportunities};
