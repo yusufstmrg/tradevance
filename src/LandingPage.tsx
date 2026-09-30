@@ -42,7 +42,7 @@ export default function LandingPage() {
             }
             navigate('/dashboard');
         } catch (err: any) {
-            setError(err.message || 'Authentication failed');
+            if (err.code === 'auth/invalid-credential') { setError('Email atau password salah.'); } else if (err.code === 'auth/email-already-in-use') { setError('Email ini sudah terdaftar.'); } else { setError('Autentikasi gagal. Silakan coba lagi.'); }
         } finally {
             setLoading(false);
         }
@@ -69,7 +69,7 @@ export default function LandingPage() {
             }
             navigate('/dashboard');
         } catch (err: any) {
-            setError(err.message || 'Google Auth failed');
+            if (err.code === 'auth/popup-closed-by-user') { setError('Proses login Google dibatalkan.'); } else { setError(err.message || 'Login dengan Google gagal.'); }
         } finally {
             setLoading(false);
         }
