@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAuth } from './AuthContext';
+import { LogOut } from 'lucide-react';
 import { 
     Search, Globe, Bell, Sun, ChevronDown, LayoutDashboard, Briefcase, Users, Package, FileText, 
     Ship, Activity, LineChart, Target, Bot, ShieldAlert, FileSearch, Building2, CreditCard, 
@@ -21,6 +23,7 @@ const spendData = [
 ];
 
 export default function Dashboard() {
+    const { userData, logout } = useAuth();
     return (
         <div className="flex h-screen bg-[#070b10] text-[#eef2f6] font-sans overflow-hidden">
             
@@ -113,12 +116,13 @@ export default function Dashboard() {
                         </div>
                         <div className="flex items-center gap-3 border-l border-gray-800 pl-6">
                             <div className="text-right">
-                                <div className="text-sm font-bold text-white leading-none mb-1">David Jonathan</div>
-                                <div className="text-[11px] text-gray-400 leading-none">Tradevance Enterprise</div>
+                                <div className="text-sm font-bold text-white leading-none mb-1">{userData?.name || 'User'}</div>
+                                <div className="text-[11px] text-gray-400 leading-none">{userData?.company || 'Company'}</div>
                             </div>
-                            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm font-bold text-white">DJ</div>
+                            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm font-bold text-white">{userData?.name?.slice(0, 2).toUpperCase() || 'U'}</div>
                         </div>
-                    </div>
+                    
+                            <button onClick={logout} className="ml-4 text-gray-400 hover:text-red-400"><LogOut size={18}/></button></div>
                 </header>
 
                 {/* SCROLLABLE DASHBOARD */}

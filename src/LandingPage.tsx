@@ -1,24 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Globe, Users, Package, Activity, Network, BrainCircuit, ShieldCheck, ArrowRight, CheckCircle2, Lock, Eye, Mail, Moon, Sun, ChevronDown, LockKeyhole } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { auth, db } from './firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { useAuth } from './AuthContext';
 
 export default function LandingPage() {
     const navigate = useNavigate();
+    const { currentUser } = useAuth();
     const [role, setRole] = useState('Buyer');
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    // If already logged in, redirect to dashboard
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/dashboard');
+        }
+    }, [currentUser, navigate]);
+
+    const handleAuth = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+        try {
+            if (isSignUp) {
+                const userCred = await createUserWithEmailAndPassword(auth, email, password);
+                await setDoc(doc(db, 'users', userCred.user.uid), {
+                    email,
+                    role,
+                    name: email.split('@')[0],
+                    company: 'New Company',
+                    createdAt: new Date().toISOString()
+                });
+            } else {
+                await signInWithEmailAndPassword(auth, email, password);
+            }
+            navigate('/dashboard');
+        } catch (err: any) {
+            setError(err.message || 'Authentication failed');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogleAuth = async () => {
+        setError('');
+        setLoading(true);
+        try {
+            const provider = new GoogleAuthProvider();
+            const userCred = await signInWithPopup(auth, provider);
+            
+            // Check if user exists, if not create default profile
+            const docRef = doc(db, 'users', userCred.user.uid);
+            const docSnap = await getDoc(docRef);
+            if (!docSnap.exists()) {
+                await setDoc(docRef, {
+                    email: userCred.user.email,
+                    role,
+                    name: userCred.user.displayName || userCred.user.email?.split('@')[0] || 'User',
+                    company: 'Google Account',
+                    createdAt: new Date().toISOString()
+                });
+            }
+            navigate('/dashboard');
+        } catch (err: any) {
+            setError(err.message || 'Google Auth failed');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="flex min-h-screen bg-[#000000] text-white font-sans overflow-hidden">
             
             {/* LEFT SIDE (Dark) */}
-            <div className="w-[60%] relative flex flex-col justify-between p-12 bg-gradient-to-br from-[#0c131b] via-[#070b10] to-[#000000] z-10">
-                {/* Background Earth Overlay (Simulated via radial gradients and absolute divs) */}
+            <div className="w-[60%] relative flex flex-col justify-between p-12 bg-gradient-to-br from-[#0c131b] via-[#070b10] to-[#000000] z-10 hidden md:flex">
                 <div className="absolute inset-0 pointer-events-none z-[-1] overflow-hidden">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-40"></div>
-                    {/* Simulated light flare */}
                     <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-yellow-500/10 blur-[100px] rounded-full"></div>
                 </div>
 
-                {/* Header */}
                 <header className="flex justify-between items-center z-10">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 border border-[#c9a34a] rounded-xl flex items-center justify-center bg-black">
@@ -38,7 +104,6 @@ export default function LandingPage() {
                     </nav>
                 </header>
 
-                {/* Main Content */}
                 <div className="z-10 mt-12 max-w-2xl">
                     <div className="inline-flex items-center gap-2 text-[#d8b65c] text-xs font-bold tracking-widest uppercase mb-6 bg-[#d8b65c]/10 px-3 py-1.5 rounded-full border border-[#d8b65c]/20">
                         <BrainCircuit size={14} /> AI-NATIVE GLOBAL TRADE PLATFORM
@@ -51,7 +116,6 @@ export default function LandingPage() {
                         AI-powered intelligence, trusted networks and end-to-end trade execution — built to make global trade faster, safer and more profitable.
                     </p>
 
-                    {/* Stats Grid */}
                     <div className="grid grid-cols-4 gap-6 mb-12 border-t border-b border-gray-800 py-6">
                         <div>
                             <div className="flex items-center gap-2 text-[#d8b65c] font-bold text-xl mb-1"><Globe size={18}/> 190+</div>
@@ -75,7 +139,6 @@ export default function LandingPage() {
                         </div>
                     </div>
 
-                    {/* Features Cards */}
                     <div className="grid grid-cols-4 gap-4 bg-[#101922]/50 border border-gray-800 rounded-2xl p-6 backdrop-blur-md">
                         <div className="flex flex-col gap-3">
                             <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 mb-2 border border-blue-500/20"><Network size={20}/></div>
@@ -104,11 +167,9 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-                {/* Footer Left */}
                 <div className="z-10 mt-12">
                     <p className="text-gray-500 text-xs font-medium mb-4">Trusted by forward-thinking companies worldwide</p>
                     <div className="flex items-center gap-8 opacity-60 grayscale">
-                        {/* Mock Logos text-based for exact match */}
                         <span className="font-extrabold text-lg tracking-tighter">VOPAK</span>
                         <span className="font-bold text-lg">Trafigura</span>
                         <span className="font-serif text-lg tracking-wider">GLENCORE</span>
@@ -129,10 +190,9 @@ export default function LandingPage() {
             </div>
 
             {/* RIGHT SIDE (Light/White) */}
-            <div className="w-[40%] bg-[#fcfcfd] text-gray-900 flex flex-col items-center justify-center p-12 relative">
+            <div className="w-full md:w-[40%] bg-[#fcfcfd] text-gray-900 flex flex-col items-center justify-center p-8 md:p-12 relative">
                 
-                {/* Top Right Controls */}
-                <div className="absolute top-8 right-8 flex items-center gap-3">
+                <div className="absolute top-8 right-8 hidden md:flex items-center gap-3">
                     <button className="flex items-center gap-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 shadow-sm">
                         <Globe size={16}/> English <ChevronDown size={14}/>
                     </button>
@@ -142,18 +202,18 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-                {/* Login Form Container */}
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
                         <div className="w-14 h-14 mx-auto border-2 border-[#d8b65c] rounded-2xl flex items-center justify-center bg-white shadow-sm mb-6">
                             <span className="text-[#d8b65c] font-bold text-2xl">T</span>
                         </div>
                         <div className="text-[#d8b65c] text-[10px] font-bold tracking-widest uppercase mb-3">WELCOME TO TRADEVANCE</div>
-                        <h2 className="text-3xl font-extrabold mb-2 text-gray-900">Welcome to Tradevance</h2>
-                        <p className="text-gray-500 text-sm">Sign in to access your secure trade workspace</p>
+                        <h2 className="text-3xl font-extrabold mb-2 text-gray-900">{isSignUp ? 'Create an account' : 'Welcome to Tradevance'}</h2>
+                        <p className="text-gray-500 text-sm">
+                            {isSignUp ? 'Sign up to access your secure trade workspace' : 'Sign in to access your secure trade workspace'}
+                        </p>
                     </div>
 
-                    {/* Role Selector */}
                     <div className="grid grid-cols-3 gap-2 mb-8 bg-gray-50 p-1 rounded-xl border border-gray-100">
                         {['Buyer', 'Seller', 'Operator'].map(r => (
                             <button 
@@ -164,35 +224,51 @@ export default function LandingPage() {
                                 {role === r && <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-8 h-[2px] bg-[#d8b65c] rounded-full"></div>}
                                 {r === 'Buyer' ? <Package size={16} className={role===r ? 'text-[#d8b65c] mb-1' : 'mb-1'}/> : r === 'Seller' ? <StoreIcon size={16} className={role===r ? 'text-[#d8b65c] mb-1' : 'mb-1'}/> : <ShieldCheck size={16} className={role===r ? 'text-[#d8b65c] mb-1' : 'mb-1'}/>}
                                 <span className="font-bold text-sm">{r}</span>
-                                <span className={`text-[9px] ${role === r ? 'text-[#d8b65c]' : 'text-gray-400'}`}>
+                                <span className={`text-[9px] hidden sm:block ${role === r ? 'text-[#d8b65c]' : 'text-gray-400'}`}>
                                     {r === 'Buyer' ? 'Source globally' : r === 'Seller' ? 'Reach more buyers' : 'Orchestrate trade'}
                                 </span>
                             </button>
                         ))}
                     </div>
 
-                    {/* Form */}
-                    <form className="flex flex-col gap-4 mb-8" onSubmit={(e) => { e.preventDefault(); navigate('/dashboard'); }}>
+                    {error && <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100">{error}</div>}
+
+                    <form className="flex flex-col gap-4 mb-8" onSubmit={handleAuth}>
                         <div className="relative">
                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                            <input type="text" placeholder="Email or Username" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#d8b65c]/50 focus:border-[#d8b65c] transition-all" />
+                            <input 
+                                type="email" 
+                                required
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
+                                placeholder="Email address" 
+                                className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#d8b65c]/50 focus:border-[#d8b65c] transition-all" 
+                            />
                         </div>
                         <div className="relative">
                             <LockKeyhole className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                            <input type="password" placeholder="Password" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-11 text-sm focus:outline-none focus:ring-2 focus:ring-[#d8b65c]/50 focus:border-[#d8b65c] transition-all" />
-                            <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                <Eye size={18} />
-                            </button>
+                            <input 
+                                type="password" 
+                                required
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)}
+                                placeholder="Password" 
+                                className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-11 text-sm focus:outline-none focus:ring-2 focus:ring-[#d8b65c]/50 focus:border-[#d8b65c] transition-all" 
+                            />
                         </div>
-                        <div className="flex justify-between items-center text-xs font-medium my-1">
-                            <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
-                                <input type="checkbox" className="rounded border-gray-300 text-[#d8b65c] focus:ring-[#d8b65c]" />
-                                Remember me
-                            </label>
-                            <a href="#" className="text-[#d8b65c] hover:underline">Forgot password?</a>
-                        </div>
-                        <button type="submit" className="w-full bg-[#bd9a3b] hover:bg-[#a68631] text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-[#bd9a3b]/20 flex justify-center items-center gap-2">
-                            <Lock size={16} /> Sign in securely <ArrowRight size={16} />
+                        
+                        {!isSignUp && (
+                            <div className="flex justify-between items-center text-xs font-medium my-1">
+                                <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
+                                    <input type="checkbox" className="rounded border-gray-300 text-[#d8b65c] focus:ring-[#d8b65c]" />
+                                    Remember me
+                                </label>
+                                <a href="#" className="text-[#d8b65c] hover:underline">Forgot password?</a>
+                            </div>
+                        )}
+                        
+                        <button disabled={loading} type="submit" className="w-full bg-[#bd9a3b] hover:bg-[#a68631] disabled:opacity-50 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-[#bd9a3b]/20 flex justify-center items-center gap-2">
+                            <Lock size={16} /> {isSignUp ? 'Create account' : 'Sign in securely'} <ArrowRight size={16} />
                         </button>
                     </form>
 
@@ -203,21 +279,20 @@ export default function LandingPage() {
                     </div>
 
                     <div className="flex flex-col gap-3 mb-8">
-                        <button type="button" className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold py-3 rounded-xl transition-colors shadow-sm flex justify-center items-center gap-3 text-sm">
+                        <button onClick={handleGoogleAuth} disabled={loading} type="button" className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold py-3 rounded-xl transition-colors shadow-sm flex justify-center items-center gap-3 text-sm disabled:opacity-50">
                             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" /> Continue with Google
-                        </button>
-                        <button type="button" className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold py-3 rounded-xl transition-colors shadow-sm flex justify-center items-center gap-3 text-sm">
-                            <img src="https://www.svgrepo.com/show/448234/microsoft.svg" alt="Microsoft" className="w-5 h-5" /> Continue with Microsoft
                         </button>
                     </div>
 
                     <div className="text-center text-sm font-medium text-gray-600">
-                        New to Tradevance? <a href="#" className="text-[#d8b65c] font-bold hover:underline">Create your account <ArrowRight size={12} className="inline"/></a>
+                        {isSignUp ? 'Already have an account? ' : 'New to Tradevance? '}
+                        <button onClick={() => setIsSignUp(!isSignUp)} className="text-[#d8b65c] font-bold hover:underline">
+                            {isSignUp ? 'Sign in instead' : 'Create your account'} <ArrowRight size={12} className="inline"/>
+                        </button>
                     </div>
                 </div>
 
-                {/* Bottom Trust Row */}
-                <div className="absolute bottom-8 left-12 right-12">
+                <div className="absolute bottom-8 left-12 right-12 hidden md:block">
                     <div className="grid grid-cols-4 gap-4 text-center border-t border-gray-200 pt-8">
                         <div className="flex flex-col items-center gap-2">
                             <ShieldCheck size={20} className="text-[#d8b65c]"/>
@@ -247,7 +322,6 @@ export default function LandingPage() {
     );
 }
 
-// Just a tiny helper icon missing from lucide-react default imports in some versions
 function StoreIcon({size, className}: {size:number, className?:string}) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
