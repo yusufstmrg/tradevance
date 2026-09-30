@@ -76,7 +76,7 @@ export default function LandingPage() {
     };
 
     return (
-        <div className="flex min-h-screen bg-[#000000] text-white font-sans overflow-hidden">
+        <div className="flex min-h-screen bg-[#000000] text-white font-sans md:overflow-hidden overflow-y-auto">
             
             {/* LEFT SIDE (Dark) */}
             <div className="w-[60%] relative flex flex-col justify-between p-12 bg-gradient-to-br from-[#0c131b] via-[#070b10] to-[#000000] z-10 hidden md:flex">
@@ -190,7 +190,7 @@ export default function LandingPage() {
             </div>
 
             {/* RIGHT SIDE (Light/White) */}
-            <div className="w-full md:w-[40%] bg-[#fcfcfd] text-gray-900 flex flex-col items-center justify-center p-8 md:p-12 relative">
+            <div className="w-full md:w-[40%] min-h-screen md:min-h-0 bg-[#fcfcfd] text-gray-900 flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 relative">
                 
                 <div className="absolute top-8 right-8 hidden md:flex items-center gap-3">
                     <button className="flex items-center gap-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 shadow-sm">
