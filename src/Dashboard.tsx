@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from './AuthContext';
-import { LogOut, Menu, X } from 'lucide-react';
+import { LogOut, Menu, X, Network } from 'lucide-react';
 import { 
     Search, Globe, Bell, Sun, ChevronDown, LayoutDashboard, Briefcase, Users, Package, FileText, 
     Ship, Activity, LineChart, Target, Bot, ShieldAlert, FileSearch, Building2, CreditCard, 
