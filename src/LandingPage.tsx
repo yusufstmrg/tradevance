@@ -5,6 +5,7 @@ import { auth, db } from './firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useAuth } from './AuthContext';
+import PublicExplorer from './PublicExplorer';
 
 export default function LandingPage() {
     const navigate = useNavigate();
@@ -317,6 +318,7 @@ export default function LandingPage() {
                     </div>
                 </div>
 
+                <PublicExplorer onSignIn={(r) => { setRole(r==='buyer'?'Buyer':'Seller'); setIsSignUp(true); }} />
             </div>
         </div>
     );

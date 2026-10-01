@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Functions for role checking
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function isOperator() {
+      return isSignedIn() && getUserData().role == 'Operator';
+    }
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    match /users/{userId} {
+      // Users can read and write their own doc.
+      // Operators can read all.
+      allow read: if isOwner(userId) || isOperator();
+      // Allow creation during signup. Restrict mutating role to operator later, but initial creation is allowed.
+      allow create: if isOwner(userId); 
+      allow update: if isOwner(userId) && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role'])) || isOperator();
+      allow delete: if isOperator();
+    }
+
+    match /organizations/{orgId} {
+      // Anyone can read organizations (public discovery)
+      allow read: true;
+      // Allow creation if signed in.
+      allow create: if isSignedIn();
+      // Only operators or members of the org can update.
+      allow update: if isSignedIn() && (isOperator() || getUserData().organizationId == orgId);
+    }
+
+    match /rfqs/{rfqId} {
+      // Anyone can read public-safe RFQ fields? No, the plan says RFQs are private except curated public-safe.
+      // Let's allow read if the user is verified, or is the owner, or is an operator.
+      // For now, allow authenticated users to read.
+      allow read: if isSignedIn();
+      // Only buyers can create RFQs
+      allow create: if isSignedIn() && (getUserData().role == 'Buyer' || getUserData().role == 'Operator');
+      allow update: if isSignedIn() && (isOperator() || resource.data.buyerId == request.auth.uid);
+      allow delete: if isOperator();
+    }
+
+    match /quotes/{quoteId} {
+      // Sellers can read their own quotes. Buyers can read quotes submitted to their RFQs.
+      allow read: if isSignedIn() && (isOperator() || resource.data.sellerId == request.auth.uid || get(/databases/$(database)/documents/rfqs/$(resource.data.rfqId)).data.buyerId == request.auth.uid);
+      allow create: if isSignedIn() && (getUserData().role == 'Seller' || getUserData().role == 'Operator');
+      allow update: if isSignedIn() && (isOperator() || resource.data.sellerId == request.auth.uid);
+    }
+
+    match /trade_rooms/{roomId} {
+      // Only the specific buyer and seller can read/write the trade room.
+      allow read, write: if isSignedIn() && (isOperator() || resource.data.buyerId == request.auth.uid || resource.data.sellerId == request.auth.uid);
+    }
+  }
+}

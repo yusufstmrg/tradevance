@@ -7,6 +7,7 @@ interface UserData {
   role: string;
   name: string;
   company: string;
+  organizationId?: string;
 }
 
 interface AuthContextType {
@@ -31,15 +32,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (user) {
-        // Fetch user data from Firestore
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setUserData(docSnap.data() as UserData);
-        } else {
-          // Default data if none exists
-          setUserData({ role: 'Buyer', name: user.displayName || 'User', company: 'Unknown Company' });
+        let role = 'Buyer';
+        let company = 'Unknown Company';
+        let organizationId = '';
+        
+        // Automatic Operator routing based on email domain
+        if (user.email?.endsWith('@tradevance.com')) {
+           role = 'Operator';
+        } else if (docSnap.exists()) {
+           role = docSnap.data().role || 'Buyer';
+           company = docSnap.data().company || 'Unknown Company';
+           organizationId = docSnap.data().organizationId || '';
         }
+
+        setUserData({ 
+           role, 
+           name: user.displayName || user.email?.split('@')[0] || 'User', 
+           company,
+           organizationId
+        });
       } else {
         setUserData(null);
       }
