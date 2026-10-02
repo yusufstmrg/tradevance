@@ -1,0 +1,86 @@
+# Tests
+
+## Test 1 - Public discovery, persona-specific entry and seamless Buyer Trade OS [sanity]
+Viewport: desktop
+Covers: anonymous public discovery, Buyer/Seller contextual CTAs, role selection before OAuth, company/mobile/country capture, supported social sign-in, role-aware Buyer Trade OS
+Description: Verifies a visitor can explore the full public discovery layer, choose the correct persona, capture essential onboarding data before identity sign-in, and land in the correct Trade OS.
+Steps:
+1. Open Tradevance signed out and open Explore Tradevance
+2. Open Buyers and confirm the CTA says Join as Buyer; open Sellers and confirm it says Join as Seller
+3. Choose Join as Buyer and select Buyer in the account-entry form
+4. Enter a company, mobile phone and country, then continue with a supported identity provider
+5. Complete sign-in
+Expected: Public discovery remains accessible without authentication; the selected role and organization data are retained; the authenticated user enters Buyer Trade OS; Operator is not presented as a customer role.
+
+## Test 2 - Seller entry and role boundary
+Viewport: mobile
+Covers: Seller contextual CTA, Seller role selection before social sign-in, immutable Buyer/Seller role boundary, Seller Trade OS
+Description: Verifies Seller onboarding cannot accidentally route into Buyer workspace.
+Steps:
+1. Open Explore Tradevance and select Sellers
+2. Confirm the primary CTA is Join as Seller
+3. Start the Seller entry flow and select Seller
+4. Enter company, mobile phone and country
+5. Complete supported sign-in
+Expected: The authenticated profile is Seller, the Seller Trade OS opens, and Buyer workspace controls are not assigned.
+
+## Test 3 - Manual account profile flow and identity integrity
+Viewport: desktop
+Covers: Create account manually profile capture, provider identity matching, company/mobile/country persistence, manual-entry validation
+Description: Verifies the manual account entry flow captures essential business information before secure identity completion and rejects an entered email that does not match the authenticated identity.
+Steps:
+1. Open Create account manually
+2. Enter work email, company, mobile phone, country and Buyer/Seller role
+3. Continue with Google, Apple or X
+4. Authenticate with the same work email
+Expected: The profile is created with the selected role, company, mobile and country; the authenticated provider email is the stored identity; a mismatched entered email is rejected and the user is signed out.
+
+## Test 4 - Super Admin and granular RBAC control
+Viewport: desktop
+Covers: /api/admin/access, /api/admin/rbac, Internal Operations Center, Access Control, both designated Super Admin identities, privileged role assignment, permission-aware navigation
+Description: Verifies both designated Super Admin identities receive full privileged access while Operator roles remain function-scoped.
+Steps:
+1. Sign in as either designated Super Admin identity
+2. Open Admin Intelligence / Internal Control Plane
+3. Open Access Control
+4. Review role catalog and permission scopes
+Expected: Both designated Super Admin identities have full privileged access; Access Control is visible; role changes remain Super Admin-controlled and audited; customer-facing Buyer/Seller flows never expose privileged roles.
+
+## Test 5 - Language, public gates and transaction protection
+Viewport: mobile
+Covers: immediate public language switching, dynamic translation fallback, RTL, public discovery, authenticated transaction gate, protected data boundary
+Description: Verifies language changes immediately on the landing/public layer and protected actions remain gated until authentication and verification.
+Steps:
+1. Open Tradevance signed out
+2. Switch English to Bahasa Indonesia, 中文 and العربية
+3. Confirm visible landing copy changes without repeated clicks
+4. Explore Buyers or Sellers and open a public detail
+5. Tap Create RFQ
+Expected: Language switches immediately for known copy; Arabic uses RTL; public data remains safe; Create RFQ opens the appropriate authenticated Buyer flow and transaction controls remain locked until verification.
+
+## Test 6 - Internal RBAC enforcement on operational data [critical]
+Viewport: desktop
+Covers: operator permission boundary, execution read scope, least-privilege enforcement
+Description: Verifies an internal operator without execution.read cannot access operational execution records merely because the account has operator status.
+
+Setup:
+1. Actor A is an authorized internal operator assigned the sales_bd role.
+2. Actor A is not granted execution.read.
+
+Steps:
+1. Sign in as Actor A
+2. Open an operational area that would request execution data
+3. Attempt to load the execution dataset
+Expected: The UI hides execution controls for the role and the backend returns an insufficient-permission response; no trade or quote records are exposed.
+
+## Test 7 - Returning-user authentication recovery
+Viewport: mobile
+Covers: returning-user direct sign-in, stale onboarding-state isolation, identity-provider error handling, popup-blocked recovery
+Description: Verifies a returning user can sign in directly without stale manual onboarding data forcing an identity mismatch, and provider errors produce actionable recovery guidance.
+
+Steps:
+1. Sign out after a previous account-entry attempt that stored company/email data
+2. Tap Sign in directly without opening Create account manually
+3. Complete sign-in with the existing Google, Apple or X identity
+4. If the browser blocks the authentication popup, allow pop-ups and tap Sign in again
+Expected: Returning-user sign-in ignores stale onboarding prefill, authenticates the selected identity, and opens the correct Trade OS; popup or provider failures show a specific recovery message rather than a generic failure.
