@@ -182,7 +182,12 @@ export default function Dashboard() {
                                         <tbody>
                                             <tr>
                                                 <td colSpan={6} className="p-8 text-center text-gray-500">
-                                                    No active trades. Click "Start New Trade" to begin.
+                                                    <div className="flex flex-col items-center justify-center gap-3">
+                                                        <p>No active trades. You need to create an RFQ first.</p>
+                                                        <button onClick={() => setActiveView('Opportunities')} className="bg-[#d8b65c] hover:bg-[#c9a34a] text-black font-bold px-4 py-2 rounded-lg text-xs transition-colors">
+                                                            Go to Opportunities (RFQ)
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -195,9 +200,12 @@ export default function Dashboard() {
                     <main className="flex-1 p-6 bg-[#070b10]">
                         <h1 className="text-2xl font-bold mb-6">Trade Network</h1>
                         <div className="bg-[#101922] rounded-xl border border-gray-800 p-8 text-center text-gray-400">
-                            <Network size={48} className="mx-auto mb-4 opacity-50" />
+                            <Network size={48} className="mx-auto mb-4 opacity-50 text-[#d8b65c]" />
                             <h2 className="text-lg font-bold text-white mb-2">Network Directory</h2>
-                            <p className="text-sm">Connect with verified buyers and suppliers. Your network is currently empty.</p>
+                            <p className="text-sm mb-6">Connect with verified buyers and suppliers. Your private network is currently empty.</p>
+                            <button onClick={() => setActiveView('Opportunities')} className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 font-bold px-4 py-2 rounded-lg text-sm transition-colors">
+                                Source Public Network via RFQ
+                            </button>
                         </div>
                     </main>
                 ) : activeView === "Verification" ? (
@@ -208,11 +216,15 @@ export default function Dashboard() {
                     <TradeRoom />
                 ) : activeView === "AI Trade Copilot" ? (
                     <main className="flex-1 p-6 bg-[#070b10]">
-                        <h1 className="text-2xl font-bold mb-6">AI Trade Copilot</h1>
+                        <h1 className="text-2xl font-bold mb-6 flex items-center gap-2"><Bot className="text-[#d8b65c]" /> AI Trade Copilot</h1>
                         <div className="bg-[#101922] rounded-xl border border-gray-800 p-8 text-center text-gray-400">
-                            <Bot size={48} className="mx-auto mb-4 opacity-50" />
-                            <h2 className="text-lg font-bold text-white mb-2">Intelligence Agent</h2>
-                            <p className="text-sm">Your AI Copilot is online. Ready to analyze market trends or draft contracts.</p>
+                            <Bot size={48} className="mx-auto mb-4 opacity-50 text-[#d8b65c]" />
+                            <h2 className="text-lg font-bold text-white mb-2">Intelligence Agent Online</h2>
+                            <p className="text-sm mb-6">I am ready to analyze market trends, review counterparty risk, or draft smart contracts.</p>
+                            <div className="flex justify-center gap-4">
+                                <button onClick={() => setActiveView('Opportunities')} className="bg-[#d8b65c] hover:bg-[#c9a34a] text-black font-bold px-4 py-2 rounded-lg text-sm transition-colors">Help me draft an RFQ</button>
+                                <button onClick={() => setActiveView('Verification')} className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 font-bold px-4 py-2 rounded-lg text-sm transition-colors">Review my Verification</button>
+                            </div>
                         </div>
                     </main>
                 ) : (
