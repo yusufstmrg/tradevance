@@ -28,7 +28,7 @@ service cloud.firestore {
 
     match /organizations/{orgId} {
       // Anyone can read organizations (public discovery)
-      allow read: true;
+      allow read: if true;
       // Allow creation if signed in.
       allow create: if isSignedIn();
       // Only operators or members of the org can update.
