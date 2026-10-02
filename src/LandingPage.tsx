@@ -77,10 +77,9 @@ export default function LandingPage() {
     };
 
     return (
-        <div className="flex min-h-screen bg-[#000000] text-white font-sans md:overflow-hidden overflow-y-auto">
+        <div className="flex min-h-screen bg-[#000000] text-white font-sans overflow-hidden">
             
-            {/* LEFT SIDE (Dark) */}
-            <div className="w-[60%] relative flex flex-col justify-between p-12 bg-gradient-to-br from-[#0c131b] via-[#070b10] to-[#000000] z-10 hidden md:flex">
+            <div className="w-full relative flex flex-col justify-between p-6 md:p-12 bg-gradient-to-br from-[#0c131b] via-[#070b10] to-[#000000] z-10">
                 <div className="absolute inset-0 pointer-events-none z-[-1] overflow-hidden">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent opacity-40"></div>
                     <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-yellow-500/10 blur-[100px] rounded-full"></div>
@@ -93,16 +92,22 @@ export default function LandingPage() {
                         </div>
                         <div className="flex flex-col">
                             <span className="font-bold text-lg leading-tight tracking-wide">TRADEVANCE</span>
-                            <span className="text-[10px] text-[#75818d] tracking-widest uppercase">AI Global Trade Network</span>
+                            <span className="text-[10px] text-[#75818d] tracking-widest uppercase hidden sm:block">AI Global Trade Network</span>
                         </div>
                     </div>
-                    <nav className="flex gap-8 text-sm font-medium text-gray-300">
-                        <a href="#" className="hover:text-white flex items-center gap-1">Solutions <ChevronDown size={14}/></a>
-                        <a href="#" className="hover:text-white">Intelligence</a>
-                        <a href="#" className="hover:text-white flex items-center gap-1">Resources <ChevronDown size={14}/></a>
-                        <a href="#" className="hover:text-white">Pricing</a>
-                        <a href="#" className="hover:text-white flex items-center gap-1">Company <ChevronDown size={14}/></a>
-                    </nav>
+                    <div className="flex items-center gap-8">
+                        <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                            <a href="#" className="hover:text-white flex items-center gap-1">Solutions <ChevronDown size={14}/></a>
+                            <a href="#" className="hover:text-white">Intelligence</a>
+                            <a href="#" className="hover:text-white flex items-center gap-1">Resources <ChevronDown size={14}/></a>
+                            <a href="#" className="hover:text-white">Pricing</a>
+                            <a href="#" className="hover:text-white flex items-center gap-1">Company <ChevronDown size={14}/></a>
+                        </nav>
+                        <div className="flex items-center gap-4">
+                            <button onClick={() => navigate('/login')} className="text-sm font-bold text-white hover:text-gray-300 transition-colors">Sign In</button>
+                            <button onClick={() => navigate('/login')} className="bg-[#d8b65c] text-[#070b10] px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#e0c274] transition-colors">Create Account</button>
+                        </div>
+                    </div>
                 </header>
 
                 <div className="z-10 mt-12 max-w-2xl">
@@ -190,136 +195,7 @@ export default function LandingPage() {
                 </div>
             </div>
 
-            {/* RIGHT SIDE (Light/White) */}
-            <div className="w-full md:w-[40%] min-h-screen md:min-h-0 bg-[#fcfcfd] text-gray-900 flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 relative">
-                
-                <div className="absolute top-8 right-8 hidden md:flex items-center gap-3">
-                    <button className="flex items-center gap-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50 shadow-sm">
-                        <Globe size={16}/> English <ChevronDown size={14}/>
-                    </button>
-                    <div className="flex items-center bg-white border border-gray-200 rounded-full p-1 shadow-sm">
-                        <button className="p-1.5 rounded-full bg-gray-100 text-gray-800"><Sun size={14}/></button>
-                        <button className="p-1.5 rounded-full text-gray-400 hover:text-gray-800"><Moon size={14}/></button>
-                    </div>
-                </div>
-
-                <div className="w-full max-w-md">
-                    <div className="text-center mb-8">
-                        <div className="w-14 h-14 mx-auto border-2 border-[#d8b65c] rounded-2xl flex items-center justify-center bg-white shadow-sm mb-6">
-                            <span className="text-[#d8b65c] font-bold text-2xl">T</span>
-                        </div>
-                        <div className="text-[#d8b65c] text-[10px] font-bold tracking-widest uppercase mb-3">WELCOME TO TRADEVANCE</div>
-                        <h2 className="text-3xl font-extrabold mb-2 text-gray-900">{isSignUp ? 'Create an account' : 'Welcome to Tradevance'}</h2>
-                        <p className="text-gray-500 text-sm">
-                            {isSignUp ? 'Sign up to access your secure trade workspace' : 'Sign in to access your secure trade workspace'}
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-2 mb-8 bg-gray-50 p-1 rounded-xl border border-gray-100">
-                        {['Buyer', 'Seller', 'Operator'].map(r => (
-                            <button 
-                                key={r}
-                                onClick={() => setRole(r)}
-                                className={`flex flex-col items-center justify-center py-3 rounded-lg border transition-all ${role === r ? 'bg-white border-[#d8b65c] shadow-sm text-gray-900 relative' : 'border-transparent text-gray-500 hover:text-gray-800 hover:bg-white/50'}`}
-                            >
-                                {role === r && <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-8 h-[2px] bg-[#d8b65c] rounded-full"></div>}
-                                {r === 'Buyer' ? <Package size={16} className={role===r ? 'text-[#d8b65c] mb-1' : 'mb-1'}/> : r === 'Seller' ? <StoreIcon size={16} className={role===r ? 'text-[#d8b65c] mb-1' : 'mb-1'}/> : <ShieldCheck size={16} className={role===r ? 'text-[#d8b65c] mb-1' : 'mb-1'}/>}
-                                <span className="font-bold text-sm">{r}</span>
-                                <span className={`text-[9px] hidden sm:block ${role === r ? 'text-[#d8b65c]' : 'text-gray-400'}`}>
-                                    {r === 'Buyer' ? 'Source globally' : r === 'Seller' ? 'Reach more buyers' : 'Orchestrate trade'}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-
-                    {error && <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100">{error}</div>}
-
-                    <form className="flex flex-col gap-4 mb-8" onSubmit={handleAuth}>
-                        <div className="relative">
-                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                            <input 
-                                type="email" 
-                                required
-                                value={email}
-                                onChange={(e)=>setEmail(e.target.value)}
-                                placeholder="Email address" 
-                                className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#d8b65c]/50 focus:border-[#d8b65c] transition-all" 
-                            />
-                        </div>
-                        <div className="relative">
-                            <LockKeyhole className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                            <input 
-                                type="password" 
-                                required
-                                value={password}
-                                onChange={(e)=>setPassword(e.target.value)}
-                                placeholder="Password" 
-                                className="w-full bg-white border border-gray-200 rounded-xl py-3.5 pl-11 pr-11 text-sm focus:outline-none focus:ring-2 focus:ring-[#d8b65c]/50 focus:border-[#d8b65c] transition-all" 
-                            />
-                        </div>
-                        
-                        {!isSignUp && (
-                            <div className="flex justify-between items-center text-xs font-medium my-1">
-                                <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
-                                    <input type="checkbox" className="rounded border-gray-300 text-[#d8b65c] focus:ring-[#d8b65c]" />
-                                    Remember me
-                                </label>
-                                <a href="#" className="text-[#d8b65c] hover:underline">Forgot password?</a>
-                            </div>
-                        )}
-                        
-                        <button disabled={loading} type="submit" className="w-full bg-[#bd9a3b] hover:bg-[#a68631] disabled:opacity-50 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-[#bd9a3b]/20 flex justify-center items-center gap-2">
-                            <Lock size={16} /> {isSignUp ? 'Create account' : 'Sign in securely'} <ArrowRight size={16} />
-                        </button>
-                    </form>
-
-                    <div className="flex items-center gap-4 mb-8">
-                        <div className="h-px bg-gray-200 flex-1"></div>
-                        <span className="text-gray-400 text-xs font-bold uppercase tracking-wider">OR</span>
-                        <div className="h-px bg-gray-200 flex-1"></div>
-                    </div>
-
-                    <div className="flex flex-col gap-3 mb-8">
-                        <button onClick={handleGoogleAuth} disabled={loading} type="button" className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold py-3 rounded-xl transition-colors shadow-sm flex justify-center items-center gap-3 text-sm disabled:opacity-50">
-                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" /> Continue with Google
-                        </button>
-                    </div>
-
-                    <div className="text-center text-sm font-medium text-gray-600">
-                        {isSignUp ? 'Already have an account? ' : 'New to Tradevance? '}
-                        <button onClick={() => setIsSignUp(!isSignUp)} className="text-[#d8b65c] font-bold hover:underline">
-                            {isSignUp ? 'Sign in instead' : 'Create your account'} <ArrowRight size={12} className="inline"/>
-                        </button>
-                    </div>
-                </div>
-
-                <div className="absolute bottom-8 left-12 right-12 hidden md:block">
-                    <div className="grid grid-cols-4 gap-4 text-center border-t border-gray-200 pt-8">
-                        <div className="flex flex-col items-center gap-2">
-                            <ShieldCheck size={20} className="text-[#d8b65c]"/>
-                            <span className="font-bold text-xs text-gray-800">Enterprise-grade<br/>Security</span>
-                            <span className="text-[9px] text-gray-400">Your data is protected</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <Users size={20} className="text-[#d8b65c]"/>
-                            <span className="font-bold text-xs text-gray-800">Role-based<br/>Access</span>
-                            <span className="text-[9px] text-gray-400">Permissions by role</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <Globe size={20} className="text-[#d8b65c]"/>
-                            <span className="font-bold text-xs text-gray-800">Global Network<br/>Visibility</span>
-                            <span className="text-[9px] text-gray-400">Secure introductions</span>
-                        </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <CheckCircle2 size={20} className="text-[#d8b65c]"/>
-                            <span className="font-bold text-xs text-gray-800">Compliance<br/>Ready</span>
-                            <span className="text-[9px] text-gray-400">Built for global trade</span>
-                        </div>
-                    </div>
-                </div>
-
-                <PublicExplorer onSignIn={(r) => { setRole(r==='buyer'?'Buyer':'Seller'); setIsSignUp(true); }} />
-            </div>
+            <PublicExplorer onSignIn={(r) => { navigate('/login'); }} />
         </div>
     );
 }

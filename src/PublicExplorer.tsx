@@ -2,6 +2,7 @@ import {useEffect,useMemo,useState} from 'react';
 import {ArrowRight,BarChart3,BriefcaseBusiness,Building2,ChevronRight,FileCheck2,Globe2,LockKeyhole,PackageSearch,Search,Send,ShieldCheck,Sparkles,Users,X,AlertTriangle} from 'lucide-react';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import './public-explorer.css';
 
 type Props={onSignIn:(role:'buyer'|'seller')=>void};type Entity={id:string|null;name:string;entityType:'Buyer'|'Seller';country:string;products:string[];verificationLevel:string;confidence:number;lastVerified:string;notes:string;officialUrl:string;evidence:{type:string;claim:string;sourceUrl:string}[]};type PublicData={buyers:Entity[];sellers:Entity[];commodities:string[];policy:{privateContacts:string;internalOwnerFields:string;transactionRecords:string;transactionActions:string}};type Gate={action:string;defaultRole:'buyer'|'seller'};
 const tabs=[{id:'overview',label:'Overview',icon:Globe2},{id:'buyers',label:'Buyers',icon:Users},{id:'sellers',label:'Sellers',icon:Building2},{id:'commodities',label:'Commodities',icon:PackageSearch},{id:'intelligence',label:'Intelligence',icon:Sparkles},{id:'rfq',label:'RFQ & Tenders',icon:Send},{id:'trust',label:'Trust & Verification',icon:ShieldCheck},{id:'workflow',label:'Trade Workflow',icon:BriefcaseBusiness},{id:'resources',label:'Resources',icon:FileCheck2}] as const;
